@@ -160,6 +160,7 @@
     "title": "Moments at Wat Phnom",
     "subtitle": "A visual walk through the temple, its art and the surrounding city.",
     "viewMaps": "View Wat Phnom on Google Maps",
+    "viewAlbum": "View all photos",
     "photos": [
       { "src": "/gallery/wat-phnom-daun-penh-1.jpg", "alt": "Wat Phnom Daun Penh on a hill in Phnom Penh", "caption": "The hilltop temple" },
       { "src": "/gallery/wat-phnom-daun-penh-2.jpg", "alt": "The white stupa of Wat Phnom", "caption": "The central stupa" },
