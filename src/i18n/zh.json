@@ -5,6 +5,10 @@
   },
   "header": {
     "siteName": "塔山寺",
+    "navAbout": "关于塔山寺",
+    "navGuide": "游览指南",
+    "navTransit": "交通地图",
+    "navExplore": "周边探索",
     "intro": "简介",
     "history": "历史",
     "architecture": "建筑",
@@ -156,8 +160,8 @@
     ]
   },
   "gallery": {
-    "eyebrow": "វិចិត្រសាល",
-    "title": "ពេលវេលានៅវត្តភ្នំ",
+    "eyebrow": "图片画廊",
+    "title": "塔山寺瞬间",
     "subtitle": "穿行于寺院、艺术与周遭城市的一程视觉漫步。",
     "viewMaps": "在 Google 地图查看塔山寺",
     "viewAlbum": "查看全部照片",

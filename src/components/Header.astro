@@ -9,18 +9,26 @@ interface Props {
 }
 const { lang, messages: m, t } = Astro.props;
 
-const nav = [
-  { id: 'intro', label: m.header.intro },
-  { id: 'history', label: m.header.history },
-  { id: 'architecture', label: m.header.architecture },
-  { id: 'experience', label: m.header.experience },
-  { id: 'best-time', label: m.header.bestTime },
-  { id: 'transport', label: m.header.transport },
-  { id: 'map', label: m.header.map },
-  { id: 'nearby', label: m.header.nearby },
-  { id: 'food', label: m.header.food },
-  { id: 'practical', label: m.header.practical },
-  { id: 'faq', label: m.header.faq },
+const navGroups = [
+  { key: 'navAbout', items: [
+    { id: 'intro', label: m.header.intro },
+    { id: 'history', label: m.header.history },
+    { id: 'architecture', label: m.header.architecture },
+  ]},
+  { key: 'navGuide', items: [
+    { id: 'best-time', label: m.header.bestTime },
+    { id: 'experience', label: m.header.experience },
+    { id: 'practical', label: m.header.practical },
+    { id: 'faq', label: m.header.faq },
+  ]},
+  { key: 'navTransit', items: [
+    { id: 'transport', label: m.header.transport },
+    { id: 'map', label: m.header.map },
+  ]},
+  { key: 'navExplore', items: [
+    { id: 'nearby', label: m.header.nearby },
+    { id: 'food', label: m.header.food },
+  ]},
 ];
 
 function switchUrl(l: string): string {
@@ -39,8 +47,18 @@ function switchUrl(l: string): string {
     </a>
 
     <nav class="nav-desktop" aria-label="Primary">
-      {nav.map((item) => (
-        <a href={`/${lang}#${item.id}`}>{item.label}</a>
+      {navGroups.map((g) => (
+        <div class="nav-group">
+          <button class="nav-group-label" type="button" aria-haspopup="true" aria-expanded="false">
+            {m.header[g.key]}
+            <span class="caret" aria-hidden="true"></span>
+          </button>
+          <div class="nav-dropdown">
+            {g.items.map((item) => (
+              <a href={`/${lang}#${item.id}`}>{item.label}</a>
+            ))}
+          </div>
+        </div>
       ))}
     </nav>
 
@@ -69,8 +87,13 @@ function switchUrl(l: string): string {
 
   <nav class="nav-mobile" data-menu aria-label="Mobile">
     <div class="container">
-      {nav.map((item) => (
-        <a href={`/${lang}#${item.id}`}>{item.label}</a>
+      {navGroups.map((g) => (
+        <div class="mobile-group">
+          <p class="mobile-group-label">{m.header[g.key]}</p>
+          {g.items.map((item) => (
+            <a href={`/${lang}#${item.id}`}>{item.label}</a>
+          ))}
+        </div>
       ))}
       <div class="mobile-langs">
         {languagesList.map((l) => (
