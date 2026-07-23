@@ -333,7 +333,7 @@
       "howBody": "We use the collected information to:",
       "howList": ["Improve website content and user experience", "Analyze traffic and usage patterns", "Respond to requests", "Comply with our legal obligations"],
       "thirdParties": "Third-party services",
-      "thirdBody": "Our website may use third-party services such as Google Maps (for embedded maps and location data), Google Analytics (for traffic analysis) and Unsplash (for images). These services have their own privacy policies.",
+      "thirdBody": "Our website may use third-party services such as Google Maps (for embedded maps and location data) and Google Analytics (for traffic analysis). These services have their own privacy policies.",
       "yourRights": "Your rights",
       "rightsBody": "Under the General Data Protection Regulation (GDPR) and related laws, you have the right to:",
       "rightsList": ["Access your personal data", "Request correction or deletion", "Object to processing", "Lodge a complaint with a supervisory authority"]
@@ -346,7 +346,7 @@
       "accuracy": "Accuracy of information",
       "accuracyBody": "We strive to provide accurate and timely information, but cannot guarantee its completeness or accuracy. Itineraries, conditions and services are subject to change without notice. Always verify important information through official channels before traveling.",
       "ip": "Intellectual property",
-      "ipBody": "The design of this website and original content are protected by copyright. Images are from Unsplash and used under their license. Use of Google Maps data complies with Google's Terms of Service.",
+      "ipBody": "The design of this website and original content are protected by copyright. All photos on this site are taken by the user on location; copyright belongs to their original authors (the user). Use of Google Maps data complies with Google's Terms of Service.",
       "liability": "Limitation of liability",
       "liabilityBody": "This website is provided \"as is\" without any warranties. We are not responsible for any loss arising from the use of information on this site, including but not limited to travel decisions made based on its content."
     },
