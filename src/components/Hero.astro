@@ -1,0 +1,82 @@
+---
+import siteConfig, { mapsUrl } from '../config';
+
+interface Props {
+  lang: string;
+  messages: any;
+  t: (k: string) => string;
+}
+const { lang, messages: m, t } = Astro.props;
+const h = m.hero;
+const heroImg = '/gallery/wat-phnom-daun-penh-1.jpg';
+
+function stars(rating: string) {
+  const full = Math.round(parseFloat(rating));
+  return { full, empty: 5 - full };
+}
+const st = stars(h.rating);
+---
+<section class="hero">
+  <div class="hero-bg">
+    <img src={heroImg} alt={h.heroAlt} fetchpriority="high" />
+    <div class="hero-overlay"></div>
+  </div>
+
+  <div class="container hero-content">
+    <p class="hero-kicker">{h.localName}</p>
+    <h1 class="hero-title">{h.title}</h1>
+    <p class="hero-subtitle">{h.subtitle}</p>
+
+    <div class="hero-rating">
+      <span class="stars" aria-hidden="true">
+        {Array.from({ length: st.full }).map(() => <span class="star-filled">★</span>)}
+        {Array.from({ length: st.empty }).map(() => <span class="star-empty">★</span>)}
+      </span>
+      <span class="hero-rating-text"><strong>{h.rating}</strong> · {h.reviews} {t('hero.reviewsSuffix')}</span>
+    </div>
+
+    <div class="hero-facts">
+      {h.facts.map((fct: any) => (
+        <div class="hero-fact"><span class="k">{fct.k}</span><span class="v">{fct.v}</span></div>
+      ))}
+    </div>
+
+    <div class="hero-cta">
+      <a class="btn-cta btn-cta-primary" href={mapsUrl} target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        {h.ctaMaps}
+      </a>
+      <a class="btn-cta btn-cta-secondary" href={`#intro`}>{h.ctaExplore}</a>
+    </div>
+
+    {h.legend ? (
+      <p class="hero-legend">{h.legend}<cite>— {h.legendAuthor}</cite></p>
+    ) : null}
+  </div>
+
+  <a class="scroll-hint" href="#intro" aria-label="Scroll down">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+  </a>
+</section>
+
+<style>
+  .hero { position: relative; min-height: 92vh; display: flex; align-items: center; overflow: hidden; }
+  .hero-bg { position: absolute; inset: 0; }
+  .hero-bg img { width: 100%; height: 100%; object-fit: cover; }
+  .hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(20,17,13,0.55) 0%, rgba(20,17,13,0.35) 40%, rgba(20,17,13,0.72) 100%);
+  }
+  .hero-content { position: relative; z-index: 2; color: #fff; text-align: center; padding-block: 90px 70px; }
+  .hero-kicker { margin: 0 0 8px; font-family: var(--font-body); letter-spacing: 0.22em; text-transform: uppercase; font-size: 0.86rem; color: var(--accent-strong); font-weight: 700; }
+  .hero-title { color: #fff; font-size: clamp(2.4rem, 6vw, 4.2rem); margin: 0 0 14px; text-shadow: 0 2px 18px rgba(0,0,0,0.35); }
+  .hero-subtitle { color: #f1e9da; font-size: clamp(1.05rem, 2.2vw, 1.35rem); max-width: 680px; margin: 0 auto; }
+  .hero-rating { display: inline-flex; align-items: center; gap: 10px; margin-top: 18px; color: #fff; }
+  .hero-rating-text { font-size: 0.95rem; }
+  .hero-rating-text strong { font-size: 1.1rem; }
+  .hero-facts { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 26px; }
+  .hero-cta { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-top: 30px; }
+  .scroll-hint { position: absolute; bottom: 22px; left: 50%; transform: translateX(-50%); z-index: 3; color: #fff; opacity: 0.8; animation: bob 2s infinite; }
+  @keyframes bob { 0%,100% { transform: translate(-50%, 0); } 50% { transform: translate(-50%, 8px); } }
+  @media (max-width: 600px) { .hero { min-height: 86vh; } .hero-facts { gap: 8px; } }
+</style>

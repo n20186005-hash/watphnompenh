@@ -1,0 +1,57 @@
+---
+import Icon from './Icon.astro';
+interface Props { lang: string; messages: any; t: (k: string) => string; }
+const { messages: m } = Astro.props;
+const s = m.intro;
+---
+<section id="intro" class="section-padding">
+  <div class="container">
+    <p class="eyebrow">{s.eyebrow}</p>
+    <h2 class="section-title">{s.title}</h2>
+    <p class="section-lead">{s.description}</p>
+
+    <div class="intro-body">
+      <div class="fact-grid">
+        {s.facts.map((f: any) => (
+          <div class="fact-item">
+            <div class="ico"><Icon name={f.icon} /></div>
+            <h4>{f.k}</h4>
+            <p>{f.v}</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="intro-cols">
+        <div class="card card-pad">
+          <h3>{s.highlights.title}</h3>
+          <ul class="list-check">
+            {s.highlights.items.map((it: string) => (
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span>{it}</span></li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="card card-pad guide">
+          <p class="g-eyebrow">{s.guide.eyebrow}</p>
+          <h3>{s.guide.title}</h3>
+          <p class="g-desc">{s.guide.description}</p>
+          <ul class="list-check">
+            {s.guide.items.map((it: string) => (
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg><span>{it}</span></li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .intro-body { margin-top: 30px; display: grid; gap: 26px; }
+  .intro-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+  .intro-cols h3 { margin: 0 0 14px; font-size: 1.3rem; }
+  .guide { background: var(--surface-accent); }
+  .g-eyebrow { margin: 0 0 6px; font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent-strong); font-weight: 700; }
+  .g-desc { color: var(--text-muted); margin: 0 0 16px; }
+  @media (max-width: 760px) { .intro-cols { grid-template-columns: 1fr; } }
+</style>

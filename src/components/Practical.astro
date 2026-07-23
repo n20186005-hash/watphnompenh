@@ -1,0 +1,32 @@
+---
+import Icon from './Icon.astro';
+interface Props { lang: string; messages: any; t: (k: string) => string; }
+const { messages: m } = Astro.props;
+const s = m.practical;
+---
+<section id="practical" class="section-padding">
+  <div class="container">
+    <p class="eyebrow">{s.eyebrow}</p>
+    <h2 class="section-title">{s.title}</h2>
+    <p class="section-lead">{s.subtitle}</p>
+
+    <div class="practical-grid">
+      {s.cards.map((c: any) => (
+        <div class="card card-pad practical-card">
+          <div class="practical-ico"><Icon name={c.icon} /></div>
+          <h3>{c.title}</h3>
+          <p>{c.text}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .practical-grid { margin-top: 30px; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+  .practical-card { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+  .practical-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+  .practical-ico { width: 50px; height: 50px; border-radius: 13px; background: var(--accent-soft); color: var(--accent-strong); display: grid; place-items: center; margin-bottom: 14px; }
+  .practical-card h3 { margin: 0 0 8px; font-size: 1.2rem; }
+  .practical-card p { margin: 0; color: var(--text-muted); }
+</style>

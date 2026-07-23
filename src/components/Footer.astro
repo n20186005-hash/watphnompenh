@@ -1,0 +1,92 @@
+---
+import { mapsUrl } from '../config';
+
+interface Props {
+  lang: string;
+  messages: any;
+  t: (k: string) => string;
+}
+const { lang, messages: m, t } = Astro.props;
+const f = m.footer;
+---
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <div class="f-brand-row">
+        <span class="f-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 4v6c0 4-3 6-7 8-4-2-7-4-7-8V7l7-4z"/><path d="M12 7v10"/></svg>
+        </span>
+        <span>{f.siteName}</span>
+      </div>
+      <p class="footer-tagline">{f.tagline}</p>
+      <div class="mission-block">
+        <p class="mission-title">{f.missionTitle}</p>
+        <p class="mission-text">{f.missionText}</p>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h4>{f.exploreTitle}</h4>
+      <ul>
+        <li><a href={`/${lang}#intro`}>{m.header.intro}</a></li>
+        <li><a href={`/${lang}#history`}>{m.header.history}</a></li>
+        <li><a href={`/${lang}#architecture`}>{m.header.architecture}</a></li>
+        <li><a href={`/${lang}#experience`}>{m.header.experience}</a></li>
+        <li><a href={`/${lang}#transport`}>{m.header.transport}</a></li>
+        <li><a href={`/${lang}#nearby`}>{m.header.nearby}</a></li>
+        <li><a href={`/${lang}#faq`}>{m.header.faq}</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>{f.resourcesTitle}</h4>
+      <ul>
+        {f.resources.map((r: any) => (
+          <li><a href={r.url} target="_blank" rel="noopener">{r.name}</a></li>
+        ))}
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>{f.visitTitle}</h4>
+      <p class="visit-line">{t('map.addressLabel')}<br /><strong>{f.addressValue}</strong></p>
+      <p class="visit-line">{t('map.hoursLabel')}<br /><strong>{f.hoursValue}</strong></p>
+      <a class="footer-maps link-accent" href={mapsUrl} target="_blank" rel="noopener">↗ {f.mapsLabel}</a>
+    </div>
+  </div>
+
+  <div class="container footer-bottom">
+    <p>© {new Date().getFullYear()} {f.siteName}. {f.rights}</p>
+    <p class="disclaimer">{f.disclaimer}</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--surface-accent);
+    border-top: 1px solid var(--border);
+    padding-block: 52px 26px;
+    margin-top: 40px;
+  }
+  .footer-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1.2fr; gap: 32px; }
+  .f-brand-row { display: inline-flex; align-items: center; gap: 10px; font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; color: var(--heading); }
+  .f-mark { width: 32px; height: 32px; border-radius: 9px; background: var(--accent); color: #fff; display: grid; place-items: center; }
+  .footer-tagline { color: var(--text-muted); margin: 12px 0 0; max-width: 320px; }
+  .footer-col h4 { font-family: var(--font-body); font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent-strong); margin: 4px 0 14px; }
+  .footer-col ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 9px; }
+  .footer-col a { color: var(--text-muted); font-size: 0.93rem; }
+  .footer-col a:hover { color: var(--heading); }
+  .visit-line { color: var(--text-muted); font-size: 0.93rem; margin: 0 0 14px; }
+  .visit-line strong { color: var(--heading); font-weight: 600; }
+  .footer-maps { display: inline-block; margin-top: 4px; }
+  .footer-bottom { margin-top: 34px; padding-top: 20px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  .footer-bottom p { margin: 0; font-size: 0.82rem; color: var(--text-muted); }
+  .disclaimer { max-width: 620px; text-align: right; }
+  @media (max-width: 860px) {
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .disclaimer { text-align: left; }
+  }
+  @media (max-width: 520px) {
+    .footer-grid { grid-template-columns: 1fr; }
+  }
+</style>

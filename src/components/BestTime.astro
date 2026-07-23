@@ -1,0 +1,44 @@
+---
+interface Props { lang: string; messages: any; t: (k: string) => string; }
+const { messages: m } = Astro.props;
+const s = m.bestTime;
+---
+<section id="best-time" class="section-padding besttime-section">
+  <div class="container">
+    <p class="eyebrow">{s.eyebrow}</p>
+    <h2 class="section-title">{s.title}</h2>
+    <p class="section-lead">{s.subtitle}</p>
+
+    <h3 class="bt-day-title">{s.dayTitle}</h3>
+    <div class="bt-grid">
+      {s.day.map((d: any) => (
+        <div class={`card card-pad bt-card tone-${d.tone}`}>
+          <div class="bt-head">
+            <span class="bt-label">{d.label}</span>
+            <span class="bt-score">{d.score}</span>
+          </div>
+          <p>{d.text}</p>
+        </div>
+      ))}
+    </div>
+
+    {s.note ? (
+      <p class="bt-note">ⓘ {s.note}</p>
+    ) : null}
+  </div>
+</section>
+
+<style>
+  .besttime-section { background: var(--surface-accent); }
+  .bt-day-title { margin: 30px 0 16px; font-size: 1.3rem; }
+  .bt-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 18px; }
+  .bt-card { border-top: 3px solid var(--accent); }
+  .tone-morning { border-top-color: #e0a94a; }
+  .tone-afternoon { border-top-color: #c9762c; }
+  .tone-evening { border-top-color: #6a4a8c; }
+  .bt-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+  .bt-label { font-weight: 700; color: var(--heading); font-size: 1.1rem; }
+  .bt-score { font-size: 0.82rem; font-weight: 700; color: var(--accent-strong); background: var(--accent-soft); padding: 3px 10px; border-radius: 999px; }
+  .bt-card p { margin: 0; color: var(--text-muted); }
+  .bt-note { margin-top: 18px; font-size: 0.9rem; color: var(--text-muted); background: var(--surface); border: 1px dashed var(--border-strong); border-radius: 12px; padding: 12px 16px; }
+</style>

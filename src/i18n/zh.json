@@ -1,0 +1,249 @@
+{
+  "meta": {
+    "title": "塔山寺 Wat Phnom Daun Penh 金边旅游指南",
+    "description": "探索塔山寺（Wat Phnom Daun Penh），金边最著名的佛教地标之一。了解其历史、高棉建筑、游览建议与交通方式。"
+  },
+  "header": {
+    "siteName": "塔山寺",
+    "intro": "简介",
+    "history": "历史",
+    "architecture": "建筑",
+    "experience": "体验",
+    "bestTime": "最佳时间",
+    "transport": "如何到达",
+    "map": "地图",
+    "nearby": "周边",
+    "food": "美食文化",
+    "practical": "实用信息",
+    "faq": "常见问题"
+  },
+  "common": {
+    "maps": "地图"
+  },
+  "hero": {
+    "localName": "វត្តភ្នំដូនពេញ",
+    "title": "塔山寺 Wat Phnom Daun Penh",
+    "subtitle": "金边最具代表性的历史佛教地标之一，坐落在本市中心的山丘之上。",
+    "rating": "4.4",
+    "reviews": "9,467",
+    "reviewsSuffix": "条 Google 评价",
+    "ctaMaps": "查看地图",
+    "ctaExplore": "开始探索",
+    "facts": [
+      { "k": "类型", "v": "佛教寺庙" },
+      { "k": "位置", "v": "柬埔寨 金边" },
+      { "k": "开放", "v": "07:00 – 19:00" },
+      { "k": "建议游览", "v": "30–60 分钟" }
+    ],
+    "legend": "根据当地传说，山夫人（Daun Penh）在河岸发现一棵漂浮的 koki 树，树中藏有四尊佛像，于是建寺成山，金边（Phnom Penh，意为「奔夫人之山」）由此得名。",
+    "legendAuthor": "山夫人（Daun Penh）的传说",
+    "heroAlt": "柬埔寨金边市中心山丘上的塔山寺建筑"
+  },
+  "intro": {
+    "eyebrow": "景点简介",
+    "title": "关于塔山寺",
+    "description": "塔山寺（Wat Phnom Daun Penh）是金边最著名的历史寺庙之一，位于城市中心的小山丘上。这里既是重要的佛教场所，也是与金边城市名称起源相关的重要文化地标。",
+    "facts": [
+      { "k": "类型", "v": "佛教寺庙", "icon": "temple" },
+      { "k": "位置", "v": "柬埔寨 金边", "icon": "pin" },
+      { "k": "评分", "v": "4.4（9,467）", "icon": "star" },
+      { "k": "开放", "v": "07:00 – 19:00", "icon": "clock" }
+    ],
+    "highlights": {
+      "title": "为何值得一看",
+      "items": [
+        "金边城市名称由来的传说发源地",
+        "至今仍香火旺盛的活态佛教寺院",
+        "俯瞰市中心的城市景观",
+        "高棉艺术、壁画与佛教圣物"
+      ]
+    },
+    "guide": {
+      "eyebrow": "游览建议",
+      "title": "规划你的行程",
+      "description": "山顶范围紧凑，方便与金边市中心其他景点串联游览。",
+      "items": [
+        "预留 30–60 分钟轻松游览",
+        "进入寺庙请衣着得体",
+        "可连同河滨与皇宫区域一并游览",
+        "清晨前往天气凉爽、游客较少"
+      ]
+    }
+  },
+  "history": {
+    "eyebrow": "历史文化",
+    "title": "塔山寺的历史",
+    "subtitle": "从 14 世纪的传说，到金边的精神中心。",
+    "sections": [
+      {
+        "no": "1",
+        "era": "14 世纪",
+        "heading": "山夫人（Daun Penh）的传说",
+        "body": "当地传说讲述一位富有的寡妇山夫人（Daun Penh，意为「奔奶奶」），在湄公河洪水冲来的 koki 树中发现四尊佛像。她堆起一座小山（phnom），建起佛龛——城市因此得名 Phnom Penh（奔夫人之山）。"
+      },
+      {
+        "no": "2",
+        "era": "15–19 世纪",
+        "heading": "不断生长的圣山",
+        "body": "数百年来，佛龛屡经重建与扩建。这座人工山成为当地信仰的中心，周边聚落也逐渐发展为今天的都城。"
+      },
+      {
+        "no": "3",
+        "era": "19 世纪",
+        "heading": "法国保护国时期的修缮",
+        "body": "历代国王，尤其在 19 世纪，多次修缮并扩建寺庙。现今的佛塔（stupa）与经堂（vihara）体现了后期高棉修缮风格。"
+      },
+      {
+        "no": "4",
+        "era": "现代",
+        "heading": "首都的象征",
+        "body": "如今，塔山寺已成为国家级文化象征，也是金边同名山丘的所在，迎接来自世界各地的信众与游客。"
+      }
+    ],
+    "legendBadge": "传说",
+    "legendTitle": "山夫人建寺的传说",
+    "legendText": "山夫人与漂浮 koki 树的故事是金边最脍炙人口的起源传说。它不仅解释了寺庙的由来，也说明了首都为何被称为「Phnom Penh」——奔夫人之山。"
+  },
+  "architecture": {
+    "eyebrow": "建筑特色",
+    "title": "高棉佛教建筑",
+    "subtitle": "一座层叠的山顶圣所：佛塔、佛龛、壁画与圣树。",
+    "features": [
+      { "icon": "stupa", "title": "中央佛塔", "text": "高耸的白色佛塔供奉着佛教圣物，是山丘的精神中心。" },
+      { "icon": "buddha", "title": "佛像", "text": "备受尊崇的佛像——包括与建寺传说相关的造像——供奉于经堂之内。" },
+      { "icon": "mural", "title": "壁画", "text": "色彩鲜明的壁画描绘本生故事（Jataka）与佛教宇宙观场景。" },
+      { "icon": "ornament", "title": "高棉装饰", "text": "那伽（naga）栏杆、莲花纹样与雕花门楣，展现经典高棉工艺。" },
+      { "icon": "tree", "title": "圣树与小亭", "text": "绿树成荫，山夫人的小祭亭点缀其间，烘托宁静的山顶氛围。" },
+      { "icon": "view", "title": "山顶格局", "text": "人工堆筑的山丘将寺庙抬升于街道之上，可安静俯瞰城市。" }
+    ]
+  },
+  "gallery": {
+    "eyebrow": "图片画廊",
+    "title": "塔山寺瞬间",
+    "subtitle": "穿行于寺院、艺术与周遭城市的一程视觉漫步。",
+    "viewMaps": "在 Google 地图查看塔山寺",
+    "photos": [
+      { "src": "/gallery/wat-phnom-daun-penh-1.jpg", "alt": "柬埔寨金边山丘上的塔山寺", "caption": "塔山寺山顶寺院" },
+      { "src": "/gallery/wat-phnom-daun-penh-2.jpg", "alt": "塔山寺的白色佛塔", "caption": "中央佛塔" },
+      { "src": "/gallery/wat-phnom-daun-penh-3.jpg", "alt": "塔山寺的入口阶梯", "caption": "通往山顶的阶梯" },
+      { "src": "/gallery/wat-phnom-daun-penh-4.jpg", "alt": "塔山寺内的佛像", "caption": "经堂供奉的佛像" },
+      { "src": "/gallery/wat-phnom-daun-penh-5.jpg", "alt": "塔山寺内的壁画", "caption": "壁画与本生故事" },
+      { "src": "/gallery/wat-phnom-daun-penh-6.jpg", "alt": "塔山寺的那伽栏杆", "caption": "那伽装饰与台阶" },
+      { "src": "/gallery/wat-phnom-daun-penh-7.jpg", "alt": "从塔山寺俯瞰金边", "caption": "从山丘远眺城市" },
+      { "src": "/gallery/wat-phnom-daun-penh-8.jpg", "alt": "在塔山寺祈福的信众", "caption": "当地祈福与供奉" },
+      { "src": "/gallery/wat-phnom-daun-penh-9.jpg", "alt": "塔山寺山顶的圣树", "caption": "绿荫下的圣树" },
+      { "src": "/gallery/wat-phnom-daun-penh-10.jpg", "alt": "塔山寺的高棉建筑细节", "caption": "雕花门楣与纹样" },
+      { "src": "/gallery/wat-phnom-daun-penh-11.jpg", "alt": "塔山寺附近的金边河滨", "caption": "邻近的河滨步道" },
+      { "src": "/gallery/wat-phnom-daun-penh-12.jpg", "alt": "塔山寺的黄昏光影", "caption": "寺院的黄金时刻" }
+    ]
+  },
+  "experience": {
+    "eyebrow": "游览体验",
+    "title": "游客可以体验什么",
+    "subtitle": "短暂却充实的一站，感受文化、宁静与城市景观。",
+    "items": [
+      { "icon": "pray", "title": "参拜佛寺", "text": "在经堂观察当地人的虔诚，了解日常佛教仪轨。" },
+      { "icon": "view", "title": "欣赏城市景观", "text": "从山顶俯瞰金边市中心。" },
+      { "icon": "camera", "title": "拍摄建筑细节", "text": "适合建筑与文化摄影——佛塔、壁画与装饰。" },
+      { "icon": "users", "title": "感受当地生活", "text": "看居民前来祈福、供奉、求平安。" }
+    ]
+  },
+  "bestTime": {
+    "eyebrow": "最佳参观时间",
+    "title": "何时参观塔山寺",
+    "subtitle": "山顶每日开放；一天之中各有不同氛围。",
+    "dayTitle": "一天的时段",
+    "day": [
+      { "label": "上午", "tone": "morning", "score": "最宜清静", "text": "天气凉爽、游客较少，是摄影与祈福的宁静时段。" },
+      { "label": "下午", "tone": "afternoon", "score": "最宜光线", "text": "温暖而具方向性的光线，适合捕捉建筑与壁画。" },
+      { "label": "傍晚", "tone": "evening", "score": "最宜氛围", "text": "华灯初上，随着白日将尽，山顶更显意境。" }
+    ],
+    "note": "寺庙在上午中段及周末最为拥挤；清晨前往体验更安静。"
+  },
+  "transport": {
+    "eyebrow": "如何到达",
+    "title": "如何前往塔山寺",
+    "subtitle": "塔山寺位于金边市中心，从市区多数区域都很容易抵达。",
+    "overview": "山丘位于诺罗敦大道（Norodom Boulevard）与 96 街交汇处附近，距河滨与皇宫仅一小段车程。",
+    "modes": [
+      { "icon": "tuktuk", "title": "嘟嘟车（Tuk Tuk）", "description": "金边最常见的代步方式。", "details": ["短途灵活便捷", "车费随距离与时段浮动", "上车前先谈好价格"] },
+      { "icon": "taxi", "title": "出租车 / 叫车 App", "description": "适合家庭与炎热天气。", "details": ["有计程车与叫车软件可用", "适合携带行李的团体", "可在山脚入口附近直接下车"] },
+      { "icon": "walk", "title": "步行", "description": "从市中心河滨区域可步行抵达。", "details": ["距河滨约 15–20 分钟", "沿途街道平坦且有遮荫", "可顺道沿河散步"] }
+    ]
+  },
+  "map": {
+    "eyebrow": "地图",
+    "title": "在地图上找到塔山寺",
+    "subtitle": "金边市中心，塔山寺街尽头的山丘上。",
+    "addressLabel": "地址",
+    "addressValue": "塔山寺路，金边，柬埔寨",
+    "hoursLabel": "开放时间",
+    "hoursValue": "每日 07:00 – 19:00",
+    "openLabel": "在 Google 地图中打开"
+  },
+  "nearby": {
+    "eyebrow": "周边探索",
+    "title": "塔山寺周边游",
+    "subtitle": "山丘附近可轻松抵达的区域级亮点——不推荐任何具体酒店或商家。",
+    "places": [
+      { "name": "皇宫区域", "distance": "~1.5 km", "text": "皇家宫殿与银阁寺所在——金边最重要的皇家与文化区域。" },
+      { "name": "河滨（洞里萨河与湄公河）", "distance": "~1 km", "text": "位于两河交汇处的清凉步道，适合散步与观赏城市景观。" },
+      { "name": "中央市场（新街市 Phsar Thmei）", "distance": "~1.2 km", "text": "造型醒目的装饰艺术风格市场，展现当地商业与金边日常。" }
+    ]
+  },
+  "food": {
+    "eyebrow": "美食文化",
+    "title": "塔山寺附近的美食文化",
+    "subtitle": "品味柬埔寨料理——侧重文化背景，而非餐厅推荐。",
+    "intro": "山丘周边可见经典的柬埔寨风味。以下是对当地人饮食文化的介绍，并非对具体店家的推荐。",
+    "items": [
+      { "name": "高棉早餐", "text": "米粥（babor）与法式长棍，体现柬埔寨本土与法式影响的融合早晨。" },
+      { "name": "柬埔寨咖喱", "text": "Kari sach moan——以鸡肉、土豆与香茅慢炖的温和椰香咖喱。" },
+      { "name": "烤肉", "text": "街边摊与当地食肆售卖的串烤肉类。" },
+      { "name": "街头小吃", "text": "棕榈糖饼干（nom kong）与炒面，是日常的最爱。" },
+      { "name": "柬式冰咖啡", "text": "加炼乳的浓咖啡——柬埔寨咖啡文化的日常。" }
+    ]
+  },
+  "practical": {
+    "eyebrow": "实用信息",
+    "title": "旅行必备",
+    "subtitle": "让参访顺利、得体的全部要点。",
+    "cards": [
+      { "icon": "clock", "title": "开放时间", "text": "每日 07:00–19:00 开放，清晨最凉爽也最安静。" },
+      { "icon": "ticket", "title": "门票", "text": "请以现场最新信息为准，并遵守当地习俗。" },
+      { "icon": "timer", "title": "建议停留", "text": "山顶、佛寺与景观约预留 30–60 分钟。" },
+      { "icon": "users", "title": "适合人群", "text": "文化爱好者、摄影者与探索金边市中心的家庭。" }
+    ]
+  },
+  "faq": {
+    "eyebrow": "常见问题",
+    "title": "常见问题解答",
+    "subtitle": "规划塔山寺行程的快速问答。",
+    "items": [
+      { "q": "塔山寺值得一游吗？", "a": "值得——它是金边最重要的文化地标之一，也是城市同名山丘的所在。" },
+      { "q": "在塔山寺应停留多久？", "a": "多数游客花 30 分钟至 1 小时游览山顶、佛寺与景观。" },
+      { "q": "应该穿什么？", "a": "参观寺庙建议穿着遮肩盖膝的得体衣物。" },
+      { "q": "塔山寺在哪里？", "a": "位于柬埔寨金边市中心，塔山寺街尽头的山丘上。" },
+      { "q": "什么时候最适合参观？", "a": "清晨天气凉爽、游客较少；傍晚光线温暖、城市氛围浓郁。" }
+    ]
+  },
+  "footer": {
+    "siteName": "塔山寺 Wat Phnom Daun Penh",
+    "tagline": "一个免费、多语言的金边历史山顶寺院文化指南。",
+    "rights": "这是一个独立的信息指南，不与任何寺庙、商家或政府机构有关联。",
+    "missionTitle": "我们的使命",
+    "missionText": "我们将核实过的事实、历史与实用游客信息，整理为免费、友好的多语言指南——不含商业预订或推荐。",
+    "exploreTitle": "探索",
+    "resourcesTitle": "资源",
+    "resources": [
+      { "name": "Google 地图", "url": "https://www.google.com/maps?q=11.576146788577976,104.92050881223547" },
+      { "name": "柬埔寨旅游（官方）", "url": "https://www.tourismcambodia.com" },
+      { "name": "金边市政厅", "url": "https://www.phnompenh.gov.kh" }
+    ],
+    "visitTitle": "到访",
+    "addressValue": "塔山寺路，金边，柬埔寨",
+    "hoursValue": "每日 07:00 – 19:00",
+    "mapsLabel": "在 Google 地图中打开",
+    "disclaimer": "图片仅供示意。出发前请以现场信息为准，核实开放时间与门票。"
+  }
+}

@@ -1,0 +1,42 @@
+---
+import Icon from './Icon.astro';
+interface Props { lang: string; messages: any; t: (k: string) => string; }
+const { messages: m } = Astro.props;
+const s = m.transport;
+---
+<section id="transport" class="section-padding">
+  <div class="container">
+    <p class="eyebrow">{s.eyebrow}</p>
+    <h2 class="section-title">{s.title}</h2>
+    <p class="section-lead">{s.subtitle}</p>
+
+    <p class="transport-overview">{s.overview}</p>
+
+    <div class="transport-grid">
+      {s.modes.map((md: any) => (
+        <div class="card card-pad transport-card">
+          <div class="transport-ico"><Icon name={md.icon} /></div>
+          <h3>{md.title}</h3>
+          <p class="transport-desc">{md.description}</p>
+          <ul class="transport-details">
+            {md.details.map((d: string) => (
+              <li>{d}</li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .transport-overview { max-width: 720px; margin: 16px 0 28px; color: var(--text-muted); }
+  .transport-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 20px; }
+  .transport-card { border-top: 3px solid var(--accent); }
+  .transport-ico { width: 50px; height: 50px; border-radius: 13px; background: var(--accent-soft); color: var(--accent-strong); display: grid; place-items: center; margin-bottom: 14px; }
+  .transport-card h3 { margin: 0 0 8px; font-size: 1.25rem; }
+  .transport-desc { color: var(--text-muted); margin: 0 0 14px; }
+  .transport-details { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+  .transport-details li { position: relative; padding-left: 22px; color: var(--text); font-size: 0.94rem; }
+  .transport-details li::before { content: ''; position: absolute; left: 0; top: 9px; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+</style>

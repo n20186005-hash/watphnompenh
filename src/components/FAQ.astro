@@ -1,0 +1,31 @@
+---
+interface Props { lang: string; messages: any; t: (k: string) => string; }
+const { messages: m } = Astro.props;
+const s = m.faq;
+---
+<section id="faq" class="section-padding faq-section">
+  <div class="container container-narrow">
+    <p class="eyebrow">{s.eyebrow}</p>
+    <h2 class="section-title">{s.title}</h2>
+    <p class="section-lead">{s.subtitle}</p>
+
+    <div class="faq-list">
+      {s.items.map((it: any) => (
+        <div class="faq-item" data-open="false">
+          <button class="faq-q" type="button">
+            <span>{it.q}</span>
+            <svg class="chev" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-a"><div class="inner">{it.a}</div></div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq-section { background: var(--surface-accent); }
+  .container-narrow { max-width: 820px; }
+  .faq-list { margin-top: 28px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 6px 22px; box-shadow: var(--shadow-sm); }
+  .faq-item:last-child { border-bottom: 0; }
+</style>

@@ -1,0 +1,33 @@
+---
+interface Props { lang: string; messages: any; t: (k: string) => string; }
+const { messages: m } = Astro.props;
+const s = m.nearby;
+---
+<section id="nearby" class="section-padding">
+  <div class="container">
+    <p class="eyebrow">{s.eyebrow}</p>
+    <h2 class="section-title">{s.title}</h2>
+    <p class="section-lead">{s.subtitle}</p>
+
+    <div class="nearby-grid">
+      {s.places.map((p: any) => (
+        <div class="card card-pad nearby-card">
+          <div class="nearby-head">
+            <h3>{p.name}</h3>
+            <span class="nearby-dist">{p.distance}</span>
+          </div>
+          <p>{p.text}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .nearby-grid { margin-top: 30px; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+  .nearby-card { border-left: 4px solid var(--accent); }
+  .nearby-head { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; margin-bottom: 8px; }
+  .nearby-card h3 { margin: 0; font-size: 1.25rem; }
+  .nearby-dist { font-size: 0.82rem; font-weight: 700; color: var(--accent-strong); background: var(--accent-soft); padding: 3px 10px; border-radius: 999px; white-space: nowrap; }
+  .nearby-card p { margin: 0; color: var(--text-muted); }
+</style>

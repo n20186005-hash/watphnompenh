@@ -1,0 +1,32 @@
+---
+interface Props { lang: string; messages: any; t: (k: string) => string; }
+const { messages: m } = Astro.props;
+const s = m.food;
+---
+<section id="food" class="section-padding food-section">
+  <div class="container">
+    <p class="eyebrow">{s.eyebrow}</p>
+    <h2 class="section-title">{s.title}</h2>
+    <p class="section-lead">{s.subtitle}</p>
+
+    <p class="food-intro">{s.intro}</p>
+
+    <div class="food-grid">
+      {s.items.map((it: any) => (
+        <div class="card card-pad food-card">
+          <h3>{it.name}</h3>
+          <p>{it.text}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .food-section { background: var(--surface-accent); }
+  .food-intro { max-width: 740px; margin: 14px 0 28px; color: var(--text-muted); }
+  .food-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 18px; }
+  .food-card { border-top: 3px solid var(--accent); }
+  .food-card h3 { margin: 0 0 8px; font-size: 1.2rem; }
+  .food-card p { margin: 0; color: var(--text-muted); }
+</style>

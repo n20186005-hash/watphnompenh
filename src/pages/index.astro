@@ -1,0 +1,17 @@
+---
+export const prerender = true;
+import { siteConfig } from '../config';
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="refresh" content="0; url=/km" />
+    <link rel="canonical" href={`${siteConfig.baseUrl}/km`} />
+    <script is:inline>window.location.replace('/km');</script>
+    <title>Wat Phnom Daun Penh</title>
+  </head>
+  <body>
+    <a href="/km">Wat Phnom Daun Penh</a>
+  </body>
+</html>

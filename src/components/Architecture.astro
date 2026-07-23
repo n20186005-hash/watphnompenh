@@ -1,0 +1,32 @@
+---
+import Icon from './Icon.astro';
+interface Props { lang: string; messages: any; t: (k: string) => string; }
+const { messages: m } = Astro.props;
+const s = m.architecture;
+---
+<section id="architecture" class="section-padding">
+  <div class="container">
+    <p class="eyebrow">{s.eyebrow}</p>
+    <h2 class="section-title">{s.title}</h2>
+    <p class="section-lead">{s.subtitle}</p>
+
+    <div class="arch-grid">
+      {s.features.map((ft: any) => (
+        <div class="card card-pad arch-card">
+          <div class="arch-ico"><Icon name={ft.icon} /></div>
+          <h3>{ft.title}</h3>
+          <p>{ft.text}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .arch-grid { margin-top: 32px; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+  .arch-card { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+  .arch-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+  .arch-ico { width: 50px; height: 50px; border-radius: 13px; background: var(--accent-soft); color: var(--accent-strong); display: grid; place-items: center; margin-bottom: 14px; }
+  .arch-card h3 { margin: 0 0 8px; font-size: 1.25rem; }
+  .arch-card p { margin: 0; color: var(--text-muted); }
+</style>
