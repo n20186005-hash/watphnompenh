@@ -3,3 +3,7 @@ dist
 .astro
 *.log
 .DS_Store
+
+# Stray large downloads (not site assets) — keep dist under host file-size limits
+public/gallery/1.jpg
+public/gallery/AHRPTW*

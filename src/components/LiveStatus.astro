@@ -1,0 +1,76 @@
+---
+interface Props {
+  live: Record<string, string>;
+  openHour?: number;
+  closeHour?: number;
+}
+const { live, openHour = 7, closeHour = 19 } = Astro.props;
+---
+<div
+  class="live-status"
+  id="liveStatus"
+  data-open={live.open}
+  data-closed={live.closed}
+  data-until={live.openUntil}
+  data-reopen={live.reopenAt}
+  data-openhint={live.openHint}
+  data-closedhint={live.closedHint}
+  data-oh={openHour}
+  data-ch={closeHour}
+>
+  <div class="ls-main">
+    <span class="ls-dot" aria-hidden="true"></span>
+    <div class="ls-text">
+      <span class="ls-state">…</span>
+      <span class="ls-label">{live.label}</span>
+    </div>
+  </div>
+  <div class="ls-meta">
+    <span class="ls-local">{live.localTime}: <b id="lsTime">--:--</b></span>
+    <span class="ls-until" id="lsUntil"></span>
+  </div>
+  <p class="ls-hint" id="lsHint"></p>
+</div>
+
+<script>
+  function tick() {
+    const el = document.getElementById('liveStatus');
+    if (!el) return;
+    const d = el.dataset;
+    const openH = parseInt(d.oh || '7', 10);
+    const closeH = parseInt(d.ch || '19', 10);
+    let hh = 0, mm = 0;
+    try {
+      const parts = new Intl.DateTimeFormat('en-GB', {
+        timeZone: 'Asia/Phnom_Penh',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false,
+      }).formatToParts(new Date());
+      hh = parseInt(parts.find((p) => p.type === 'hour')?.value ?? '0', 10);
+      mm = parseInt(parts.find((p) => p.type === 'minute')?.value ?? '0', 10);
+    } catch {
+      hh = new Date().getHours();
+      mm = new Date().getMinutes();
+    }
+    const isOpen = hh >= openH && hh < closeH;
+    const pad = (n: number) => String(n).padStart(2, '0');
+    const timeStr = pad(hh) + ':' + pad(mm);
+    el.classList.toggle('is-open', isOpen);
+    el.classList.toggle('is-closed', !isOpen);
+
+    const state = el.querySelector('.ls-state') as HTMLElement | null;
+    const until = el.querySelector('#lsUntil') as HTMLElement | null;
+    const time = el.querySelector('#lsTime') as HTMLElement | null;
+    const hint = el.querySelector('#lsHint') as HTMLElement | null;
+    if (time) time.textContent = timeStr;
+    if (state) state.textContent = isOpen ? d.open! : d.closed!;
+    if (until)
+      until.textContent = isOpen
+        ? `${d.until} ${pad(closeH)}:00`
+        : `${d.reopen} ${pad(openH)}:00`;
+    if (hint) hint.textContent = isOpen ? d.openhint! : d.closedhint!;
+  }
+  tick();
+  setInterval(tick, 30000);
+</script>

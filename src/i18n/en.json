@@ -1,11 +1,11 @@
 {
   "meta": {
-    "title": "Wat Phnom Daun Penh - Phnom Penh Historic Temple Guide",
-    "description": "Discover Wat Phnom Daun Penh, one of Phnom Penh's most famous Buddhist landmarks. Learn its history, Khmer architecture, visiting tips and how to get there."
+    "title": "Wat Phnom Daun Penh — Phnom Penh Travel Guide",
+    "description": "Explore Wat Phnom Daun Penh, one of Phnom Penh's most iconic Buddhist landmarks. Discover its history, Khmer architecture, visitor tips and how to get there."
   },
   "header": {
-    "siteName": "Wat Phnom Daun Penh",
-    "intro": "About",
+    "siteName": "Wat Phnom",
+    "intro": "Intro",
     "history": "History",
     "architecture": "Architecture",
     "experience": "Experience",
@@ -18,103 +18,141 @@
     "faq": "FAQ"
   },
   "common": {
-    "maps": "Maps"
+    "maps": "Map"
   },
   "hero": {
     "localName": "វត្តភ្នំដូនពេញ",
+    "pronounce": "វត្តភ្នំដូនពេញ · /vɔət pɲom/",
     "title": "Wat Phnom Daun Penh",
-    "subtitle": "One of Phnom Penh's most representative historic Buddhist landmarks, perched on the city's central hill.",
+    "subtitle": "One of Phnom Penh's most iconic historic Buddhist landmarks, perched on a hill above the city center.",
     "rating": "4.4",
     "reviews": "9,467",
     "reviewsSuffix": "Google reviews",
-    "ctaMaps": "View Map",
-    "ctaExplore": "Start Exploring",
+    "ctaMaps": "View on map",
+    "ctaExplore": "Start exploring",
     "facts": [
-      { "k": "Type", "v": "Buddhist Temple" },
+      { "k": "Type", "v": "Buddhist temple" },
       { "k": "Location", "v": "Phnom Penh, Cambodia" },
       { "k": "Hours", "v": "07:00 – 19:00" },
       { "k": "Visit", "v": "30–60 min" }
     ],
-    "legend": "According to local legend, the temple was founded after Lady Penh discovered four Buddha statues inside a floating koki tree washed up on the riverbank.",
-    "legendAuthor": "The legend of Daun Penh",
-    "heroAlt": "Wat Phnom Daun Penh temple standing on its hill in central Phnom Penh, Cambodia"
+    "legend": "A sacred tree, five statues, the birth of a city. In 1372 the wealthy widow Lady Penh (Daun Penh) found a drifting Koki tree on the Tonlé Sap riverbank; within it lay four bronze Buddhas and one stone Vishnu. She led her neighbors to mound the earth into a hill and enshrine the relics — and Phnom Penh ('the hill of Penh') was founded, with Wat Phnom as the spiritual heart of the millennium-old capital.",
+    "legendAuthor": "The legend of Lady Penh",
+    "heroAlt": "Wat Phnom Daun Penh temple on a hill in central Phnom Penh, Cambodia"
+  },
+  "liveStatus": {
+    "label": "Current status",
+    "open": "Open now",
+    "closed": "Closed",
+    "openUntil": "Closes today at",
+    "reopenAt": "Opens at",
+    "localTime": "Local time (Phnom Penh)",
+    "openHint": "Visitors welcome — last entry before close",
+    "closedHint": "Opens daily; plan your visit for 07:00–19:00"
+  },
+  "pocketGuide": {
+    "button": "📥 Download 1-min offline pocket guide (PDF)",
+    "note": "A print-ready one-page summary — save as PDF or print and carry it with you."
+  },
+  "audioGuide": {
+    "badge": "Audio guide",
+    "play": "Play",
+    "comingSoon": "Audio narration coming soon",
+    "legendTitle": "The legend of Lady Penh",
+    "legendText": "Hear the 14th-century story of how a drifting Koki tree gave the city its name.",
+    "architectureTitle": "Reading the architecture",
+    "architectureText": "A 30-second walkthrough of murals, the naga stair and the great stupa."
   },
   "intro": {
-    "eyebrow": "Introduction",
-    "title": "About Wat Phnom Daun Penh",
-    "description": "Wat Phnom Daun Penh is among the most famous historic temples in Phnom Penh, sitting atop a small hill in the heart of the city. It is both an important Buddhist site and a cultural landmark tied to the origin of the city's name.",
+    "eyebrow": "About",
+    "title": "About Wat Phnom",
+    "description": "Wat Phnom Daun Penh is one of Phnom Penh's most famous historic temples, sitting atop a small hill in the city center. It is both an active Buddhist site and a cultural landmark tied to the very origin of the city's name.",
     "facts": [
-      { "k": "Type", "v": "Buddhist Temple", "icon": "temple" },
+      { "k": "Type", "v": "Buddhist temple", "icon": "temple" },
       { "k": "Location", "v": "Phnom Penh, Cambodia", "icon": "pin" },
       { "k": "Rating", "v": "4.4 (9,467)", "icon": "star" },
       { "k": "Hours", "v": "07:00 – 19:00", "icon": "clock" }
     ],
     "highlights": {
-      "title": "Why it matters",
+      "title": "Why it's worth a visit",
       "items": [
-        "The legendary origin of Phnom Penh's name",
-        "A living Buddhist temple still active today",
-        "Panoramic views over the city centre",
+        "The birthplace of the legend behind Phnom Penh's name",
+        "A living Buddhist temple still busy with devotees",
+        "City views from the hilltop",
         "Khmer art, murals and sacred relics"
       ]
     },
     "guide": {
-      "eyebrow": "Visitor Guide",
+      "eyebrow": "Visitor tip",
       "title": "Plan your visit",
-      "description": "A compact hilltop site — easy to combine with other central Phnom Penh attractions.",
+      "description": "The hilltop is compact and easy to combine with other central Phnom Penh sights.",
       "items": [
         "Allow 30–60 minutes for a relaxed visit",
-        "Dress respectfully when entering the temple",
-        "Combine with the Riverside and Royal Palace area",
-        "Visit early morning for cooler weather and fewer crowds"
+        "Dress modestly when entering the temple",
+        "Pair it with the riverfront and Royal Palace area",
+        "Go early for cooler weather and fewer crowds"
       ]
     }
   },
   "history": {
     "eyebrow": "History & Culture",
-    "title": "History of Wat Phnom",
-    "subtitle": "From a 14th-century legend to the symbolic heart of Phnom Penh.",
+    "title": "The history of Wat Phnom",
+    "subtitle": "From a 14th-century legend to the spiritual heart of Phnom Penh.",
     "sections": [
       {
         "no": "1",
-        "era": "14th Century",
+        "era": "14th century",
         "heading": "The legend of Lady Penh",
-        "body": "Local tradition tells of a wealthy widow, Daun Penh (Grandmother Penh), who found four Buddha statues in a koki tree carried by the Mekong floodwaters. She raised a small hill ('phnom') and built a shrine — giving the city its name, Phnom Penh ('Hill of Penh')."
+        "body": "A wealthy widow, Lady Penh (Daun Penh, 'Grandmother Penh'), found four bronze Buddha statues — and one stone Vishnu — hidden inside a drifting Koki tree on the riverbank. She summoned her neighbors to mound earth into a hill (phnom) and enshrine the relics in a wooden shrine. The act gave the city its name: Phnom Penh, 'the hill of Penh'."
       },
       {
         "no": "2",
-        "era": "15th–19th Century",
-        "heading": "A growing sacred hill",
-        "body": "The shrine was rebuilt and expanded over the centuries. The artificial hill became a focal point of local devotion, and the surrounding settlement grew into the capital we know today."
+        "era": "1431",
+        "heading": "Capital moves to Phnom Penh",
+        "body": "King Ponhea Yat relocated the Khmer capital from Angkor to Phnom Penh. He rebuilt Wat Phnom and raised a great white stupa (chedi) on the summit to house his ashes. The humble hill shrine was elevated into a royal spiritual center."
       },
       {
         "no": "3",
-        "era": "19th Century",
-        "heading": "Renovation under the French Protectorate",
-        "body": "Successive kings, especially during the 19th century, restored and enlarged the temple. The current stupa and vihara reflect later Khmer restoration styles."
+        "era": "15th–19th c.",
+        "heading": "A growing sacred hill",
+        "body": "Across centuries the shrine was repeatedly rebuilt and enlarged. The artificial hill became the focus of local faith, and the surrounding settlement gradually grew into today's capital."
       },
       {
         "no": "4",
-        "era": "Modern Era",
+        "era": "19th c.",
+        "heading": "French Protectorate care",
+        "body": "Under the French Protectorate, successive kings restored and expanded the temple. The stupa and vihear (prayer hall) took on the later Khmer restoration style still seen today."
+      },
+      {
+        "no": "5",
+        "era": "1926",
+        "heading": "Hébrard's restoration",
+        "body": "The renowned architect Ernest Hébrard led a major restoration during the colonial period, shaping the classic silhouette of Wat Phnom that visitors recognize today."
+      },
+      {
+        "no": "6",
+        "era": "Modern",
         "heading": "Symbol of the capital",
-        "body": "Today Wat Phnom stands as a national cultural symbol and the namesake hill of Phnom Penh, welcoming both worshippers and visitors from around the world."
+        "body": "Today Wat Phnom stands as a national cultural emblem and the namesake hill of Phnom Penh, welcoming devotees and travelers from around the world."
       }
     ],
     "legendBadge": "Legend",
-    "legendTitle": "The founding legend of Daun Penh",
-    "legendText": "The story of Lady Penh and the floating koki tree is the most beloved origin tale of Phnom Penh. It explains not only the temple's founding but also how the capital came to be called 'Phnom Penh' — the Hill of Penh."
+    "legendTitle": "The founding legend of Lady Penh",
+    "legendText": "The tale of Lady Penh and the drifting Koki tree is Phnom Penh's best-loved origin story. Inside the tree she found four bronze Buddhas and a stone Vishnu — a quiet sign of how Cambodian Buddhism blended with earlier Hindu devotion. The mound she raised became the hill, and her shrine became the temple that still gives the capital its name."
   },
   "architecture": {
     "eyebrow": "Architecture",
-    "title": "Khmer Buddhist Architecture",
-    "subtitle": "A layered hilltop sanctuary of stupas, shrines, murals and sacred trees.",
+    "title": "Khmer Buddhist architecture",
+    "subtitle": "A layered hilltop sanctuary: stupa, shrines, murals and sacred trees.",
     "features": [
-      { "icon": "stupa", "title": "The Central Stupa", "text": "A tall whitewashed stupa houses sacred relics and marks the spiritual centre of the hill." },
-      { "icon": "buddha", "title": "Buddha Statues", "text": "Revered Buddha images, including statues linked to the founding legend, are enshrined in the vihara." },
-      { "icon": "mural", "title": "Wall Murals", "text": "Vibrant murals depict the Jataka tales and scenes from Buddhist cosmology around the shrine." },
-      { "icon": "ornament", "title": "Khmer Ornament", "text": "Naga balustrades, lotus motifs and carved lintels show classic Khmer decorative craft." },
-      { "icon": "tree", "title": "Sacred Trees & Shrine", "text": "Shady trees and a small shrine to Lady Penh frame the peaceful summit." },
-      { "icon": "view", "title": "Hilltop Setting", "text": "The artificial hill lifts the temple above the street, offering calm city views." }
+      { "icon": "stupa", "title": "Central stupa", "text": "The tall white stupa enshrines sacred relics and marks the spiritual center of the hill." },
+      { "icon": "buddha", "title": "Buddha images", "text": "Revered Buddha statues — including those tied to the founding legend — are enshrined within the vihear." },
+      { "icon": "mural", "title": "Vihear murals", "text": "Painted in the early 20th century, the hall murals depict the Buddha's Jataka tales woven with scenes from the Khmer epic Reamker (Ramayana). Look up: the ceiling shows a cosmic mandala and the pillars are sheathed in gold." },
+      { "icon": "ornament", "title": "Khmer ornament", "text": "Naga balustrades, lotus motifs and carved lintels showcase classic Khmer craftsmanship." },
+      { "icon": "naga", "title": "Seven-headed Naga stair", "text": "The dramatic stairway guarded by a seven-headed naga (serpent) symbolises the rainbow bridge linking the human world to the cosmos (Mount Meru) — a stairway to the heavens." },
+      { "icon": "tree", "title": "Sacred tree & shrines", "text": "Shaded trees and Lady Penh's small votive shrine dot the hilltop, lending a calm, contemplative atmosphere." },
+      { "icon": "view", "title": "Hilltop layout", "text": "The man-made hill lifts the temple above the streets, offering a quiet overlook of the city." },
+      { "icon": "pray", "title": "Preah Chau Shrine", "text": "On the hill's north side stands the Chinese sanctuary (Preah Chau), where Khmer, Chinese and Vietnamese folk faiths meet. Merchants and students come to pray for wealth, success in studies, or draw a fortune stick (kien)." }
     ]
   },
   "gallery": {
@@ -123,127 +161,137 @@
     "subtitle": "A visual walk through the temple, its art and the surrounding city.",
     "viewMaps": "View Wat Phnom on Google Maps",
     "photos": [
-      { "src": "/gallery/wat-phnom-daun-penh-1.jpg", "alt": "Wat Phnom Daun Penh temple on its hill in Phnom Penh", "caption": "The hilltop temple of Wat Phnom" },
-      { "src": "/gallery/wat-phnom-daun-penh-2.jpg", "alt": "White stupa at Wat Phnom Daun Penh", "caption": "The central stupa" },
-      { "src": "/gallery/wat-phnom-daun-penh-3.jpg", "alt": "Entrance stairs to Wat Phnom", "caption": "Stairway to the summit" },
-      { "src": "/gallery/wat-phnom-daun-penh-4.jpg", "alt": "Buddha statue inside Wat Phnom", "caption": "Buddha enshrined in the vihara" },
-      { "src": "/gallery/wat-phnom-daun-penh-5.jpg", "alt": "Murals at Wat Phnom temple", "caption": "Wall murals and Jataka tales" },
-      { "src": "/gallery/wat-phnom-daun-penh-6.jpg", "alt": "Naga balustrade at Wat Phnom", "caption": "Naga ornament and steps" },
-      { "src": "/gallery/wat-phnom-daun-penh-7.jpg", "alt": "View of Phnom Penh from Wat Phnom hill", "caption": "City view from the hill" },
-      { "src": "/gallery/wat-phnom-daun-penh-8.jpg", "alt": "Devotees praying at Wat Phnom", "caption": "Local devotion and offerings" },
-      { "src": "/gallery/wat-phnom-daun-penh-9.jpg", "alt": "Sacred trees at Wat Phnom summit", "caption": "Shaded sacred trees" },
-      { "src": "/gallery/wat-phnom-daun-penh-10.jpg", "alt": "Khmer architectural details at Wat Phnom", "caption": "Carved lintels and motifs" },
-      { "src": "/gallery/wat-phnom-daun-penh-11.jpg", "alt": "Phnom Penh riverside near Wat Phnom", "caption": "Nearby Riverside promenade" },
-      { "src": "/gallery/wat-phnom-daun-penh-12.jpg", "alt": "Evening light at Wat Phnom", "caption": "Golden hour at the temple" }
+      { "src": "/gallery/wat-phnom-daun-penh-1.jpg", "alt": "Wat Phnom Daun Penh on a hill in Phnom Penh", "caption": "The hilltop temple" },
+      { "src": "/gallery/wat-phnom-daun-penh-2.jpg", "alt": "The white stupa of Wat Phnom", "caption": "The central stupa" },
+      { "src": "/gallery/wat-phnom-daun-penh-3.jpg", "alt": "Entrance stairs of Wat Phnom", "caption": "Stairs to the summit" },
+      { "src": "/gallery/wat-phnom-daun-penh-4.jpg", "alt": "Buddha statues inside Wat Phnom", "caption": "Buddhas in the vihear" },
+      { "src": "/gallery/wat-phnom-daun-penh-5.jpg", "alt": "Murals inside Wat Phnom", "caption": "Murals & Jataka tales" },
+      { "src": "/gallery/wat-phnom-daun-penh-6.jpg", "alt": "Naga balustrade at Wat Phnom", "caption": "Naga & stairway" },
+      { "src": "/gallery/wat-phnom-daun-penh-7.jpg", "alt": "View of Phnom Penh from Wat Phnom", "caption": "City view from the hill" },
+      { "src": "/gallery/wat-phnom-daun-penh-8.jpg", "alt": "Devotees praying at Wat Phnom", "caption": "Local prayers & offerings" },
+      { "src": "/gallery/wat-phnom-daun-penh-9.jpg", "alt": "Sacred tree on Wat Phnom hilltop", "caption": "Shaded sacred tree" },
+      { "src": "/gallery/wat-phnom-daun-penh-10.jpg", "alt": "Khmer architectural detail at Wat Phnom", "caption": "Carved lintels & motifs" },
+      { "src": "/gallery/wat-phnom-daun-penh-11.jpg", "alt": "Phnom Penh riverfront near Wat Phnom", "caption": "Nearby riverfront promenade" },
+      { "src": "/gallery/wat-phnom-daun-penh-12.jpg", "alt": "Golden hour light at Wat Phnom", "caption": "Golden hour at the temple" }
     ]
   },
   "experience": {
     "eyebrow": "Experience",
-    "title": "What Visitors Can Experience",
-    "subtitle": "A short but rich stop for culture, calm and city views.",
+    "title": "What visitors can do",
+    "subtitle": "A short but fulfilling stop for culture, calm and city views.",
     "items": [
-      { "icon": "pray", "title": "Visit the Buddhist shrine", "text": "Observe local devotion and learn about everyday Buddhist practice at the vihara." },
-      { "icon": "view", "title": "Enjoy the city view", "text": "Look out over central Phnom Penh from the top of the hill." },
-      { "icon": "camera", "title": "Photograph the details", "text": "Ideal for architecture and cultural photography — stupa, murals and ornament." },
+      { "icon": "pray", "title": "Visit the temple", "text": "Observe local devotion in the vihear and learn about daily Buddhist practice." },
+      { "icon": "view", "title": "Enjoy the city view", "text": "Overlook central Phnom Penh from the hilltop." },
+      { "icon": "camera", "title": "Photograph the details", "text": "Great for architectural and cultural photography — stupa, murals and ornament." },
       { "icon": "users", "title": "Feel local life", "text": "Watch residents come to pray, make offerings and seek blessings." }
     ]
   },
   "bestTime": {
-    "eyebrow": "Best Time to Visit",
-    "title": "When to Visit Wat Phnom",
-    "subtitle": "The hilltop is open daily; each part of the day offers a different mood.",
-    "dayTitle": "Time of Day",
+    "eyebrow": "Best time to visit",
+    "title": "When to visit Wat Phnom",
+    "subtitle": "The hilltop is open daily; each part of the day has its own mood.",
+    "dayTitle": "Time of day",
     "day": [
-      { "label": "Morning", "tone": "morning", "score": "Best for calm", "text": "Cooler weather and fewer visitors — a peaceful time for photography and prayer." },
-      { "label": "Afternoon", "tone": "afternoon", "score": "Best for light", "text": "Warm, directional light is great for capturing the architecture and murals." },
-      { "label": "Evening", "tone": "evening", "score": "Best for atmosphere", "text": "The city lights up and the hilltop feels atmospheric as the day winds down." }
+      { "label": "Morning", "tone": "morning", "score": "Best for calm", "text": "Cooler and quieter — a peaceful time for photography and prayer." },
+      { "label": "Afternoon", "tone": "afternoon", "score": "Best for light", "text": "Warm, directional light — good for capturing architecture and murals." },
+      { "label": "Evening", "tone": "evening", "score": "Best for atmosphere", "text": "As the lights come on, the hilltop feels especially atmospheric at day's end." }
     ],
-    "note": "The temple is busiest mid-morning and on weekends; arrive early for a quieter experience."
+    "note": "Busiest mid-morning and on weekends; go early for a quieter experience."
   },
   "transport": {
-    "eyebrow": "Getting There",
-    "title": "How to Get to Wat Phnom",
-    "subtitle": "Wat Phnom is in central Phnom Penh, easy to reach from most areas of the city.",
-    "overview": "The hill sits near the intersection of Norodom Boulevard and Street 96, a short ride from the Riverside and Royal Palace.",
+    "eyebrow": "Getting there",
+    "title": "How to reach Wat Phnom",
+    "subtitle": "Wat Phnom sits in central Phnom Penh, easy to reach from most parts of the city.",
+    "overview": "The hill is near the junction of Norodom Boulevard and Street 96, a short ride from the riverfront and the Royal Palace.",
     "modes": [
-      { "icon": "tuktuk", "title": "Tuk Tuk", "description": "The most common way to get around Phnom Penh.", "details": ["Flexible and convenient for short trips", "Fares vary by distance and time of day", "Agree on a price before you ride"] },
-      { "icon": "taxi", "title": "Taxi / App", "description": "Comfortable for families and hotter days.", "details": ["Metered taxis and ride-hailing apps available", "Good for groups with luggage", "Direct drop-off near the hill entrance"] },
-      { "icon": "walk", "title": "On Foot", "description": "Walkable from the central Riverside area.", "details": ["About 15–20 minutes from the Riverside", "Flat, shaded streets nearby", "Combine with a stroll along the river"] }
+      { "icon": "tuktuk", "title": "Tuk Tuk", "description": "The most common way to get around Phnom Penh.", "details": ["Flexible for short trips", "Fares vary by distance and time", "Agree on the price first"] },
+      { "icon": "taxi", "title": "Taxi / Ride app", "description": "Good for families and hot weather.", "details": ["Metered taxis and ride apps available", "Good for groups with luggage", "Drop-off near the hill entrance"] },
+      { "icon": "walk", "title": "On foot", "description": "Walkable from the central riverfront area.", "details": ["About 15–20 min from the riverfront", "Flat, mostly shaded streets", "Combine with a riverside stroll"] }
     ]
   },
   "map": {
-    "eyebrow": "Location",
-    "title": "Find Wat Phnom on the Map",
+    "eyebrow": "Map",
+    "title": "Find Wat Phnom on the map",
     "subtitle": "Central Phnom Penh, on the hill at the end of Wat Phnom Street.",
     "addressLabel": "Address",
     "addressValue": "Wat Phnom Road, Phnom Penh, Cambodia",
-    "hoursLabel": "Opening Hours",
+    "hoursLabel": "Opening hours",
     "hoursValue": "Daily 07:00 – 19:00",
-    "openLabel": "Open Google Maps"
+    "openLabel": "Open in Google Maps"
   },
   "nearby": {
     "eyebrow": "Nearby",
-    "title": "Explore Around Wat Phnom",
-    "subtitle": "Region-level highlights within easy reach of the hill — no specific hotels or businesses recommended.",
+    "title": "Explore around Wat Phnom",
+    "subtitle": "Easy regional highlights near the hill — no specific hotels or businesses recommended.",
     "places": [
-      { "name": "Royal Palace Area", "distance": "~1.5 km", "text": "The royal compound and Silver Pagoda — Phnom Penh's most important royal and cultural district." },
-      { "name": "Riverside (Tonlé Sap & Mekong)", "distance": "~1 km", "text": "A breezy promenade along the confluence of the rivers, perfect for walking and city views." },
-      { "name": "Central Market (Phsar Thmei)", "distance": "~1.2 km", "text": "A striking art-deco market showcasing local commerce and daily Phnom Penh life." }
+      { "name": "Royal Palace area", "distance": "~1.5 km", "text": "Home to the Royal Palace and Silver Pagoda — Phnom Penh's most important royal and cultural district." },
+      { "name": "Riverfront (Tonlé Sap & Mekong)", "distance": "~1 km", "text": "A breezy promenade at the confluence of two rivers, great for walking and city views." },
+      { "name": "Central Market (Phsar Thmei)", "distance": "~1.2 km", "text": "A striking Art Deco market showcasing local commerce and everyday Phnom Penh life." }
     ]
   },
   "food": {
-    "eyebrow": "Food & Culture",
-    "title": "Food Culture Near Wat Phnom",
-    "subtitle": "A taste of Cambodian cuisine — cultural context, not restaurant recommendations.",
-    "intro": "Around the hill you'll find classic Cambodian flavours. This is a cultural introduction to what locals eat, not an endorsement of specific venues.",
+    "eyebrow": "Food & culture",
+    "title": "Food culture near Wat Phnom",
+    "subtitle": "Taste Cambodian cuisine — with cultural context, not restaurant picks.",
+    "intro": "Classic Cambodian flavors can be found around the hill. Below is an introduction to locals' food culture, not a recommendation of specific vendors.",
     "items": [
-      { "name": "Khmer Breakfast", "text": "Rice porridge (babor) and fresh baguettes reflect Cambodia's blend of local and French-influenced mornings." },
-      { "name": "Cambodian Curry", "text": "Kari sach moan — a gentle coconut curry with chicken, potato and lemongrass." },
-      { "name": "Grilled Meats", "text": "Skewered and grilled meats sold at street stalls and local eateries." },
-      { "name": "Street Snacks", "text": "Nom kong (palm-sugar cookies) and fried noodles are everyday favourites." },
-      { "name": "Iced Khmer Coffee", "text": "Strong coffee with condensed milk — a staple of Cambodian café culture." }
+      { "name": "Khmer breakfast", "text": "Rice porridge (babor) and French bread — a morning blend of local and French-influenced tastes." },
+      { "name": "Cambodian curry", "text": "Kari sach moan — a mild, coconut-rich curry of chicken, potato and lemongrass, slow-cooked." },
+      { "name": "Grilled meats", "text": "Skewered and grilled meats sold at street stalls and local eateries." },
+      { "name": "Street snacks", "text": "Palm-sugar cookies (nom kong) and fried noodles are everyday favorites." },
+      { "name": "Iced Khmer coffee", "text": "Strong coffee with condensed milk — a daily ritual of Cambodian coffee culture." }
     ]
   },
   "practical": {
-    "eyebrow": "Practical Info",
-    "title": "Travel Essentials",
+    "eyebrow": "Practical info",
+    "title": "Travel essentials",
     "subtitle": "Everything you need for a smooth, respectful visit.",
     "cards": [
-      { "icon": "clock", "title": "Opening Hours", "text": "Open daily from 07:00 to 19:00. Mornings are coolest and quietest." },
-      { "icon": "ticket", "title": "Admission", "text": "Check on-site for the latest entry information; local customs apply." },
-      { "icon": "timer", "title": "Suggested Stay", "text": "Plan 30–60 minutes for the hilltop, shrine and views." },
-      { "icon": "users", "title": "Who It's For", "text": "Culture lovers, photographers and families exploring central Phnom Penh." }
+      { "icon": "clock", "title": "Opening hours", "text": "Open daily 07:00–19:00; early morning is coolest and quietest." },
+      { "icon": "ticket", "title": "Entry", "text": "Check on-site for the latest information and follow local customs." },
+      { "icon": "timer", "title": "Suggested stay", "text": "Allow about 30–60 minutes for the hilltop, temple and views." },
+      { "icon": "users", "title": "Good for", "text": "Culture lovers, photographers and families exploring central Phnom Penh." }
+    ]
+  },
+  "etiquette": {
+    "eyebrow": "Before you visit",
+    "title": "Temple etiquette",
+    "subtitle": "A few simple customs make your visit respectful and welcome.",
+    "cards": [
+      { "icon": "shirt", "title": "Dress modestly", "text": "Cover shoulders and knees — no sleeveless tops, shorts or short skirts." },
+      { "icon": "shoe", "title": "Shoes & hats", "text": "Remove shoes and hats before entering the vihear (hall); never point your feet at the Buddha." },
+      { "icon": "camera", "title": "Photo courtesy", "text": "Ask before photographing monks; keep quiet and respectful inside the hall." }
     ]
   },
   "faq": {
     "eyebrow": "FAQ",
-    "title": "Frequently Asked Questions",
-    "subtitle": "Quick answers for planning your visit to Wat Phnom.",
+    "title": "Frequently asked questions",
+    "subtitle": "Quick answers to plan your Wat Phnom visit.",
     "items": [
       { "q": "Is Wat Phnom worth visiting?", "a": "Yes — it is one of Phnom Penh's most important cultural landmarks and the namesake hill of the city." },
-      { "q": "How long should I spend at Wat Phnom?", "a": "Most visitors spend 30 minutes to 1 hour exploring the hilltop, shrine and views." },
-      { "q": "What should I wear?", "a": "Respectful clothing that covers shoulders and knees is recommended when visiting the temple." },
-      { "q": "Where is Wat Phnom located?", "a": "In central Phnom Penh, Cambodia, on the hill at the end of Wat Phnom Street." },
-      { "q": "When is the best time to visit?", "a": "Early morning for cooler weather and fewer crowds; late afternoon for warm light and city atmosphere." }
+      { "q": "How long should I spend at Wat Phnom?", "a": "Most visitors spend 30 minutes to 1 hour on the hilltop, temple and views." },
+      { "q": "What should I wear?", "a": "Dress modestly covering shoulders and knees when visiting the temple." },
+      { "q": "Where is Wat Phnom?", "a": "In central Phnom Penh, Cambodia, on the hill at the end of Wat Phnom Street." },
+      { "q": "When is the best time to visit?", "a": "Early morning is cool and less crowded; evening light is warm with a strong city atmosphere." }
     ]
   },
   "footer": {
     "siteName": "Wat Phnom Daun Penh",
     "tagline": "A free, multilingual cultural guide to Phnom Penh's historic hilltop temple.",
     "rights": "This is an independent information guide, not affiliated with any temple, business or government body.",
-    "missionTitle": "Our Mission",
-    "missionText": "We organize verified facts, history and practical visitor information into a free, language-friendly guide — without commercial bookings or recommendations.",
+    "missionTitle": "Our mission",
+    "missionText": "We turn verified facts, history and practical visitor information into a free, friendly, multilingual guide — with no commercial bookings or recommendations.",
     "exploreTitle": "Explore",
     "resourcesTitle": "Resources",
     "resources": [
       { "name": "Google Maps", "url": "https://www.google.com/maps?q=11.576146788577976,104.92050881223547" },
-      { "name": "Tourism Cambodia (Official)", "url": "https://www.tourismcambodia.com" },
+      { "name": "Tourism Cambodia (official)", "url": "https://www.tourismcambodia.com" },
       { "name": "Phnom Penh Municipality", "url": "https://www.phnompenh.gov.kh" }
     ],
     "visitTitle": "Visit",
     "addressValue": "Wat Phnom Road, Phnom Penh, Cambodia",
     "hoursValue": "Daily 07:00 – 19:00",
     "mapsLabel": "Open in Google Maps",
-    "disclaimer": "Photos are used for illustrative purposes. Verify opening hours and admission on-site before your visit."
+    "disclaimer": "Images are illustrative. Confirm opening hours and entry on-site before you go."
   }
 }

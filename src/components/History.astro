@@ -1,7 +1,9 @@
 ---
+import AudioGuide from './AudioGuide.astro';
 interface Props { lang: string; messages: any; t: (k: string) => string; }
 const { messages: m } = Astro.props;
 const s = m.history;
+const a = m.audioGuide;
 ---
 <section id="history" class="section-padding history-section">
   <div class="container">
@@ -29,6 +31,14 @@ const s = m.history;
         <p>{s.legendText}</p>
       </div>
     ) : null}
+
+    <AudioGuide
+      badge={a.badge}
+      title={a.legendTitle}
+      text={a.legendText}
+      playLabel={a.play}
+      comingSoon={a.comingSoon}
+    />
   </div>
 </section>
 

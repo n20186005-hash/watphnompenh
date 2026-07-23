@@ -1,5 +1,6 @@
 ---
 import siteConfig, { mapsUrl } from '../config';
+import LiveStatus from './LiveStatus.astro';
 
 interface Props {
   lang: string;
@@ -26,6 +27,7 @@ const st = stars(h.rating);
     <p class="hero-kicker">{h.localName}</p>
     <h1 class="hero-title">{h.title}</h1>
     <p class="hero-subtitle">{h.subtitle}</p>
+    {h.pronounce && <p class="hero-pronounce">{h.pronounce}</p>}
 
     <div class="hero-rating">
       <span class="stars" aria-hidden="true">
@@ -48,6 +50,13 @@ const st = stars(h.rating);
       </a>
       <a class="btn-cta btn-cta-secondary" href={`#intro`}>{h.ctaExplore}</a>
     </div>
+
+    <LiveStatus live={m.liveStatus} openHour={7} closeHour={19} />
+
+    <a class="hero-guide" href={`/${lang}/pocket-guide`}>
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="M8 11l4 4 4-4"/><path d="M5 21h14"/></svg>
+      {m.pocketGuide.button}
+    </a>
 
     {h.legend ? (
       <p class="hero-legend">{h.legend}<cite>— {h.legendAuthor}</cite></p>

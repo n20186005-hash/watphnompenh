@@ -1,0 +1,28 @@
+---
+import Icon from './Icon.astro';
+import type { UILanguage } from '../i18n/ui';
+interface Props {
+  lang: UILanguage;
+  m: any;
+}
+const { lang, m } = Astro.props;
+const et = m.etiquette;
+---
+<section class="etiquette" id="etiquette">
+  <div class="container">
+    <p class="eyebrow">{et.eyebrow}</p>
+    <h2 class="section-title">{et.title}</h2>
+    <p class="section-sub">{et.subtitle}</p>
+    <div class="etiquette-grid">
+      {
+        et.cards.map((c: any) => (
+          <div class="etiquette-card">
+            <span class="et-card-icon"><Icon name={c.icon} /></span>
+            <h3 class="et-card-title">{c.title}</h3>
+            <p class="et-card-text">{c.text}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

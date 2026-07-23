@@ -13,6 +13,7 @@ import MapSection from '../../components/MapSection.astro';
 import Nearby from '../../components/Nearby.astro';
 import Food from '../../components/Food.astro';
 import Practical from '../../components/Practical.astro';
+import Etiquette from '../../components/Etiquette.astro';
 import FAQ from '../../components/FAQ.astro';
 
 export function getStaticPaths() {
@@ -40,5 +41,6 @@ const description = m.meta.description;
   <Nearby lang={lang} messages={m} t={t} />
   <Food lang={lang} messages={m} t={t} />
   <Practical lang={lang} messages={m} t={t} />
+  <Etiquette lang={lang} m={m} />
   <FAQ lang={lang} messages={m} t={t} />
 </BaseLayout>

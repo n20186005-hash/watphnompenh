@@ -1,0 +1,118 @@
+---
+import { getI18n } from '../../i18n/ui';
+import { mapsUrl } from '../../config';
+import '../../styles/global.css';
+
+export function getStaticPaths() {
+  return [
+    { params: { lang: 'km' } },
+    { params: { lang: 'en' } },
+    { params: { lang: 'zh' } },
+  ];
+}
+
+const { lang, messages: m } = getI18n(Astro.url);
+const h = m.hero;
+const et = m.etiquette;
+const tr = m.transport;
+const mp = m.map;
+const ft = m.footer;
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{m.meta.title} — Pocket Guide</title>
+  </head>
+  <body class="pocket-guide">
+    <div class="pg-actions no-print">
+      <a class="pg-back" href={`/${lang}/`}>← {m.footer.siteName}</a>
+      <button class="pg-print" type="button" onclick="window.print()">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V3h12v6"/><path d="M6 18H4v-6h16v6h-2"/><rect x="6" y="14" width="12" height="7" rx="1"/></svg>
+        {m.pocketGuide.button.replace('📥 ', '')}
+      </button>
+    </div>
+
+    <main class="pg-sheet">
+      <header class="pg-head">
+        <p class="pg-local">{h.localName}</p>
+        <h1 class="pg-title">{h.title}</h1>
+        <p class="pg-pronounce">{h.pronounce}</p>
+      </header>
+
+      <section class="pg-facts">
+        <div><span class="pg-k">{mp.hoursLabel}</span><span class="pg-v">{mp.hoursValue}</span></div>
+        <div><span class="pg-k">{mp.addressLabel}</span><span class="pg-v">{mp.addressValue}</span></div>
+        <div><span class="pg-k">Google</span><span class="pg-v">{h.rating} · {h.reviews} {m.hero.reviewsSuffix}</span></div>
+      </section>
+
+      <section class="pg-block">
+        <h2>{et.title}</h2>
+        <ul class="pg-etiq">
+          {et.cards.map((c: any) => (
+            <li><strong>{c.title}</strong> — {c.text}</li>
+          ))}
+        </ul>
+      </section>
+
+      <section class="pg-block">
+        <h2>{tr.title}</h2>
+        <ul class="pg-modes">
+          {tr.modes.map((md: any) => (
+            <li><strong>{md.title}</strong> — {md.description}</li>
+          ))}
+        </ul>
+        <p class="pg-note">{tr.overview}</p>
+      </section>
+
+      <section class="pg-block">
+        <h2>{mp.title}</h2>
+        <p>{mp.addressValue}</p>
+        <p><a href={mapsUrl} target="_blank" rel="noopener">{mp.openLabel}</a></p>
+      </section>
+
+      <footer class="pg-foot">
+        <p>{ft.disclaimer}</p>
+        <p class="pg-res">{ft.resourcesTitle}: {ft.resources.map((r: any) => r.name).join(' · ')}</p>
+      </footer>
+    </main>
+
+    <script is:inline>
+      if (window.matchMedia) {
+        const mq = window.matchMedia('print');
+        mq.addEventListener?.('change', (e) => { if (e.matches) window.print(); });
+      }
+    </script>
+  </body>
+</html>
+
+<style>
+  .pocket-guide { background: #f2efe9; color: #1d1a15; font-family: var(--font-body); }
+  .pg-actions { position: sticky; top: 0; z-index: 5; display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 12px 16px; background: #fff; border-bottom: 1px solid var(--border); }
+  .pg-back { font-weight: 700; color: var(--accent-strong); text-decoration: none; }
+  .pg-print { display: inline-flex; align-items: center; gap: 8px; background: var(--accent); color: #fff; border: 0; border-radius: 8px; padding: 9px 14px; font-weight: 700; cursor: pointer; }
+  .pg-sheet { max-width: 720px; margin: 24px auto; background: #fff; padding: 34px 40px; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.08); }
+  .pg-head { border-bottom: 2px solid var(--accent); padding-bottom: 14px; }
+  .pg-local { margin: 0; color: var(--accent-strong); letter-spacing: 0.12em; font-weight: 700; }
+  .pg-title { margin: 4px 0 2px; font-family: var(--font-display); font-size: 1.8rem; }
+  .pg-pronounce { margin: 0; color: var(--text-muted); font-size: 0.92rem; }
+  .pg-facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 20px 0; }
+  .pg-facts > div { background: var(--surface-accent); border-radius: 8px; padding: 12px 14px; }
+  .pg-k { display: block; font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-strong); font-weight: 700; }
+  .pg-v { display: block; margin-top: 4px; font-weight: 600; }
+  .pg-block { margin: 22px 0; }
+  .pg-block h2 { font-family: var(--font-display); font-size: 1.2rem; margin: 0 0 10px; color: var(--accent-strong); }
+  .pg-etiq, .pg-modes { margin: 0; padding-left: 18px; line-height: 1.6; }
+  .pg-etiq li, .pg-modes li { margin-bottom: 6px; }
+  .pg-note { margin: 10px 0 0; color: var(--text-muted); font-size: 0.92rem; }
+  .pg-foot { margin-top: 26px; border-top: 1px solid var(--border); padding-top: 14px; color: var(--text-muted); font-size: 0.84rem; }
+  .pg-res { margin-top: 6px; }
+  @media (max-width: 560px) { .pg-facts { grid-template-columns: 1fr; } .pg-sheet { padding: 22px; } }
+  @media print {
+    .pocket-guide { background: #fff; }
+    .no-print { display: none !important; }
+    .pg-sheet { margin: 0; box-shadow: none; border-radius: 0; max-width: none; padding: 0; }
+  }
+</style>

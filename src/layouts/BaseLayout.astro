@@ -46,6 +46,16 @@ const jsonLd = {
     longitude: attraction.lng,
   },
   openingHours: 'Mo-Su 07:00-19:00',
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+      opens: '07:00',
+      closes: '19:00',
+    },
+  ],
+  publicAccess: true,
+  isAccessibleForFree: true,
   aggregateRating: {
     '@type': 'AggregateRating',
     ratingValue: attraction.rating,
