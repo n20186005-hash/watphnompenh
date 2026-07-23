@@ -23,8 +23,8 @@ export const ogLocale: Record<string, string> = {
   zh: 'zh_CN',
 };
 
-// 统一 Google 地图链接（坐标 11.5761468, 104.9205088）
-export const mapsUrl = 'https://www.google.com/maps?q=11.576146788577976,104.92050881223547';
+// 统一 Google 地图链接（goo.gl 短链）
+export const mapsUrl = 'https://maps.app.goo.gl/KjucKpYceWqEi28r9';
 
 // Google Maps 嵌入 iframe（来自需求文档）
 export const mapsEmbedSrc =

@@ -1,0 +1,101 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { languagesList } from '../../i18n/ui';
+import en from '../../i18n/en.json';
+import zh from '../../i18n/zh.json';
+import km from '../../i18n/km.json';
+
+export function getStaticPaths() {
+  return languagesList.map((lang) => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params;
+const dict = { en, zh, km }[lang] ?? en;
+const m = dict.legal;
+const s = m.cookie;
+const title = m.cookieTitle;
+const baseUrl = import.meta.env.SITE || 'https://watphnompenh.com';
+const canonical = `${baseUrl}/${lang}/cookie-settings`;
+---
+
+<BaseLayout title={`${title} · Wat Phnom Daun Penh`} description={s.intro} lang={lang} canonical={canonical}>
+  <article class="legal-page">
+    <div class="legal-inner">
+      <a class="legal-back" href={`/${lang}`}>← {m.backLink}</a>
+      <h1>{title}</h1>
+      <p class="legal-updated">{m.cookieUpdated}</p>
+
+      <p class="cookie-intro">{s.intro}</p>
+
+      <section class="cookie-card">
+        <div class="cookie-card-head">
+          <h2>{s.necessary}</h2>
+          <span class="cookie-badge always">{s.necessaryActive}</span>
+        </div>
+        <p>{s.necessaryDesc}</p>
+      </section>
+
+      <section class="cookie-card">
+        <div class="cookie-card-head">
+          <h2>{s.analytics}</h2>
+          <span class="cookie-badge on">{s.analyticsActive}</span>
+        </div>
+        <p>{s.analyticsName}</p>
+        <p class="cookie-desc">{s.analyticsDesc}</p>
+      </section>
+
+      <section class="cookie-card">
+        <div class="cookie-card-head">
+          <h2>{s.preferences}</h2>
+          <span class="cookie-badge on">{s.preferencesActive}</span>
+        </div>
+        <p>{s.preferencesName}</p>
+        <p class="cookie-desc">{s.preferencesDesc}</p>
+      </section>
+
+      <section class="cookie-card">
+        <div class="cookie-card-head">
+          <h2>{s.marketing}</h2>
+          <span class="cookie-badge off">{s.marketingActive}</span>
+        </div>
+        <p>{s.marketingName}</p>
+        <p class="cookie-desc">{s.marketingDesc}</p>
+      </section>
+
+      <section class="legal-block">
+        <h2>{s.consent}</h2>
+        <p>{s.consentBody}</p>
+      </section>
+
+      <div class="cookie-actions">
+        <button class="cookie-btn primary" type="button">{s.save}</button>
+        <button class="cookie-btn ghost" type="button">{s.rejectAll}</button>
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .legal-page { padding: 56px 0 80px; }
+  .legal-inner { max-width: 760px; margin: 0 auto; padding: 0 20px; }
+  .legal-back { display: inline-block; margin-bottom: 18px; color: var(--accent-strong); font-weight: 600; }
+  .legal-page h1 { font-size: 2rem; margin: 0 0 6px; }
+  .legal-updated { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 22px; }
+  .cookie-intro { color: var(--text-muted); line-height: 1.7; margin: 0 0 26px; }
+  .cookie-card { border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 22px; margin-bottom: 16px; background: var(--surface-accent); }
+  .cookie-card-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 8px; }
+  .cookie-card h2 { font-size: 1.18rem; margin: 0; }
+  .cookie-card p { color: var(--text-muted); margin: 0 0 4px; line-height: 1.6; }
+  .cookie-desc { font-size: 0.92rem; }
+  .cookie-badge { font-size: 0.74rem; font-weight: 700; padding: 4px 12px; border-radius: 999px; white-space: nowrap; }
+  .cookie-badge.always { background: var(--accent-soft); color: var(--accent-strong); }
+  .cookie-badge.on { background: rgba(111,174,132,0.18); color: #4f8c63; }
+  .cookie-badge.off { background: rgba(230,160,90,0.16); color: #c07a32; }
+  .legal-block { margin: 26px 0 20px; }
+  .legal-block h2 { font-size: 1.3rem; margin: 0 0 10px; border-left: 3px solid var(--accent); padding-left: 12px; }
+  .legal-block p { color: var(--text-muted); line-height: 1.7; margin: 0; }
+  .cookie-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
+  .cookie-btn { font: inherit; font-weight: 700; border-radius: 999px; padding: 11px 22px; cursor: pointer; border: 1px solid transparent; }
+  .cookie-btn.primary { background: var(--accent); color: #fff; }
+  .cookie-btn.ghost { background: transparent; border-color: var(--border-strong); color: var(--text-muted); }
+</style>

@@ -1,0 +1,58 @@
+---
+import Icon from './Icon.astro';
+interface Props { lang: string; messages: any; t: (k: string) => string; }
+const { messages: m } = Astro.props;
+const s = m.amenities;
+---
+
+<section id="amenities" class="section-padding amenities">
+  <div class="container">
+    <p class="eyebrow">{s.eyebrow}</p>
+    <h2 class="section-title">{s.title}</h2>
+    <p class="section-lead">{s.subtitle}</p>
+
+    <div class="amenities-overview">
+      <span class="ov-title">{s.overviewTitle}</span>
+      <ul class="ov-list">
+        {s.tips.map((tip: any) => (
+          <li class="ov-item">
+            <span class="ov-check" aria-hidden="true">✓</span>
+            <span class="ov-label">{tip.label}</span>
+            <span class="ov-value">{tip.value}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <div class="amenities-grid">
+      {s.cards.map((c: any) => (
+        <div class="card card-pad amenity-card">
+          <div class="amenity-ico"><Icon name={c.icon} /></div>
+          <h3>{c.title}</h3>
+          <p>{c.text}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .amenities-overview {
+    margin: 24px 0 30px;
+    padding: 20px 22px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface-accent);
+  }
+  .ov-title { display: block; font-weight: 700; color: var(--accent-strong); margin-bottom: 12px; font-size: 0.95rem; letter-spacing: 0.02em; }
+  .ov-list { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px 26px; }
+  .ov-item { display: inline-flex; align-items: center; gap: 8px; font-size: 0.92rem; color: var(--text-muted); }
+  .ov-check { color: #4f8c63; font-weight: 800; }
+  .ov-label { font-weight: 600; color: var(--text); }
+  .amenities-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+  .amenity-card { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+  .amenity-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+  .amenity-ico { width: 50px; height: 50px; border-radius: 13px; background: var(--accent-soft); color: var(--accent-strong); display: grid; place-items: center; margin-bottom: 14px; }
+  .amenity-card h3 { margin: 0 0 8px; font-size: 1.2rem; }
+  .amenity-card p { margin: 0; color: var(--text-muted); line-height: 1.65; }
+</style>

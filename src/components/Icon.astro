@@ -17,11 +17,18 @@ const icons: Record<string, string> = {
   tuktuk: '<path d="M3 13h13a3 3 0 0 1 3 3v2H3z"/><path d="M5 13V8h9l3 5"/><circle cx="7" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/>',
   taxi: '<path d="M3 14h18v4H3z"/><path d="M5 14V8l2-3h10l2 3v6"/><circle cx="7.5" cy="18" r="1.6"/><circle cx="16.5" cy="18" r="1.6"/><path d="M7 8h10"/>',
   walk: '<circle cx="13" cy="4" r="2"/><path d="M11 21l1-5-3-2 1-4 4 2 2 1"/><path d="M9 12l-2 3 3 2"/>',
+  plane: '<path d="M21 15.5l-9-3V6a1.5 1.5 0 0 0-3 0v6.5l-9 3v2l9-2v3.5l-2 1.5V22l4-1 4 1v-1.5l-2-1.5V15.5l9 2z"/>',
   ticket: '<path d="M4 8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2 2 2 0 0 0 0 4 2 2 0 0 1-2 2H6a2 2 0 0 1-2-2 2 2 0 0 0 0-4z"/><path d="M14 6v12" stroke-dasharray="2 2"/>',
   timer: '<circle cx="12" cy="13" r="8"/><path d="M12 13V9"/><path d="M9 2h6"/>',
   shirt: '<path d="M9 4l3 3 3-3 4 2-2 4v10H7V10L5 6z"/>',
   shoe: '<path d="M3 16h4l3-4 3 2 5 1v3H3z"/><path d="M3 19h18"/>',
   naga: '<path d="M4 19c2 0 2-2 4-2s2 2 4 2 2-2 4-2 2 2 4 2"/><path d="M4 14c2 0 2-2 4-2s2 2 4 2 2-2 4-2 2 2 4 2"/><path d="M12 7a2.2 2.2 0 1 0 0-4.4 2.2 2.2 0 0 0 0 4.4z"/><path d="M12 7v3"/>',
+  wc: '<path d="M7 3h10v18H7z"/><circle cx="12" cy="7" r="2"/><path d="M9.5 11h5l-1 4h-3z"/><path d="M10 15v4M14 15v4"/>',
+  parking: '<rect x="4" y="4" width="16" height="16" rx="3"/><path d="M9 16V8h3.4a2.6 2.6 0 0 1 0 5.2H9"/>',
+  coffee: '<path d="M4 9h13v5a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4z"/><path d="M17 10h2.5a2 2 0 0 1 0 4H17"/><path d="M7 5c0-1 .8-1 .8-2M11 5c0-1 .8-1 .8-2"/>',
+  bed: '<path d="M3 18v-7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v7"/><path d="M3 14h18"/><path d="M3 18v2M21 18v2"/><circle cx="7" cy="11" r="1.5"/>',
+  store: '<path d="M4 9l1.5-4h13L20 9"/><path d="M5 9v10h14V9"/><path d="M9 19v-5h6v5"/><path d="M4 9a3 3 0 0 0 6 0 3 3 0 0 0 6 0 3 3 0 0 0 4 0"/>',
+  fuel: '<path d="M5 21V5a2 2 0 0 1 2-2h5a2 2 0 0 1 2 2v16"/><path d="M14 9h3a2 2 0 0 1 2 2v6a2 2 0 0 0 2 2 2 2 0 0 0 2-2V8l-3-3"/><path d="M5 13h9"/>',
 };
 interface Props { name: string; }
 const { name } = Astro.props;

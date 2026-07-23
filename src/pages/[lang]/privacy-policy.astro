@@ -1,0 +1,64 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { languagesList, defaultLang } from '../../i18n/ui';
+import en from '../../i18n/en.json';
+import zh from '../../i18n/zh.json';
+import km from '../../i18n/km.json';
+
+export function getStaticPaths() {
+  return languagesList.map((lang) => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params;
+const dict = { en, zh, km }[lang] ?? en;
+const m = dict.legal;
+const s = m.privacy;
+const title = m.privacyTitle;
+const baseUrl = import.meta.env.SITE || 'https://watphnompenh.com';
+const canonical = `${baseUrl}/${lang}/privacy-policy`;
+---
+
+<BaseLayout title={`${title} · Wat Phnom Daun Penh`} description={s.infoBody} lang={lang} canonical={canonical}>
+  <article class="legal-page">
+    <div class="legal-inner">
+      <a class="legal-back" href={`/${lang}`}>← {m.backLink}</a>
+      <h1>{title}</h1>
+      <p class="legal-updated">{m.privacyUpdated}</p>
+
+      <section class="legal-block">
+        <h2>{s.infoWeCollect}</h2>
+        <p>{s.infoBody}</p>
+        <ul><li>{s.infoList[0]}</li><li>{s.infoList[1]}</li><li>{s.infoList[2]}</li></ul>
+      </section>
+
+      <section class="legal-block">
+        <h2>{s.howWeUse}</h2>
+        <p>{s.howBody}</p>
+        <ul><li>{s.howList[0]}</li><li>{s.howList[1]}</li><li>{s.howList[2]}</li><li>{s.howList[3]}</li></ul>
+      </section>
+
+      <section class="legal-block">
+        <h2>{s.thirdParties}</h2>
+        <p>{s.thirdBody}</p>
+      </section>
+
+      <section class="legal-block">
+        <h2>{s.yourRights}</h2>
+        <p>{s.rightsBody}</p>
+        <ul><li>{s.rightsList[0]}</li><li>{s.rightsList[1]}</li><li>{s.rightsList[2]}</li><li>{s.rightsList[3]}</li></ul>
+      </section>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .legal-page { padding: 56px 0 80px; }
+  .legal-inner { max-width: 760px; margin: 0 auto; padding: 0 20px; }
+  .legal-back { display: inline-block; margin-bottom: 18px; color: var(--accent-strong); font-weight: 600; }
+  .legal-page h1 { font-size: 2rem; margin: 0 0 6px; }
+  .legal-updated { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 28px; }
+  .legal-block { margin-bottom: 28px; }
+  .legal-block h2 { font-size: 1.3rem; margin: 0 0 10px; border-left: 3px solid var(--accent); padding-left: 12px; }
+  .legal-block p { color: var(--text-muted); line-height: 1.7; margin: 0 0 10px; }
+  .legal-block ul { margin: 0; padding-left: 22px; color: var(--text-muted); line-height: 1.8; }
+</style>

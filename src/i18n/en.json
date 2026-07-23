@@ -206,7 +206,8 @@
     "modes": [
       { "icon": "tuktuk", "title": "Tuk Tuk", "description": "The most common way to get around Phnom Penh.", "details": ["Flexible for short trips", "Fares vary by distance and time", "Agree on the price first"] },
       { "icon": "taxi", "title": "Taxi / Ride app", "description": "Good for families and hot weather.", "details": ["Metered taxis and ride apps available", "Good for groups with luggage", "Drop-off near the hill entrance"] },
-      { "icon": "walk", "title": "On foot", "description": "Walkable from the central riverfront area.", "details": ["About 15–20 min from the riverfront", "Flat, mostly shaded streets", "Combine with a riverside stroll"] }
+      { "icon": "walk", "title": "On foot", "description": "Walkable from the central riverfront area.", "details": ["About 15–20 min from the riverfront", "Flat, mostly shaded streets", "Combine with a riverside stroll"] },
+      { "icon": "plane", "title": "From the airport", "description": "Phnom Penh International Airport (PNH) to Wat Phnom.", "details": ["About 10 km / 25–40 min by taxi or ride app", "Fixed-price airport taxi at the rank", "Tuk tuk also possible in good weather"] }
     ]
   },
   "map": {
@@ -222,7 +223,7 @@
   "nearby": {
     "eyebrow": "Nearby",
     "title": "Explore around Wat Phnom",
-    "subtitle": "Easy regional highlights near the hill — no specific hotels or businesses recommended.",
+    "subtitle": "Easy regional highlights near the hill.",
     "places": [
       { "name": "Royal Palace area", "distance": "~1.5 km", "text": "Home to the Royal Palace and Silver Pagoda — Phnom Penh's most important royal and cultural district." },
       { "name": "Riverfront (Tonlé Sap & Mekong)", "distance": "~1 km", "text": "A breezy promenade at the confluence of two rivers, great for walking and city views." },
@@ -284,7 +285,7 @@
     "exploreTitle": "Explore",
     "resourcesTitle": "Resources",
     "resources": [
-      { "name": "Google Maps", "url": "https://www.google.com/maps?q=11.576146788577976,104.92050881223547" },
+      { "name": "Google Maps", "url": "https://maps.app.goo.gl/KjucKpYceWqEi28r9" },
       { "name": "Tourism Cambodia (official)", "url": "https://www.tourismcambodia.com" },
       { "name": "Phnom Penh Municipality", "url": "https://www.phnompenh.gov.kh" }
     ],
@@ -293,5 +294,80 @@
     "hoursValue": "Daily 07:00 – 19:00",
     "mapsLabel": "Open in Google Maps",
     "disclaimer": "Images are illustrative. Confirm opening hours and entry on-site before you go."
+  },
+  "amenities": {
+    "eyebrow": "Practical info",
+    "title": "Facilities & Nearby Services",
+    "subtitle": "Neutral, non-commercial reference for planning your visit — no specific businesses recommended.",
+    "overviewTitle": "1-minute quick overview",
+    "cards": [
+      { "icon": "wc", "title": "Restrooms", "text": "Public toilets at the southeast base of the hill and near the main stairway entrance. A small upkeep fee (≈500–1,000 riel) may apply — bring small change and tissues." },
+      { "icon": "parking", "title": "Parking & Drop-off", "text": "Tuk-tuk / ride-hail drop-off around the roundabout (Norodom Blvd × St 96). Motorbikes park in marked bays with an attendant; cars/buses use nearby commercial or underground parking, then walk 3–5 min." },
+      { "icon": "coffee", "title": "Dining & Refreshments", "text": "Street vendors by the park path sell fresh coconut water, chilled bottled water and Khmer snacks. Cafés and air-conditioned restaurants line Norodom Blvd within 3–8 min walk." },
+      { "icon": "bed", "title": "Accommodation Areas", "text": "Grouped only by district for neutrality: Riverside (~800m–1.5km), Norodom Blvd / Central (~500m–2km), and Central Market area (~1–1.5km). No specific hotels named." },
+      { "icon": "store", "title": "Convenience & Supplies", "text": "24-hour convenience stores within 500m for sunscreen, tissues, mosquito repellent and water. Phsar Thmei (Central Market) is ~1.2km away for fruit and daily goods." },
+      { "icon": "fuel", "title": "Fuel & EV Charging", "text": "Standard fuel stations line Monivong/Norodom Blvds. EV charging is concentrated in shopping-mall basements and some modern stations; nearest hub is a commercial plaza ~5–10 min by car." }
+    ],
+    "tips": [
+      { "label": "Restrooms", "value": "Southeast base of the hill" },
+      { "label": "Parking", "value": "Marked bays by the roundabout" },
+      { "label": "Supplies", "value": "Convenience store within 300m" }
+    ]
+  },
+  "legal": {
+    "privacyTitle": "Privacy Policy",
+    "privacyUpdated": "Last updated: July 2026",
+    "termsTitle": "Terms of Service",
+    "termsUpdated": "Last updated: July 2026",
+    "cookieTitle": "Cookie Settings",
+    "cookieUpdated": "Last updated: July 2026",
+    "backLink": "Back to guide",
+    "privacy": {
+      "infoWeCollect": "Information we collect",
+      "infoBody": "We collect only the minimum data necessary to provide our service. This may include:",
+      "infoList": ["Browsing data (IP address, browser type, pages visited)", "Cookies and similar technologies", "Any information you voluntarily provide via contact forms or email"],
+      "howWeUse": "How we use your information",
+      "howBody": "We use the collected information to:",
+      "howList": ["Improve website content and user experience", "Analyze traffic and usage patterns", "Respond to requests", "Comply with our legal obligations"],
+      "thirdParties": "Third-party services",
+      "thirdBody": "Our website may use third-party services such as Google Maps (for embedded maps and location data), Google Analytics (for traffic analysis) and Unsplash (for images). These services have their own privacy policies.",
+      "yourRights": "Your rights",
+      "rightsBody": "Under the General Data Protection Regulation (GDPR) and related laws, you have the right to:",
+      "rightsList": ["Access your personal data", "Request correction or deletion", "Object to processing", "Lodge a complaint with a supervisory authority"]
+    },
+    "terms": {
+      "access": "Access and use",
+      "accessBody": "By accessing and using this site, you agree to be bound by these Terms of Service.",
+      "content": "Content use",
+      "contentBody": "All content on this website is for reference only. We are an independent third-party travel information site and are not affiliated with any attraction, government agency or commercial operator.",
+      "accuracy": "Accuracy of information",
+      "accuracyBody": "We strive to provide accurate and timely information, but cannot guarantee its completeness or accuracy. Itineraries, conditions and services are subject to change without notice. Always verify important information through official channels before traveling.",
+      "ip": "Intellectual property",
+      "ipBody": "The design of this website and original content are protected by copyright. Images are from Unsplash and used under their license. Use of Google Maps data complies with Google's Terms of Service.",
+      "liability": "Limitation of liability",
+      "liabilityBody": "This website is provided \"as is\" without any warranties. We are not responsible for any loss arising from the use of information on this site, including but not limited to travel decisions made based on its content."
+    },
+    "cookie": {
+      "intro": "We use cookies to improve your browsing experience. You can manage your preferences below.",
+      "necessary": "Necessary cookies",
+      "necessaryDesc": "These cookies are essential for the website to function and cannot be disabled.",
+      "necessaryActive": "Always active",
+      "analytics": "Analytics cookies",
+      "analyticsDesc": "They help us understand how visitors interact with our website by collecting anonymous usage data.",
+      "analyticsName": "Google Analytics",
+      "analyticsActive": "Active",
+      "preferences": "Preference cookies",
+      "preferencesDesc": "They remember your settings, such as language and theme preferences.",
+      "preferencesName": "User preferences",
+      "preferencesActive": "Active",
+      "marketing": "Marketing cookies",
+      "marketingDesc": "They are used to display relevant ads and measure the effectiveness of ad campaigns.",
+      "marketingName": "Personalized ads",
+      "marketingActive": "Disabled",
+      "consent": "Consent management",
+      "consentBody": "You can change your cookie settings at any time. Note that disabling certain cookies may affect the functionality of the site.",
+      "save": "Save preferences",
+      "rejectAll": "Reject all"
+    }
   }
 }

@@ -57,6 +57,11 @@ const f = m.footer;
 
   <div class="container footer-bottom">
     <p>© {new Date().getFullYear()} {f.siteName}. {f.rights}</p>
+    <nav class="footer-legal" aria-label="legal">
+      <a href={`/${lang}/privacy-policy`}>{m.legal.privacyTitle}</a>
+      <a href={`/${lang}/terms-of-service`}>{m.legal.termsTitle}</a>
+      <a href={`/${lang}/cookie-settings`}>{m.legal.cookieTitle}</a>
+    </nav>
     <p class="disclaimer">{f.disclaimer}</p>
   </div>
 </footer>
@@ -81,7 +86,13 @@ const f = m.footer;
   .footer-maps { display: inline-block; margin-top: 4px; }
   .footer-bottom { margin-top: 34px; padding-top: 20px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
   .footer-bottom p { margin: 0; font-size: 0.82rem; color: var(--text-muted); }
+  .footer-legal { display: flex; gap: 16px; flex-wrap: wrap; }
+  .footer-legal a { font-size: 0.82rem; color: var(--text-muted); }
+  .footer-legal a:hover { color: var(--accent-strong); }
   .disclaimer { max-width: 620px; text-align: right; }
+  @media (max-width: 860px) {
+    .footer-legal { order: 3; width: 100%; }
+  }
   @media (max-width: 860px) {
     .footer-grid { grid-template-columns: 1fr 1fr; }
     .disclaimer { text-align: left; }
