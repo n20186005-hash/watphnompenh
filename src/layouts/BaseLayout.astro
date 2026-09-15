@@ -1,13 +1,22 @@
 ---
 import '../styles/global.css';
 import { getI18n, buildAlternates, htmlLangAttr } from '../i18n/ui';
-import siteConfig, { mapsUrl, attraction } from '../config';
+import siteConfig, {
+  mapsUrl,
+  GA_MEASUREMENT_ID,
+  ATTRACTION_FULL_NAME,
+  ATTRACTION_SHORT_NAME,
+  CITY_NAME,
+  STATE_PROVINCE,
+  COUNTRY_NAME,
+  COUNTRY_CODE_2LETTER,
+  POSTAL_CODE,
+  LATITUDE,
+  LONGITUDE,
+  GOVT_TOURISM_URL,
+} from '../config';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-
-const { pathname } = Astro.url;
-const { lang, messages, t } = getI18n(Astro.url);
-const alt = buildAlternates();
 
 const props = Astro.props as {
   title?: string;
@@ -15,36 +24,66 @@ const props = Astro.props as {
   image?: string;
   path?: string;
   type?: string;
+  lang?: string;
+  canonical?: string;
+  pageType?: 'attraction' | 'legal';
 };
+const pageType = props.pageType ?? 'attraction';
+
+const { lang, messages, t } = getI18n(Astro.url);
+const activeLang = props.lang ?? lang;
+const alt = buildAlternates(props.path ?? '');
 
 const SITE = siteConfig.baseUrl;
-const pageUrl = `${SITE}/${lang}${props.path ?? ''}`;
+// 规范 URL：一律以尾斜杠结尾（如 https://watphnompenh.com/en/），与实际部署路径及 hreflang 完全一致
+const rawPath = props.path ?? '';
+const normPath = rawPath === '' || rawPath.endsWith('/') ? rawPath : `${rawPath}/`;
+const pageUrl = props.canonical ?? `${SITE}/${activeLang}${normPath || '/'}`;
 const title = props.title ?? messages.meta.title;
 const description = props.description ?? messages.meta.description;
 const image = props.image ?? `${SITE}/gallery/wat-phnom-daun-penh-1.jpg`;
+const imageAlt = `${ATTRACTION_FULL_NAME} in ${CITY_NAME}`;
 const localeMap: Record<string, string> = { km: 'km_KH', en: 'en_US', zh: 'zh_CN' };
 
+/* ============================================================
+ * 1. 结构化数据 (Schema.org / JSON-LD) — TouristAttraction 实体
+ *    说明：评分/评价数仅做页面展示，按规范不写入 JSON-LD。
+ * ============================================================ */
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'TouristAttraction',
-  name: attraction.name.en,
-  alternateName: [attraction.name.km, attraction.name.zh],
-  description,
-  image: [`${SITE}/gallery/wat-phnom-daun-penh-1.jpg`, `${SITE}/gallery/wat-phnom-daun-penh-2.jpg`, `${SITE}/gallery/wat-phnom-daun-penh-3.jpg`],
-  url: pageUrl,
-  sameAs: [mapsUrl],
+  '@id': `${SITE}/#attraction`,
+  name: ATTRACTION_FULL_NAME,
+  alternateName: [
+    ATTRACTION_SHORT_NAME,
+    `${CITY_NAME} ${ATTRACTION_FULL_NAME}`,
+    attractionNameByLang(activeLang),
+  ].filter(Boolean),
+  description: `Comprehensive visitor guide to ${ATTRACTION_FULL_NAME} in ${CITY_NAME}, ${STATE_PROVINCE}, ${COUNTRY_NAME}.`,
+  url: SITE,
+  image: [
+    `${SITE}/gallery/wat-phnom-daun-penh-1.jpg`,
+    `${SITE}/gallery/wat-phnom-daun-penh-2.jpg`,
+    `${SITE}/gallery/wat-phnom-daun-penh-3.jpg`,
+  ],
+  isAccessibleForFree: true,
+  publicAccess: true,
   touristType: 'Cultural tourism, Religious tourism, Photography',
   address: {
     '@type': 'PostalAddress',
     streetAddress: 'Wat Phnom Road',
-    addressLocality: 'Phnom Penh',
-    addressCountry: 'KH',
+    addressLocality: CITY_NAME,
+    addressRegion: STATE_PROVINCE,
+    postalCode: POSTAL_CODE,
+    addressCountry: COUNTRY_CODE_2LETTER,
   },
   geo: {
     '@type': 'GeoCoordinates',
-    latitude: attraction.lat,
-    longitude: attraction.lng,
+    latitude: LATITUDE,
+    longitude: LONGITUDE,
   },
+  hasMap: mapsUrl,
+  sameAs: [mapsUrl, GOVT_TOURISM_URL],
   openingHours: 'Mo-Su 07:00-19:00',
   openingHoursSpecification: [
     {
@@ -54,30 +93,61 @@ const jsonLd = {
       closes: '19:00',
     },
   ],
-  publicAccess: true,
-  isAccessibleForFree: true,
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: attraction.rating,
-    reviewCount: attraction.reviews,
+  isPartOf: {
+    '@type': 'TouristDestination',
+    name: CITY_NAME,
+    address: { '@type': 'PostalAddress', addressLocality: CITY_NAME, addressCountry: COUNTRY_CODE_2LETTER },
   },
-  isPartOf: { '@type': 'TouristDestination', name: 'Phnom Penh', address: { '@type': 'PostalAddress', addressLocality: 'Phnom Penh', addressCountry: 'KH' } },
+};
+
+function attractionNameByLang(l: string): string | null {
+  const names: Record<string, string> = {
+    km: 'វត្តភ្នំដូនពេញ',
+    en: ATTRACTION_FULL_NAME,
+    zh: '塔山寺',
+  };
+  return names[l] ?? null;
+}
+
+/* 2. 面包屑（实体归属层级）：景点 → 城市 → 省/直辖市 → 国家 */
+const geo = messages.geo ?? { attraction: ATTRACTION_FULL_NAME, city: CITY_NAME, region: STATE_PROVINCE, country: COUNTRY_NAME };
+const breadcrumbLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: geo.attraction, item: pageUrl },
+    { '@type': 'ListItem', position: 2, name: geo.city, item: `${SITE}/${activeLang}#map` },
+    { '@type': 'ListItem', position: 3, name: geo.region },
+    { '@type': 'ListItem', position: 4, name: geo.country },
+  ],
+};
+
+/* 3. FAQ 结构化数据（抢占 Featured Snippet / AI 概览卡片） */
+const faqItems = (messages.faq?.items ?? []) as { q: string; a: string }[];
+const faqLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqItems.map((it) => ({
+    '@type': 'Question',
+    name: it.q,
+    acceptedAnswer: { '@type': 'Answer', text: it.a },
+  })),
 };
 ---
 <!doctype html>
-<html lang={htmlLangAttr(lang)} data-theme="light">
+<html lang={htmlLangAttr(activeLang)} data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HXM22WWPKP"></script>
-    <script>
+    <!-- Google tag (gtag.js) — GA4 -->
+    <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}></script>
+    <script is:inline define:vars={{ GA_MEASUREMENT_ID }}>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      gtag('config', 'G-HXM22WWPKP');
+      gtag('config', GA_MEASUREMENT_ID);
     </script>
 
     <title>{title}</title>
@@ -85,13 +155,23 @@ const jsonLd = {
     <link rel="canonical" href={pageUrl} />
     <meta name="theme-color" content="#b8862c" />
 
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content={attraction.name.en} />
-    <meta property="og:locale" content={localeMap[lang] ?? 'en_US'} />
+    <!-- PWA -->
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/icon-192.png" sizes="192x192" type="image/png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Wat Phnom" />
+    <meta name="mobile-web-app-capable" content="yes" />
+
+    <meta property="og:type" content={props.type ?? 'website'} />
+    <meta property="og:site_name" content={ATTRACTION_FULL_NAME} />
+    <meta property="og:locale" content={localeMap[activeLang] ?? 'en_US'} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={pageUrl} />
     <meta property="og:image" content={image} />
+    <meta property="og:image:alt" content={imageAlt} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
@@ -101,7 +181,13 @@ const jsonLd = {
       <link rel="alternate" hreflang={k === 'xDefault' ? 'x-default' : k} href={v} />
     ))}
 
-    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)}></script>
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)}></script>
+    {pageType === 'attraction' && (
+      <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbLd)}></script>
+    )}
+    {pageType === 'attraction' && faqItems.length > 0 && (
+      <script is:inline type="application/ld+json" set:html={JSON.stringify(faqLd)}></script>
+    )}
 
     <script is:inline>
       (function () {
@@ -114,11 +200,11 @@ const jsonLd = {
     </script>
   </head>
   <body>
-    <Header lang={lang} messages={messages} t={t} />
+    <Header lang={activeLang} messages={messages} t={t} />
     <main>
       <slot />
     </main>
-    <Footer lang={lang} messages={messages} t={t} />
+    <Footer lang={activeLang} messages={messages} t={t} />
 
     <script is:inline>
       // Theme toggle
@@ -156,17 +242,25 @@ const jsonLd = {
       document.querySelectorAll('.fade-up').forEach(function (el) { io.observe(el); });
       // Lightbox
       var lb;
-      function openLightbox(src, alt) {
+      // AVIF 支持检测：支持时灯箱直接加载体积更小的 AVIF 原图（同画质下约省 30% 流量）
+      var supportsAvif = (function () {
+        try { return document.createElement('canvas').toDataURL('image/avif').indexOf('data:image/avif') === 0; } catch (e) { return false; }
+      })();
+      function bestSrc(im) {
+        var avif = im.getAttribute('data-avif');
+        return (supportsAvif && avif) ? avif : im.getAttribute('src');
+      }
+      function openLightbox(startIndex) {
+        var items = Array.from(document.querySelectorAll('.gallery-item img'));
+        var idx = startIndex >= 0 && startIndex < items.length ? startIndex : 0;
         lb = document.createElement('div');
         lb.className = 'lightbox';
-        lb.innerHTML = '<button class="lb-close" aria-label="Close">&times;</button><button class="lb-nav lb-prev" aria-label="Previous">&#8249;</button><button class="lb-nav lb-next" aria-label="Next">&#8250;</button><img src="' + src + '" alt="' + (alt || '') + '">';
+        lb.innerHTML = '<button class="lb-close" aria-label="Close">&times;</button><button class="lb-nav lb-prev" aria-label="Previous">&#8249;</button><button class="lb-nav lb-next" aria-label="Next">&#8250;</button><img src="' + bestSrc(items[idx]) + '" alt="' + (items[idx].alt || '') + '">';
         document.body.appendChild(lb);
         document.body.style.overflow = 'hidden';
-        var items = Array.from(document.querySelectorAll('.gallery-item img'));
-        var idx = items.findIndex(function (i) { return i.getAttribute('src') === src; });
         function show(i) {
           idx = (i + items.length) % items.length;
-          lb.querySelector('img').src = items[idx].getAttribute('src');
+          lb.querySelector('img').src = bestSrc(items[idx]);
           lb.querySelector('img').alt = items[idx].alt || '';
         }
         lb.querySelector('.lb-close').onclick = closeLightbox;
@@ -183,9 +277,15 @@ const jsonLd = {
         });
       }
       function closeLightbox() { if (lb) { lb.remove(); lb = null; document.body.style.overflow = ''; } }
-      document.querySelectorAll('.gallery-item').forEach(function (g) {
-        g.addEventListener('click', function () { var im = g.querySelector('img'); openLightbox(im.getAttribute('src'), im.alt); });
+      document.querySelectorAll('.gallery-item').forEach(function (g, gi) {
+        g.addEventListener('click', function () { openLightbox(gi); });
       });
+      // PWA service worker registration
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function () {
+          navigator.serviceWorker.register('/sw.js').catch(function () {});
+        });
+      }
     </script>
   </body>
 </html>

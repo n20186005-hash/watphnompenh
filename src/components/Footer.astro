@@ -28,13 +28,15 @@ const f = m.footer;
     <div class="footer-col">
       <h4>{f.exploreTitle}</h4>
       <ul>
-        <li><a href={`/${lang}#intro`}>{m.header.intro}</a></li>
-        <li><a href={`/${lang}#history`}>{m.header.history}</a></li>
-        <li><a href={`/${lang}#architecture`}>{m.header.architecture}</a></li>
-        <li><a href={`/${lang}#experience`}>{m.header.experience}</a></li>
-        <li><a href={`/${lang}#transport`}>{m.header.transport}</a></li>
-        <li><a href={`/${lang}#nearby`}>{m.header.nearby}</a></li>
-        <li><a href={`/${lang}#faq`}>{m.header.faq}</a></li>
+        <li><a href={`/${lang}/#intro`}>{m.header.intro}</a></li>
+        <li><a href={`/${lang}/#history`}>{m.header.history}</a></li>
+        <li><a href={`/${lang}/#architecture`}>{m.header.architecture}</a></li>
+        <li><a href={`/${lang}/#experience`}>{m.header.experience}</a></li>
+        <li><a href={`/${lang}/#transport`}>{m.header.transport}</a></li>
+        <li><a href={`/${lang}/#nearby`}>{m.header.nearby}</a></li>
+        <li><a href={`/${lang}/#reviews`}>{m.header.reviews}</a></li>
+        <li><a href={`/${lang}/#sources`}>{m.header.sources}</a></li>
+        <li><a href={`/${lang}/#faq`}>{m.header.faq}</a></li>
       </ul>
     </div>
 
@@ -58,11 +60,13 @@ const f = m.footer;
   <div class="container footer-bottom">
     <p>© {new Date().getFullYear()} {f.siteName}. {f.rights}</p>
     <nav class="footer-legal" aria-label="legal">
-      <a href={`/${lang}/privacy-policy`}>{m.legal.privacyTitle}</a>
-      <a href={`/${lang}/terms-of-service`}>{m.legal.termsTitle}</a>
-      <a href={`/${lang}/cookie-settings`}>{m.legal.cookieTitle}</a>
+      <a href={`/${lang}/privacy-policy/`}>{m.legal.privacyTitle}</a>
+      <a href={`/${lang}/terms-of-service/`}>{m.legal.termsTitle}</a>
+      <a href={`/${lang}/cookie-settings/`}>{m.legal.cookieTitle}</a>
     </nav>
     <p class="disclaimer">{f.disclaimer}</p>
+    <p class="footer-rights">{f.imageRights}</p>
+    <p class="footer-reviews-src">{f.reviewsSource}</p>
   </div>
 </footer>
 
@@ -90,6 +94,7 @@ const f = m.footer;
   .footer-legal a { font-size: 0.82rem; color: var(--text-muted); }
   .footer-legal a:hover { color: var(--accent-strong); }
   .disclaimer { max-width: 620px; text-align: right; }
+  .footer-rights, .footer-reviews-src { width: 100%; max-width: 900px; font-size: 0.78rem; color: var(--text-muted); }
   @media (max-width: 860px) {
     .footer-legal { order: 3; width: 100%; }
   }

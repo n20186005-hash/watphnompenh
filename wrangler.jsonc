@@ -1,0 +1,18 @@
+{
+  // Cloudflare Workers 静态资源部署配置（无需 @astrojs/cloudflare adapter：
+  // 本站在 astro.config.mjs 中为默认 static 输出，构建产物 dist/ 全是静态文件，
+  // 直接交给 Workers Assets 托管即可，同时原生支持 public/_redirects 与 public/_headers。）
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "watphnompenh",
+  "compatibility_date": "2026-09-15",
+  "assets": {
+    "directory": "./dist",
+    // 与站内 canonical / hreflang / sitemap 的“带尾斜杠”规范保持一致：
+    // 访问 /en 会被自动 308 到 /en/，避免同一页面出现两个可索引 URL。
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page"
+  },
+  "observability": {
+    "enabled": true
+  }
+}

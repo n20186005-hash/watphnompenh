@@ -1,0 +1,483 @@
+---
+import { LATITUDE, LONGITUDE } from '../config';
+
+interface Props {
+  lang: string;
+  messages: any;
+}
+const { messages: m } = Astro.props;
+const w = m.weather;
+
+/* ------------------------------------------------------------------
+ * 站点地理环境画像（决定建议的场景化表达）
+ *  · 城市低丘寺院：市中心约 27 m 低丘，登顶需走磨损石阶 → 湿滑、雷击、山顶风
+ *  · 河滨环境：距湄公河 / 洞里萨河滨水步道约 1 km → 河滨风、强降雨低洼积水
+ *  · 城市热岛 + 绿地林下：正午体感更高、雨后林下蚊虫活跃
+ * 因此建议覆盖四类场景：城市人文（避暑 / 室内替代）、山地丘陵（石阶防滑 / 山顶雷雨）、
+ * 河湖（河滨大风与游船停运）、绿地（雨后蚊虫）。
+ * 数据在服务器端获取并缓存，任何异常都不影响页面渲染，只降级隐藏模块。
+ * ------------------------------------------------------------------ */
+const CACHE_TTL = 20 * 60 * 1000;
+
+type Day = {
+  date: string;
+  weekday: number;
+  code: number;
+  max: number;
+  min: number;
+  rain: number;
+  rainSum: number;
+  uv: number;
+  windMax: number;
+  gustMax: number;
+  sunrise: string;
+  sunset: string;
+};
+
+type Snapshot = {
+  updatedAt: string;
+  temp: number;
+  feels: number;
+  humidity: number;
+  wind: number;
+  gust: number;
+  uv: number;
+  code: number;
+  rain: number;
+  precip: number;
+  visibility: number;
+  days: Day[];
+};
+
+let cache: { at: number; data: Snapshot } | null = null;
+let inflight: Promise<Snapshot | null> | null = null;
+
+function round(n: unknown, digits = 0): number {
+  const v = Number(n);
+  if (!Number.isFinite(v)) return 0;
+  const f = 10 ** digits;
+  return Math.round(v * f) / f;
+}
+
+function normalize(raw: any): Snapshot {
+  const c = raw?.current ?? {};
+  const d = raw?.daily ?? {};
+  const dates: string[] = d.time ?? [];
+  const days: Day[] = dates.map((date, i) => ({
+    date,
+    weekday: new Date(`${date}T00:00:00Z`).getUTCDay(),
+    code: Number(d.weather_code?.[i] ?? 0),
+    max: round(d.temperature_2m_max?.[i]),
+    min: round(d.temperature_2m_min?.[i]),
+    rain: round(d.precipitation_probability_max?.[i]),
+    rainSum: round(d.precipitation_sum?.[i], 1),
+    uv: round(d.uv_index_max?.[i], 1),
+    windMax: round(d.wind_speed_10m_max?.[i]),
+    gustMax: round(d.wind_gusts_10m_max?.[i]),
+    sunrise: String(d.sunrise?.[i] ?? ''),
+    sunset: String(d.sunset?.[i] ?? ''),
+  }));
+
+  return {
+    updatedAt: String(c.time ?? ''),
+    temp: round(c.temperature_2m),
+    feels: round(c.apparent_temperature),
+    humidity: round(c.relative_humidity_2m),
+    wind: round(c.wind_speed_10m),
+    gust: round(c.wind_gusts_10m),
+    uv: round(c.uv_index, 1),
+    code: Number(c.weather_code ?? 0),
+    rain: days[0]?.rain ?? 0,
+    precip: round(c.precipitation, 1),
+    visibility: round(c.visibility),
+    days,
+  };
+}
+
+async function load(): Promise<Snapshot | null> {
+  if (cache && Date.now() - cache.at < CACHE_TTL) return cache.data;
+  if (inflight) return inflight;
+
+  inflight = (async () => {
+    try {
+      const url = new URL('https://api.open-meteo.com/v1/forecast');
+      url.searchParams.set('latitude', String(LATITUDE));
+      url.searchParams.set('longitude', String(LONGITUDE));
+      url.searchParams.set(
+        'current',
+        'temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,wind_speed_10m,wind_gusts_10m,uv_index,precipitation,visibility,is_day'
+      );
+      url.searchParams.set(
+        'daily',
+        'weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,precipitation_sum,uv_index_max,wind_speed_10m_max,wind_gusts_10m_max,sunrise,sunset'
+      );
+      url.searchParams.set('timezone', 'Asia/Phnom_Penh');
+      url.searchParams.set('forecast_days', '7');
+
+      const res = await fetch(url, {
+        headers: { accept: 'application/json' },
+        signal: AbortSignal.timeout(4500),
+      });
+      if (!res.ok) throw new Error(`upstream ${res.status}`);
+
+      const snap = normalize(await res.json());
+      if (!snap.days.length) throw new Error('empty payload');
+      cache = { at: Date.now(), data: snap };
+      return snap;
+    } catch {
+      return cache?.data ?? null;
+    } finally {
+      inflight = null;
+    }
+  })();
+
+  return inflight;
+}
+
+/* 天气代码 → 语义分组（用于图标与文案映射） */
+function group(code: number): string {
+  if (code === 0) return 'clear';
+  if (code <= 2) return 'partly';
+  if (code === 3) return 'cloudy';
+  if (code <= 48) return 'fog';
+  if (code <= 57) return 'drizzle';
+  if (code <= 67) return 'rain';
+  if (code <= 77) return 'snow';
+  if (code <= 82) return 'showers';
+  if (code <= 86) return 'snow';
+  return 'thunder';
+}
+
+/* 风速换算为风力等级，便于口语化表达 */
+function beaufort(kmh: number): number {
+  const steps = [1, 6, 12, 20, 29, 39, 50, 62, 75, 89, 103, 118];
+  if (!Number.isFinite(kmh) || kmh < 1) return 0;
+  for (let i = steps.length - 1; i >= 0; i -= 1) if (kmh >= steps[i]) return i + 1;
+  return 0;
+}
+
+const glyphs: Record<string, string> = {
+  clear: '<circle cx="12" cy="12" r="4.2"/><path d="M12 2.4v2.2M12 19.4v2.2M2.4 12h2.2M19.4 12h2.2M5.2 5.2l1.6 1.6M17.2 17.2l1.6 1.6M18.8 5.2l-1.6 1.6M6.8 17.2l-1.6 1.6"/>',
+  partly: '<circle cx="8.5" cy="8" r="3"/><path d="M8.5 2.8V4M2.8 8H4M4.4 3.9l.9.9M12.6 3.9l-.9.9"/><path d="M9 19h8.5a3.5 3.5 0 0 0 .3-7 5 5 0 0 0-9.5 1.4A3 3 0 0 0 9 19z"/>',
+  cloudy: '<path d="M7 18h9.5a3.5 3.5 0 0 0 .3-7 5 5 0 0 0-9.5 1.4A3 3 0 0 0 7 18z"/><path d="M5.5 8.5A3.5 3.5 0 0 1 11 6.2"/>',
+  fog: '<path d="M4 9h12a3 3 0 0 0-.4-5.8A4.6 4.6 0 0 0 6.2 4.4A3 3 0 0 0 4 9z"/><path d="M3 13h18M5 17h14"/>',
+  drizzle: '<path d="M7 15h9.5a3.5 3.5 0 0 0 .3-7 5 5 0 0 0-9.5 1.4A3 3 0 0 0 7 15z"/><path d="M8 19v1.5M13 19v1.5"/>',
+  rain: '<path d="M7 14h9.5a3.5 3.5 0 0 0 .3-7 5 5 0 0 0-9.5 1.4A3 3 0 0 0 7 14z"/><path d="M8.5 17.5L7 21M13 17.5L11.5 21M17 17.5L15.5 21"/>',
+  showers: '<path d="M7 13h9.5a3.5 3.5 0 0 0 .3-7 5 5 0 0 0-9.5 1.4A3 3 0 0 0 7 13z"/><path d="M9 16.5L7.5 20M14 16.5L12.5 20M18 16.5L16.5 20"/>',
+  snow: '<path d="M7 14h9.5a3.5 3.5 0 0 0 .3-7 5 5 0 0 0-9.5 1.4A3 3 0 0 0 7 14z"/><path d="M8.5 18h.01M12 20h.01M15.5 18h.01"/>',
+  thunder: '<path d="M7 13h9.5a3.5 3.5 0 0 0 .3-7 5 5 0 0 0-9.5 1.4A3 3 0 0 0 7 13z"/><path d="M12.5 15.5L10 20h5l-2.5 4"/>',
+};
+
+/* 分组标题图标：出行穿搭 / 游玩安排 / 随身物品 */
+const groupGlyphs: Record<string, string> = {
+  clothing: '<path d="M9 4l3 3 3-3 4 2-2 4v10H7V10L5 6z"/>',
+  plan: '<circle cx="13" cy="4" r="2"/><path d="M11 21l1-5-3-2 1-4 4 2 2 1"/><path d="M9 12l-2 3 3 2"/>',
+  carry: '<path d="M6 8h12l1 12H5z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/>',
+};
+
+const snapshot = await load();
+
+const dayLabels: string[] = w.weekdays ?? [];
+const condLabel = (code: number) => w.cond?.[group(code)] ?? '';
+const updatedTime = snapshot?.updatedAt ? snapshot.updatedAt.slice(11, 16) : '';
+const clock = (iso: string) => (iso && iso.length >= 16 ? iso.slice(11, 16) : '');
+const windLevel = (kmh: number) => String(w.windLevelFmt ?? '{level}').replace('{level}', String(beaufort(kmh)));
+
+/* ------------------------------------------------------------------
+ * 建议规则引擎：条件命中才输出，未命中直接隐藏，用户不需要自己翻译“数据代表我该干嘛”
+ * ------------------------------------------------------------------ */
+type Item = { tone: string; text: string };
+
+const clothing: Item[] = [];
+const plan: Item[] = [];
+const carry: Item[] = [];
+const risks: Item[] = [];
+
+if (snapshot) {
+  const today = snapshot.days[0];
+  const code = snapshot.code;
+  const g = group(code);
+
+  const rainChance = Math.max(snapshot.rain, today?.rain ?? 0);
+  const rainSum = today?.rainSum ?? 0;
+  const maxT = today?.max ?? snapshot.temp;
+  const minT = today?.min ?? snapshot.temp;
+  const swing = maxT - minT;
+  const uvPeak = Math.max(snapshot.uv, today?.uv ?? 0);
+  const bft = beaufort(Math.max(snapshot.wind, today?.windMax ?? 0));
+  const gustMax = Math.max(snapshot.gust, today?.gustMax ?? 0);
+  const vis = snapshot.visibility;
+  const visLow = vis > 0 && vis < 2000;
+  const visVeryLow = vis > 0 && vis < 1000;
+
+  const thunder = g === 'thunder';
+  const heavyRain = rainSum >= 25 || code === 65 || code === 67 || code === 82;
+  const midRain = !heavyRain && (rainSum >= 10 || code === 63 || code === 81);
+  const lightRain = !heavyRain && !midRain && (g === 'drizzle' || code === 61 || code === 80);
+  const wet = thunder || heavyRain || midRain || lightRain;
+  const rainy = wet || rainChance >= 60;
+  const foggy = g === 'fog' || visLow;
+  const hot = maxT >= 32;
+  const veryHot = maxT >= 35;
+  const cool = maxT <= 15;
+  const cold = maxT <= 10;
+  const muggy = snapshot.humidity >= 85 && maxT >= 30;
+  const windy = bft >= 5;
+  const veryWindy = bft >= 7 || gustMax >= 62;
+
+  /* —— 风险提醒（置顶红色，优先级最高） —— */
+  if (thunder) risks.push({ tone: 'risk', text: w.risk.thunder });
+  if (heavyRain) risks.push({ tone: 'risk', text: w.risk.storm });
+  if (veryWindy) risks.push({ tone: 'risk', text: w.risk.wind });
+  if (veryHot) risks.push({ tone: 'risk', text: w.risk.heat });
+  if (visVeryLow && !thunder) risks.push({ tone: 'risk', text: w.risk.fog });
+
+  /* —— 出行穿搭 —— */
+  if (wet || rainChance >= 60) clothing.push({ tone: 'rain', text: w.clothing.rain });
+  if (windy) clothing.push({ tone: 'wind', text: w.clothing.wind });
+  if (hot) clothing.push({ tone: 'hot', text: w.clothing.hot });
+  else if (cold) clothing.push({ tone: 'cold', text: w.clothing.cold });
+  else if (cool) clothing.push({ tone: 'cold', text: w.clothing.cold });
+  if (swing > 8 && !cold) clothing.push({ tone: 'info', text: w.clothing.swing });
+  if (muggy) clothing.push({ tone: 'info', text: w.clothing.muggy });
+  if (!clothing.length) clothing.push({ tone: 'ok', text: w.clothing.mild });
+
+  /* —— 游玩安排 —— */
+  if (thunder) plan.push({ tone: 'risk', text: w.plan.thunder });
+  if (heavyRain) plan.push({ tone: 'warn', text: w.plan.storm });
+  else if (midRain || rainSum >= 10) plan.push({ tone: 'warn', text: w.plan.rain });
+  else if (lightRain || rainChance >= 60) plan.push({ tone: 'rain', text: w.plan.shower });
+  if (wet) plan.push({ tone: 'info', text: w.plan.slippery });
+  if (hot) plan.push({ tone: 'warn', text: w.plan.hot });
+  if (uvPeak >= 8) plan.push({ tone: 'info', text: w.plan.uv });
+  if (foggy) plan.push({ tone: 'info', text: w.plan.fog });
+  if (windy && !veryWindy) plan.push({ tone: 'info', text: w.plan.windy });
+  if (!rainy && (g === 'clear' || g === 'partly')) plan.push({ tone: 'ok', text: w.plan.clear });
+  else if (!rainy && g === 'cloudy') plan.push({ tone: 'ok', text: w.plan.cloudy });
+  if (!plan.length) plan.push({ tone: 'ok', text: w.plan.mild });
+
+  /* —— 随身物品 —— */
+  if (rainy) carry.push({ tone: 'rain', text: w.carry.umbrella });
+  if (heavyRain || midRain || windy) carry.push({ tone: 'rain', text: w.carry.raincoat });
+  if (uvPeak >= 5 || hot) carry.push({ tone: 'warn', text: w.carry.sunscreen });
+  if (hot || uvPeak >= 5) carry.push({ tone: 'info', text: w.carry.water });
+  if (swing > 8) carry.push({ tone: 'info', text: w.carry.jacket });
+  if (cold) carry.push({ tone: 'info', text: w.carry.warm });
+  if (foggy) carry.push({ tone: 'info', text: w.carry.mask });
+  if (wet) carry.push({ tone: 'info', text: w.carry.tissues });
+  if (wet || muggy) carry.push({ tone: 'info', text: w.carry.repellent });
+
+  /* 每块最多 4 条，避免把页面堆满 */
+  risks.splice(4);
+  clothing.splice(3);
+  plan.splice(4);
+  carry.splice(4);
+}
+
+const groups: { id: string; label: string; items: Item[] }[] = [
+  { id: 'clothing', label: w.groups?.clothing ?? '', items: clothing },
+  { id: 'plan', label: w.groups?.plan ?? '', items: plan },
+  { id: 'carry', label: w.groups?.carry ?? '', items: carry },
+].filter((g) => g.items.length > 0);
+---
+
+{snapshot && (
+  <section id="weather" class="section-padding weather-section">
+    <div class="container">
+      <p class="eyebrow">{w.eyebrow}</p>
+      <h2 class="section-title">{w.title}</h2>
+      <p class="section-lead">{w.subtitle}</p>
+
+      <div class="wx-now card card-pad">
+        <div class="wx-now-main">
+          <span class="wx-glyph" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" set:html={glyphs[group(snapshot.code)]}></svg>
+          </span>
+          <div class="wx-now-text">
+            <p class="wx-label">{w.nowLabel}</p>
+            <p class="wx-temp">
+              <strong>{snapshot.temp}</strong><span class="wx-unit">°C</span>
+            </p>
+            <p class="wx-cond">
+              {condLabel(snapshot.code)} · {w.feelsLike} {snapshot.feels}°C
+              {snapshot.days[0] && <> · {snapshot.days[0].max}° / {snapshot.days[0].min}°</>}
+            </p>
+          </div>
+        </div>
+
+        <dl class="wx-metrics">
+          <div><dt>{w.rainChance}</dt><dd>{snapshot.rain}%</dd></div>
+          <div><dt>{w.wind}</dt><dd>{snapshot.wind} km/h · {windLevel(snapshot.wind)}</dd></div>
+          {snapshot.gust > 0 && <div><dt>{w.gusts}</dt><dd>{snapshot.gust} km/h</dd></div>}
+          <div><dt>{w.humidity}</dt><dd>{snapshot.humidity}%</dd></div>
+          <div><dt>{w.uv}</dt><dd>{snapshot.uv}</dd></div>
+          {snapshot.visibility > 0 && (
+            <div>
+              <dt>{w.visibility}</dt>
+              <dd>{snapshot.visibility >= 1000 ? `${round(snapshot.visibility / 1000, 1)} km` : `${snapshot.visibility} m`}</dd>
+            </div>
+          )}
+          {clock(snapshot.days[0]?.sunrise ?? '') && (
+            <div><dt>{w.sunrise}</dt><dd>{clock(snapshot.days[0].sunrise)}</dd></div>
+          )}
+          {clock(snapshot.days[0]?.sunset ?? '') && (
+            <div><dt>{w.sunset}</dt><dd>{clock(snapshot.days[0].sunset)}</dd></div>
+          )}
+        </dl>
+
+        <p class="wx-stamp">
+          {w.updatedLabel} {updatedTime} · {w.freshness}
+        </p>
+      </div>
+
+      {risks.length > 0 ? (
+        <div class="wx-alert" role="status">
+          <p class="wx-alert-title">
+            <span aria-hidden="true">⚠</span> {w.groups?.alert}
+          </p>
+          <ul class="wx-alert-list">
+            {risks.map((r) => <li>{r.text}</li>)}
+          </ul>
+          <p class="wx-alert-note">{w.alertNote}</p>
+        </div>
+      ) : (
+        <p class="wx-calm">
+          <span aria-hidden="true">✓</span> {w.noAlert}
+        </p>
+      )}
+
+      <div class="wx-groups">
+        {groups.map((g) => (
+          <div class={`wx-group group-${g.id}`}>
+            <p class="wx-group-title">
+              <span class="wx-group-ico" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" set:html={groupGlyphs[g.id]}></svg>
+              </span>
+              {g.label}
+            </p>
+            <ul class="wx-group-list">
+              {g.items.map((i) => (
+                <li class={`wx-item tone-${i.tone}`}>
+                  <span class="wx-dot" aria-hidden="true"></span>
+                  <span>{i.text}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+
+      <h3 class="wx-daily-title">{w.dailyTitle}</h3>
+      <ul class="wx-daily">
+        {snapshot.days.map((d, i) => (
+          <li class={`wx-day ${i === 0 ? 'is-today' : ''}`}>
+            <span class="wx-day-name">{i === 0 ? w.today : dayLabels[d.weekday] ?? ''}</span>
+            <span class="wx-day-glyph" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" set:html={glyphs[group(d.code)]}></svg>
+            </span>
+            <span class="wx-day-cond">{condLabel(d.code)}</span>
+            <span class="wx-day-rain" title={w.rainChance}>
+              <span class="wx-drop" aria-hidden="true"></span>{d.rain}%
+            </span>
+            <span class="wx-day-temp"><strong>{d.max}°</strong> / {d.min}°</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+)}
+
+<style>
+  .weather-section { background: var(--surface-accent); }
+  .wx-now {
+    margin-top: 26px;
+    display: grid;
+    gap: 18px;
+    grid-template-columns: minmax(240px, 1fr) 1.4fr;
+    align-items: center;
+  }
+  .wx-now-main { display: flex; align-items: center; gap: 18px; }
+  .wx-glyph { width: 64px; height: 64px; border-radius: 18px; background: var(--accent-soft); color: var(--accent-strong); display: grid; place-items: center; flex: none; }
+  .wx-glyph svg { width: 34px; height: 34px; }
+  .wx-label { margin: 0; font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent-strong); font-weight: 700; }
+  .wx-temp { margin: 2px 0 0; font-family: var(--font-display); color: var(--heading); line-height: 1.05; }
+  .wx-temp strong { font-size: 2.9rem; font-weight: 700; }
+  .wx-unit { font-size: 1.2rem; margin-left: 2px; }
+  .wx-cond { margin: 4px 0 0; color: var(--text-muted); font-size: 0.92rem; }
+  .wx-metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(96px, 1fr)); gap: 12px; margin: 0; }
+  .wx-metrics dt { font-size: 0.74rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); }
+  .wx-metrics dd { margin: 3px 0 0; font-weight: 700; color: var(--heading); font-size: 1.02rem; }
+  .wx-stamp { grid-column: 1 / -1; margin: 0; font-size: 0.78rem; color: var(--text-muted); }
+
+  .wx-alert {
+    margin: 18px 0 0;
+    padding: 16px 18px;
+    border: 1px solid #e0a9a2;
+    border-left: 4px solid #c8503f;
+    border-radius: var(--radius-sm, 10px);
+    background: #fdf3f1;
+  }
+  .wx-alert-title { margin: 0 0 8px; font-weight: 800; color: #a5372a; font-size: 0.98rem; display: flex; align-items: center; gap: 8px; }
+  .wx-alert-list { margin: 0; padding-left: 18px; display: grid; gap: 6px; }
+  .wx-alert-list li { font-size: 0.9rem; line-height: 1.65; color: #7d3025; }
+  .wx-alert-note { margin: 10px 0 0; font-size: 0.78rem; color: #96604f; }
+
+  .wx-calm {
+    margin: 18px 0 0;
+    padding: 12px 16px;
+    border: 1px solid #a9cfb4;
+    border-radius: var(--radius-sm, 10px);
+    background: #f3faf5;
+    color: #3f6f4e;
+    font-size: 0.88rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .wx-calm span { font-weight: 800; }
+
+  .wx-groups { margin-top: 18px; display: grid; grid-template-columns: repeat(auto-fit, minmax(268px, 1fr)); gap: 16px; }
+  .wx-group { padding: 16px 18px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); }
+  .wx-group-title { margin: 0 0 10px; display: flex; align-items: center; gap: 9px; font-weight: 800; color: var(--heading); font-size: 0.98rem; }
+  .wx-group-ico { width: 30px; height: 30px; border-radius: 9px; display: grid; place-items: center; background: var(--accent-soft); color: var(--accent-strong); flex: none; }
+  .wx-group-ico svg { width: 17px; height: 17px; display: block; }
+  .wx-group-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+  .wx-item { display: grid; grid-template-columns: 10px minmax(0, 1fr); gap: 8px; align-items: start; font-size: 0.9rem; line-height: 1.6; color: var(--text); }
+  .wx-dot { width: 7px; height: 7px; border-radius: 50%; margin-top: 7px; background: currentColor; opacity: 0.55; }
+  .wx-item.tone-ok { color: #3f7a53; }
+  .wx-item.tone-ok .wx-dot { opacity: 0.9; }
+  .wx-item.tone-info { color: var(--text); }
+  .wx-item.tone-rain { color: #34678d; }
+  .wx-item.tone-rain .wx-dot { opacity: 0.9; }
+  .wx-item.tone-warn { color: #a1651f; }
+  .wx-item.tone-warn .wx-dot { opacity: 0.9; }
+  .wx-item.tone-risk { color: #a5372a; font-weight: 600; }
+  .wx-item.tone-risk .wx-dot { opacity: 1; }
+
+  .wx-daily-title { margin: 30px 0 14px; font-size: 1.25rem; }
+  .wx-daily { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+  .wx-day {
+    display: grid;
+    grid-template-columns: 84px 30px minmax(0, 1fr) 74px 100px;
+    align-items: center;
+    gap: 12px;
+    padding: 11px 16px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm, 10px);
+    background: var(--surface);
+    font-size: 0.92rem;
+  }
+  .wx-day.is-today { border-color: var(--accent); background: var(--accent-soft); }
+  .wx-day-name { font-weight: 700; color: var(--heading); }
+  .wx-day-glyph svg { width: 22px; height: 22px; display: block; color: var(--accent-strong); }
+  .wx-day-cond { color: var(--text-muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .wx-day-rain { display: inline-flex; align-items: center; gap: 6px; color: #3f7ba8; font-weight: 600; }
+  .wx-drop { width: 8px; height: 8px; border-radius: 50% 50% 50% 0; background: currentColor; transform: rotate(-45deg); display: inline-block; }
+  .wx-day-temp { text-align: right; color: var(--text-muted); }
+  .wx-day-temp strong { color: var(--heading); }
+  @media (max-width: 720px) {
+    .wx-now { grid-template-columns: 1fr; }
+    .wx-day { grid-template-columns: 64px 26px minmax(0, 1fr) 62px; gap: 8px; padding: 10px 12px; }
+    .wx-day-cond { display: none; }
+  }
+</style>

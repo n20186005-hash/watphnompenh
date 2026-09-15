@@ -1,1 +1,34 @@
-/  /km/  302
+# ============================================================
+# URL 规范化（Cloudflare Pages / Workers 读取本文件）
+# 目的：解决 GSC 中 www / non-www、http / https、有尾斜杠 / 无尾斜杠
+#       共 18 个变体被分别索引、权重分散的问题。
+# 注意：http -> https 需在 Cloudflare 面板开启 “Always Use HTTPS”，
+#       _redirects 无法匹配协议（scheme）。
+# ============================================================
+
+# 1) www -> 非 www（保留完整路径）
+https://www.watphnompenh.com/*  https://watphnompenh.com/:splat  301
+
+# 2) 根路径 -> 默认语言（高棉语，与 hreflang x-default 一致）
+/  /km/  301
+
+# 3) 尾斜杠统一：无尾斜杠变体 301 到规范 URL
+/km  /km/  301
+/en  /en/  301
+/zh  /zh/  301
+
+/km/pocket-guide  /km/pocket-guide/  301
+/en/pocket-guide  /en/pocket-guide/  301
+/zh/pocket-guide  /zh/pocket-guide/  301
+
+/km/privacy-policy  /km/privacy-policy/  301
+/en/privacy-policy  /en/privacy-policy/  301
+/zh/privacy-policy  /zh/privacy-policy/  301
+
+/km/terms-of-service  /km/terms-of-service/  301
+/en/terms-of-service  /en/terms-of-service/  301
+/zh/terms-of-service  /zh/terms-of-service/  301
+
+/km/cookie-settings  /km/cookie-settings/  301
+/en/cookie-settings  /en/cookie-settings/  301
+/zh/cookie-settings  /zh/cookie-settings/  301

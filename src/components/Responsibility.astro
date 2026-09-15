@@ -1,0 +1,70 @@
+---
+interface Props {
+  lang: string;
+  messages: any;
+}
+const { messages: m } = Astro.props;
+const s = m.responsibility;
+---
+
+<section id="responsibility" class="section-padding">
+  <div class="container">
+    <p class="eyebrow">{s.eyebrow}</p>
+    <h2 class="section-title">{s.title}</h2>
+    <p class="section-lead">{s.subtitle}</p>
+
+    <div class="rp-grid">
+      <div class="rp-col card card-pad">
+        <h3 class="rp-head"><span class="rp-mark science" aria-hidden="true"></span>{s.knowTitle}</h3>
+        <dl class="rp-list">
+          {s.knowItems.map((it: any) => (
+            <div class="rp-item">
+              <dt>{it.t}</dt>
+              <dd>{it.d}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+
+      <div class="rp-col card card-pad">
+        <h3 class="rp-head"><span class="rp-mark duty" aria-hidden="true"></span>{s.dutyTitle}</h3>
+        <ul class="rp-check">
+          {s.dutyItems.map((it: any) => (
+            <li>
+              <strong>{it.t}</strong>
+              <span>{it.d}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    <p class="rp-note">{s.note}</p>
+  </div>
+</section>
+
+<style>
+  .rp-grid { margin-top: 30px; display: grid; gap: 22px; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
+  .rp-head { display: flex; align-items: center; gap: 10px; margin: 0 0 18px; font-size: 1.12rem; }
+  .rp-mark { width: 26px; height: 26px; border-radius: 9px; flex: none; display: inline-block; }
+  .rp-mark.science { background: linear-gradient(135deg, #3f7ba8, #7fb2d1); }
+  .rp-mark.duty { background: linear-gradient(135deg, var(--accent-strong), var(--accent)); }
+  .rp-list, .rp-check { margin: 0; display: grid; gap: 16px; }
+  .rp-list { padding-left: 0; }
+  .rp-item dt { font-weight: 700; color: var(--heading); font-size: 0.95rem; }
+  .rp-item dd { margin: 5px 0 0; font-size: 0.9rem; line-height: 1.75; color: var(--text-muted); }
+  .rp-check { list-style: none; padding-left: 0; }
+  .rp-check li { position: relative; padding-left: 26px; }
+  .rp-check li::before {
+    content: '';
+    position: absolute;
+    left: 2px; top: 0.45em;
+    width: 12px; height: 7px;
+    border-left: 2px solid var(--accent-strong);
+    border-bottom: 2px solid var(--accent-strong);
+    transform: rotate(-45deg);
+  }
+  .rp-check strong { display: block; color: var(--heading); font-size: 0.95rem; }
+  .rp-check span { display: block; margin-top: 5px; font-size: 0.9rem; line-height: 1.75; color: var(--text-muted); }
+  .rp-note { margin: 20px 0 0; font-size: 0.82rem; line-height: 1.7; color: var(--text-muted); }
+</style>

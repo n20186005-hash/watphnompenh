@@ -14,32 +14,43 @@ const navGroups = [
     { id: 'intro', label: m.header.intro },
     { id: 'history', label: m.header.history },
     { id: 'architecture', label: m.header.architecture },
+    { id: 'responsibility', label: m.header.responsibility },
   ]},
   { key: 'navGuide', items: [
-    { id: 'best-time', label: m.header.bestTime },
     { id: 'experience', label: m.header.experience },
-    { id: 'practical', label: m.header.practical },
+    { id: 'routes', label: m.header.routes },
+    { id: 'audience', label: m.header.audience },
+    { id: 'best-time', label: m.header.bestTime },
+    { id: 'weather', label: m.header.weather },
+    { id: 'season', label: m.header.season },
     { id: 'faq', label: m.header.faq },
+  ]},
+  { key: 'navReviews', items: [
+    { id: 'reviews', label: m.header.reviews },
+    { id: 'sources', label: m.header.sources },
   ]},
   { key: 'navTransit', items: [
     { id: 'transport', label: m.header.transport },
+    { id: 'amenities', label: m.header.amenities },
     { id: 'map', label: m.header.map },
   ]},
   { key: 'navExplore', items: [
     { id: 'nearby', label: m.header.nearby },
     { id: 'food', label: m.header.food },
+    { id: 'practical', label: m.header.practical },
   ]},
 ];
 
 function switchUrl(l: string): string {
   const parts = Astro.url.pathname.split('/').filter(Boolean).slice(1); // drop lang
   const rest = parts.join('/');
-  return `/${l}${rest ? '/' + rest : ''}`;
+  // 尾斜杠统一：/km/、/en/pocket-guide/
+  return `/${l}/${rest ? rest + '/' : ''}`;
 }
 ---
 <header class="site-header">
   <div class="container header-inner">
-    <a href={`/${lang}`} class="brand">
+    <a href={`/${lang}/`} class="brand">
       <span class="brand-mark" aria-hidden="true">
         <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 4v6c0 4-3 6-7 8-4-2-7-4-7-8V7l7-4z"/><path d="M12 7v10"/><path d="M9 11h6"/></svg>
       </span>
@@ -55,7 +66,7 @@ function switchUrl(l: string): string {
           </button>
           <div class="nav-dropdown">
             {g.items.map((item) => (
-              <a href={`/${lang}#${item.id}`}>{item.label}</a>
+              <a href={`/${lang}/#${item.id}`}>{item.label}</a>
             ))}
           </div>
         </div>

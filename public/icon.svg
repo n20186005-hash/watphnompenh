@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Wat Phnom Daun Penh">
+  <rect width="512" height="512" rx="96" fill="#b8862c" />
+  <g fill="#fff8e7">
+    <polygon points="256,46 235,171 277,171" />
+    <circle cx="256" cy="205" r="60" />
+    <rect x="236" y="225" width="40" height="82" />
+    <rect x="217" y="307" width="78" height="33" />
+    <rect x="187" y="340" width="138" height="30" />
+    <rect x="153" y="370" width="206" height="30" />
+    <rect x="120" y="400" width="272" height="40" />
+    <polygon points="102,232 86,317 118,317" />
+    <rect x="86" y="317" width="32" height="123" />
+    <polygon points="410,232 394,317 426,317" />
+    <rect x="394" y="317" width="32" height="123" />
+  </g>
+</svg>

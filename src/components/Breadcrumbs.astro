@@ -1,0 +1,42 @@
+---
+interface Props { lang: string; messages: any; }
+const { lang, messages: m } = Astro.props;
+const geo = m.geo ?? {};
+const b = m.breadcrumb ?? { ariaLabel: 'Breadcrumb', home: 'Guide' };
+---
+<nav class="crumbs-bar" aria-label={b.ariaLabel}>
+  <div class="container">
+    <ol class="crumbs">
+      <li><a href={`/${lang}/#intro`}>{geo.attraction}</a></li>
+      <li><a href={`/${lang}/#map`}>{geo.city}</a></li>
+      <li><span>{geo.region}</span></li>
+      <li><span aria-current="page">{geo.country}</span></li>
+    </ol>
+  </div>
+</nav>
+
+<style>
+  .crumbs-bar {
+    border-bottom: 1px solid var(--border);
+    background: var(--surface-accent);
+  }
+  .crumbs {
+    list-style: none;
+    margin: 0;
+    padding: 12px 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.84rem;
+    color: var(--text-muted);
+  }
+  .crumbs li { display: inline-flex; align-items: center; gap: 6px; }
+  .crumbs li + li::before {
+    content: '›';
+    color: var(--border-strong);
+    font-weight: 700;
+  }
+  .crumbs a { color: var(--accent-strong); font-weight: 600; }
+  .crumbs a:hover { text-decoration: underline; }
+</style>

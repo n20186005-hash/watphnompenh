@@ -7,7 +7,10 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "check": "astro check"
+    "check": "astro check",
+    "optimize:images": "node scripts/optimize-images.mjs",
+    "cf:dev": "wrangler dev",
+    "deploy": "astro build && wrangler deploy"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.0.0",

@@ -35,7 +35,8 @@ export function getI18n(url: URL) {
 export function buildAlternates(path = ''): Record<string, string> {
   const base = siteConfig.baseUrl;
   const clean = path.replace(/^\/+/, '').replace(/\/+$/, '');
-  const mk = (l: string) => `${base}/${l}${clean ? '/' + clean : ''}`;
+  // 尾斜杠统一：/en/、/en/pocket-guide/，与 canonical、_redirects 保持一致
+  const mk = (l: string) => `${base}/${l}${clean ? '/' + clean : ''}/`;
   return {
     km: mk('km'),
     en: mk('en'),

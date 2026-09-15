@@ -1,6 +1,19 @@
 ---
-import { getI18n } from '../../i18n/ui';
-import { mapsUrl } from '../../config';
+import { getI18n, buildAlternates, htmlLangAttr } from '../../i18n/ui';
+import siteConfig, {
+  mapsUrl,
+  GA_MEASUREMENT_ID,
+  ATTRACTION_FULL_NAME,
+  CITY_NAME,
+  STATE_PROVINCE,
+  COUNTRY_NAME,
+  COUNTRY_CODE_2LETTER,
+  POSTAL_CODE,
+  PLUS_CODE,
+  LATITUDE,
+  LONGITUDE,
+  GOVT_TOURISM_URL,
+} from '../../config';
 import '../../styles/global.css';
 
 export function getStaticPaths() {
@@ -17,14 +30,126 @@ const et = m.etiquette;
 const tr = m.transport;
 const mp = m.map;
 const ft = m.footer;
+const pg = m.pocketGuide;
+
+const SITE = siteConfig.baseUrl;
+const canonical = `${SITE}/${lang}/pocket-guide/`;
+const alt = buildAlternates('pocket-guide');
+const title = pg.metaTitle ?? `${m.meta.title} — Pocket Guide`;
+const description = pg.metaDescription ?? pg.note;
+const image = `${SITE}/gallery/wat-phnom-daun-penh-1.jpg`;
+const imageAlt = `${ATTRACTION_FULL_NAME} in ${CITY_NAME}`;
+const localeMap: Record<string, string> = { km: 'km_KH', en: 'en_US', zh: 'zh_CN' };
+
+/* 长尾问答：直接覆盖 GSC 高频查询（entrance fee / hours / hill / Daun Penh 由来 等） */
+const qaItems = (pg.qa ?? []) as { q: string; a: string }[];
+
+/* 页内导流：从口袋指南回流至首页各深度模块，强化内链结构与实体关联 */
+const seeAlso = [
+  { id: 'history', label: m.header.history },
+  { id: 'routes', label: m.header.routes },
+  { id: 'weather', label: m.header.weather },
+  { id: 'transport', label: m.header.transport },
+  { id: 'nearby', label: m.header.nearby },
+  { id: 'faq', label: m.header.faq },
+];
+
+/* ── 结构化数据：与首页共用同一 @id，把两个 URL 归并到同一个景点实体 ── */
+const attractionLd = {
+  '@context': 'https://schema.org',
+  '@type': 'TouristAttraction',
+  '@id': `${SITE}/#attraction`,
+  name: ATTRACTION_FULL_NAME,
+  url: SITE,
+  image,
+  isAccessibleForFree: true,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Wat Phnom Road',
+    addressLocality: CITY_NAME,
+    addressRegion: STATE_PROVINCE,
+    postalCode: POSTAL_CODE,
+    addressCountry: COUNTRY_CODE_2LETTER,
+  },
+  geo: { '@type': 'GeoCoordinates', latitude: LATITUDE, longitude: LONGITUDE },
+  hasMap: mapsUrl,
+  sameAs: [mapsUrl, GOVT_TOURISM_URL],
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+      opens: '07:00',
+      closes: '19:00',
+    },
+  ],
+};
+
+const faqLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: qaItems.map((it) => ({
+    '@type': 'Question',
+    name: it.q,
+    acceptedAnswer: { '@type': 'Answer', text: it.a },
+  })),
+};
+
+const breadcrumbLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: m.header.siteName, item: `${SITE}/${lang}/` },
+    { '@type': 'ListItem', position: 2, name: pg.metaTitle ?? 'Pocket Guide', item: canonical },
+  ],
+};
 ---
 
 <!doctype html>
-<html lang={lang}>
+<html lang={htmlLangAttr(lang)}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{m.meta.title} — Pocket Guide</title>
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="theme-color" content="#b8862c" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/icon-192.png" sizes="192x192" type="image/png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content={ATTRACTION_FULL_NAME} />
+    <meta property="og:locale" content={localeMap[lang] ?? 'en_US'} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={image} />
+    <meta property="og:image:alt" content={imageAlt} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={image} />
+
+    {Object.entries(alt).map(([k, v]) => (
+      <link rel="alternate" hreflang={k === 'xDefault' ? 'x-default' : k} href={v} />
+    ))}
+
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(attractionLd)}></script>
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbLd)}></script>
+    {qaItems.length > 0 && (
+      <script is:inline type="application/ld+json" set:html={JSON.stringify(faqLd)}></script>
+    )}
+
+    <!-- Google tag (gtag.js) — GA4 -->
+    <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}></script>
+    <script is:inline define:vars={{ GA_MEASUREMENT_ID }}>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', GA_MEASUREMENT_ID);
+    </script>
   </head>
   <body class="pocket-guide">
     <div class="pg-actions no-print">
@@ -42,11 +167,34 @@ const ft = m.footer;
         <p class="pg-pronounce">{h.pronounce}</p>
       </header>
 
+      <p class="pg-lead">{description}</p>
+
       <section class="pg-facts">
         <div><span class="pg-k">{mp.hoursLabel}</span><span class="pg-v">{mp.hoursValue}</span></div>
         <div><span class="pg-k">{mp.addressLabel}</span><span class="pg-v">{mp.addressValue}</span></div>
+        <div><span class="pg-k">Plus Code</span><span class="pg-v">{PLUS_CODE}</span></div>
         <div><span class="pg-k">Google</span><span class="pg-v">{h.rating} · {h.reviews} {m.hero.reviewsSuffix}</span></div>
       </section>
+
+      <p class="pg-src">
+        {h.reviewsSource}
+        <a href={mapsUrl} target="_blank" rel="noopener noreferrer">{h.reviewsSourceLink} ↗</a>
+      </p>
+
+      {qaItems.length > 0 && (
+        <section class="pg-block pg-qa">
+          <h2>{pg.qaTitle}</h2>
+          {pg.qaHint && <p class="pg-hint">{pg.qaHint}</p>}
+          <dl>
+            {qaItems.map((it: any) => (
+              <>
+                <dt>{it.q}</dt>
+                <dd>{it.a}</dd>
+              </>
+            ))}
+          </dl>
+        </section>
+      )}
 
       <section class="pg-block">
         <h2>{et.title}</h2>
@@ -73,8 +221,19 @@ const ft = m.footer;
         <p><a href={mapsUrl} target="_blank" rel="noopener">{mp.openLabel}</a></p>
       </section>
 
+      <nav class="pg-see no-print" aria-label={pg.seeAlsoTitle}>
+        <h2>{pg.seeAlsoTitle}</h2>
+        <ul>
+          {seeAlso.map((s: any) => (
+            <li><a href={`/${lang}/#${s.id}`}>{s.label}</a></li>
+          ))}
+        </ul>
+      </nav>
+
       <footer class="pg-foot">
         <p>{ft.disclaimer}</p>
+        <p>{ft.imageRights}</p>
+        <p>{ft.reviewsSource}</p>
         <p class="pg-res">{ft.resourcesTitle}: {ft.resources.map((r: any) => r.name).join(' · ')}</p>
       </footer>
     </main>
@@ -98,8 +257,11 @@ const ft = m.footer;
   .pg-local { margin: 0; color: var(--accent-strong); letter-spacing: 0.12em; font-weight: 700; }
   .pg-title { margin: 4px 0 2px; font-family: var(--font-display); font-size: 1.8rem; }
   .pg-pronounce { margin: 0; color: var(--text-muted); font-size: 0.92rem; }
-  .pg-facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 20px 0; }
+  .pg-lead { margin: 14px 0 0; color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
+  .pg-facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin: 20px 0; }
   .pg-facts > div { background: var(--surface-accent); border-radius: 8px; padding: 12px 14px; }
+  .pg-src { margin: -6px 0 18px; font-size: 0.78rem; color: var(--text-muted); }
+  .pg-src a { color: var(--accent-strong); font-weight: 600; }
   .pg-k { display: block; font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-strong); font-weight: 700; }
   .pg-v { display: block; margin-top: 4px; font-weight: 600; }
   .pg-block { margin: 22px 0; }
@@ -107,9 +269,19 @@ const ft = m.footer;
   .pg-etiq, .pg-modes { margin: 0; padding-left: 18px; line-height: 1.6; }
   .pg-etiq li, .pg-modes li { margin-bottom: 6px; }
   .pg-note { margin: 10px 0 0; color: var(--text-muted); font-size: 0.92rem; }
+  .pg-hint { margin: 0 0 10px; color: var(--text-muted); font-size: 0.88rem; }
+  .pg-qa dl { margin: 0; }
+  .pg-qa dt { font-weight: 700; margin-top: 12px; }
+  .pg-qa dt:first-of-type { margin-top: 0; }
+  .pg-qa dd { margin: 4px 0 0; line-height: 1.6; font-size: 0.95rem; }
+  .pg-see { margin: 26px 0; padding: 16px 18px; background: var(--surface-accent); border-radius: 10px; }
+  .pg-see h2 { font-family: var(--font-display); font-size: 1rem; margin: 0 0 10px; color: var(--accent-strong); }
+  .pg-see ul { list-style: none; display: flex; flex-wrap: wrap; gap: 8px 14px; margin: 0; padding: 0; }
+  .pg-see a { font-size: 0.92rem; font-weight: 600; color: var(--accent-strong); text-decoration: none; }
+  .pg-see a:hover { text-decoration: underline; }
   .pg-foot { margin-top: 26px; border-top: 1px solid var(--border); padding-top: 14px; color: var(--text-muted); font-size: 0.84rem; }
   .pg-res { margin-top: 6px; }
-  @media (max-width: 560px) { .pg-facts { grid-template-columns: 1fr; } .pg-sheet { padding: 22px; } }
+  @media (max-width: 560px) { .pg-sheet { padding: 22px; } }
   @media print {
     .pocket-guide { background: #fff; }
     .no-print { display: none !important; }

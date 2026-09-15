@@ -15,13 +15,13 @@ const m = dict.legal;
 const s = m.terms;
 const title = m.termsTitle;
 const baseUrl = import.meta.env.SITE || 'https://watphnompenh.com';
-const canonical = `${baseUrl}/${lang}/terms-of-service`;
+const canonical = `${baseUrl}/${lang}/terms-of-service/`;
 ---
 
-<BaseLayout title={`${title} · Wat Phnom Daun Penh`} description={s.contentBody} lang={lang} canonical={canonical}>
+<BaseLayout title={`${title} · Wat Phnom Daun Penh`} description={s.contentBody} lang={lang} canonical={canonical} pageType="legal">
   <article class="legal-page">
     <div class="legal-inner">
-      <a class="legal-back" href={`/${lang}`}>← {m.backLink}</a>
+      <a class="legal-back" href={`/${lang}/`}>← {m.backLink}</a>
       <h1>{title}</h1>
       <p class="legal-updated">{m.termsUpdated}</p>
 

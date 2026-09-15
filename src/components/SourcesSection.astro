@@ -1,0 +1,62 @@
+---
+import { mapsUrl, entity, REVIEWS_SYNC } from '../config';
+
+interface Props { lang: string; messages: any; t: (k: string) => string; }
+const { messages: m } = Astro.props;
+const s = m.sources;
+---
+<section id="sources" class="section-padding sources-section">
+  <div class="container container-narrow">
+    <p class="eyebrow">{s.eyebrow}</p>
+    <h2 class="section-title">{s.title}</h2>
+    <p class="section-lead">{s.subtitle}</p>
+
+    <div class="sources-grid">
+      <div class="src-card card card-pad">
+        <h3>{s.reviewsTitle}</h3>
+        <p class="src-meta">{s.reviewsUpdatedLabel}: <strong>{s.reviewsUpdated}</strong></p>
+        <p class="src-note">{s.reviewsSourceNote}</p>
+        <a class="link-accent" href={mapsUrl} target="_blank" rel="noopener noreferrer">
+          {s.reviewsLink} ↗
+        </a>
+      </div>
+
+      <div class="src-card card card-pad">
+        <h3>{s.imagesTitle}</h3>
+        <p class="src-note">{s.imagesNote}</p>
+        <p class="src-note">{m.footer.imageRights}</p>
+      </div>
+
+      <div class="src-card card card-pad">
+        <h3>{s.officialTitle}</h3>
+        <ul class="src-links">
+          <li><a href={mapsUrl} target="_blank" rel="noopener noreferrer">{s.googleMaps} ↗</a></li>
+          <li><a href={entity.tourismUrl} target="_blank" rel="noopener noreferrer">{s.tourism} ↗</a></li>
+          <li><a href={entity.municipalityUrl} target="_blank" rel="noopener noreferrer">{s.municipality} ↗</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="sources-foot">{s.note}</p>
+  </div>
+</section>
+
+<style>
+  .sources-section { background: var(--surface-accent); }
+  .container-narrow { max-width: 980px; }
+  .sources-grid {
+    margin-top: 28px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 18px;
+  }
+  .src-card h3 { margin: 0 0 10px; font-size: 1.14rem; }
+  .src-card { border-top: 3px solid var(--accent); }
+  .src-meta { margin: 0 0 8px; font-size: 0.88rem; color: var(--text-muted); }
+  .src-meta strong { color: var(--heading); }
+  .src-note { margin: 0 0 10px; color: var(--text-muted); font-size: 0.92rem; }
+  .src-links { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+  .src-links a { color: var(--accent-strong); font-weight: 600; font-size: 0.94rem; }
+  .src-links a:hover { text-decoration: underline; }
+  .sources-foot { margin: 22px 0 0; color: var(--text-muted); font-size: 0.86rem; }
+</style>

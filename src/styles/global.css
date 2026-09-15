@@ -244,6 +244,7 @@ html[lang='km'] h1, html[lang='km'] h2, html[lang='km'] h3, html[lang='km'] h4 {
   background: var(--surface-2);
   box-shadow: var(--shadow-sm);
 }
+.gallery-item picture { display: block; width: 100%; height: 100%; }
 .gallery-item img {
   width: 100%; height: 100%;
   object-fit: cover;

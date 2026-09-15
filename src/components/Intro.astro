@@ -10,6 +10,8 @@ const s = m.intro;
     <h2 class="section-title">{s.title}</h2>
     <p class="section-lead">{s.description}</p>
 
+    {s.entityLead && <p class="entity-lead" set:html={s.entityLead} />}
+
     <div class="intro-body">
       <div class="fact-grid">
         {s.facts.map((f: any) => (
@@ -48,6 +50,16 @@ const s = m.intro;
 
 <style>
   .intro-body { margin-top: 30px; display: grid; gap: 26px; }
+  .entity-lead {
+    margin: 22px 0 0;
+    padding: 18px 22px;
+    border-left: 4px solid var(--accent);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    background: var(--surface-accent);
+    color: var(--text);
+    line-height: 1.8;
+  }
+  .entity-lead :global(strong) { color: var(--accent-strong); }
   .intro-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
   .intro-cols h3 { margin: 0 0 14px; font-size: 1.3rem; }
   .guide { background: var(--surface-accent); }

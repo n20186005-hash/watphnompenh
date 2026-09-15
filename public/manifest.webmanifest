@@ -1,0 +1,49 @@
+{
+  "name": "Wat Phnom Daun Penh (Phnom Penh) - Visitor Guide",
+  "short_name": "Wat Phnom",
+  "description": "Comprehensive visitor guide to Wat Phnom Daun Penh in Phnom Penh, Cambodia: location map, history, architecture, practical tips and Google Maps directions.",
+  "id": "/",
+  "start_url": "/km/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#faf6ee",
+  "theme_color": "#b8862c",
+  "lang": "km",
+  "dir": "ltr",
+  "categories": ["travel", "education", "reference"],
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Map & Location",
+      "short_name": "Map",
+      "url": "/km/#map",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Pocket Guide (PDF)",
+      "short_name": "Pocket Guide",
+      "url": "/km/pocket-guide",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    }
+  ]
+}

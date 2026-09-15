@@ -1,0 +1,86 @@
+---
+import { mapsUrl, REVIEWS_SYNC } from '../config';
+
+interface Props { lang: string; messages: any; t: (k: string) => string; }
+const { messages: m } = Astro.props;
+const s = m.reviews;
+
+function stars(rating: string) {
+  const full = Math.round(parseFloat(rating));
+  return { full, empty: 5 - full };
+}
+const st = stars(REVIEWS_SYNC.rating);
+---
+<section id="reviews" class="section-padding reviews-section">
+  <div class="container container-narrow">
+    <p class="eyebrow">{s.eyebrow}</p>
+    <h2 class="section-title">{s.title}</h2>
+    <p class="section-lead">{s.subtitle}</p>
+
+    <div class="reviews-panel card card-pad">
+      <div class="rp-rating">
+        <div class="rp-score">{REVIEWS_SYNC.rating}</div>
+        <div>
+          <span class="stars" aria-hidden="true">
+            {Array.from({ length: st.full }).map(() => <span class="star-filled">★</span>)}
+            {Array.from({ length: st.empty }).map(() => <span class="star-empty">★</span>)}
+          </span>
+          <p class="rp-count">
+            <strong>{REVIEWS_SYNC.reviewsDisplay}</strong> {s.countLabel}
+          </p>
+        </div>
+      </div>
+
+      <div class="rp-source">
+        <p class="rp-badge">Google Maps</p>
+        <p class="rp-note">{s.sourceNote}</p>
+        <p class="rp-updated">{s.updatedLabel}: {REVIEWS_SYNC.syncLabel}</p>
+        <a class="btn-cta btn-cta-primary rp-btn" href={mapsUrl} target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          {s.button}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .reviews-section { background: var(--surface-accent); }
+  .container-narrow { max-width: 880px; }
+  .reviews-panel {
+    margin-top: 28px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 30px;
+    align-items: center;
+  }
+  .rp-rating { display: flex; align-items: center; gap: 18px; padding-right: 26px; border-right: 1px solid var(--border); }
+  .rp-score {
+    font-family: var(--font-display);
+    font-size: 3.4rem;
+    font-weight: 800;
+    line-height: 1;
+    color: var(--heading);
+  }
+  .rp-count { margin: 6px 0 0; color: var(--text-muted); font-size: 0.92rem; }
+  .rp-count strong { color: var(--heading); font-size: 1.02rem; }
+  .rp-badge {
+    display: inline-block;
+    margin: 0 0 10px;
+    padding: 4px 12px;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    color: var(--accent-strong);
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .rp-note { margin: 0 0 8px; color: var(--text-muted); font-size: 0.92rem; max-width: 520px; }
+  .rp-updated { margin: 0 0 14px; color: var(--text-muted); font-size: 0.82rem; }
+  .rp-btn { white-space: normal; text-align: center; }
+  @media (max-width: 760px) {
+    .reviews-panel { grid-template-columns: 1fr; gap: 22px; }
+    .rp-rating { border-right: 0; padding-right: 0; padding-bottom: 18px; border-bottom: 1px solid var(--border); }
+  }
+</style>

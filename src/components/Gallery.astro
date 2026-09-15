@@ -1,11 +1,30 @@
 ---
 import { mapsUrl } from '../config';
+import galleryManifest from '../data/gallery-images.json';
 
 interface Props { lang: string; messages: any; t: (k: string) => string; }
 const { messages: m } = Astro.props;
 const s = m.gallery;
 
 const spans = ['gallery-span-2', 'gallery-span-1', 'gallery-span-1', 'gallery-span-1', 'gallery-span-1', 'gallery-span-3', 'gallery-span-1', 'gallery-span-1', 'gallery-span-1', 'gallery-span-1', 'gallery-span-3', 'gallery-span-1'];
+
+/**
+ * 响应式图片清单（由 scripts/optimize-images.mjs 生成）：
+ * 每个画廊位提供 800px 缩略图与 1600px 全尺寸两档，并按栅格跨度给出合适的 sizes，
+ * 手机只下载 ~50–150KB 的缩略图，桌面再按需取大图。
+ */
+const imgMeta = galleryManifest as Record<
+  string,
+  { width: number; height: number; thumb: string; thumbWidth: number; thumbHeight: number; avif: string; avifThumb: string }
+>;
+
+// 图片 Alt 语义绑定：为每张照片追加「景点全称 + 城市 + 国家」实体语义后缀
+const altSuffix: Record<string, string> = {
+  km: ' នៅវត្តភ្នំដូនពេញ ភ្នំពេញ កម្ពុជា',
+  en: ' — Wat Phnom Daun Penh, Phnom Penh, Cambodia',
+  zh: ' — 塔山寺 Wat Phnom Daun Penh，柬埔寨金边',
+};
+const suffix = altSuffix[Astro.props.lang] ?? altSuffix.en;
 ---
 <section id="gallery" class="section-padding">
   <div class="container">
@@ -14,12 +33,40 @@ const spans = ['gallery-span-2', 'gallery-span-1', 'gallery-span-1', 'gallery-sp
     <p class="section-lead">{s.subtitle}</p>
 
     <div class="gallery-grid">
-      {s.photos.map((p: any, i: number) => (
-        <figure class={`gallery-item ${spans[i % spans.length]}`}>
-          <img src={p.src} alt={p.alt} loading="lazy" />
-          <figcaption class="cap">{p.caption}</figcaption>
-        </figure>
-      ))}
+      {s.photos.map((p: any, i: number) => {
+        const span = spans[i % spans.length];
+        const pic = imgMeta[p.src];
+        const wide = span === 'gallery-span-2';
+        const sizes = `(max-width: 720px) 100vw, (max-width: 1100px) ${wide ? '66vw' : '33vw'}, ${wide ? '760px' : '380px'}`;
+        return (
+          <figure class={`gallery-item ${span}`}>
+            {pic ? (
+              <picture>
+                <source
+                  type="image/avif"
+                  srcset={`${pic.avifThumb} ${pic.thumbWidth}w, ${pic.avif} ${pic.width}w`}
+                  sizes={sizes}
+                />
+                <img
+                  src={p.src}
+                  srcset={`${pic.thumb} ${pic.thumbWidth}w, ${p.src} ${pic.width}w`}
+                  sizes={sizes}
+                  width={pic.width}
+                  height={pic.height}
+                  alt={`${p.alt}${suffix}`}
+                  loading={i < 2 ? 'eager' : 'lazy'}
+                  decoding="async"
+                  fetchpriority={i === 0 ? 'high' : undefined}
+                  data-avif={pic.avif}
+                />
+              </picture>
+            ) : (
+              <img src={p.src} alt={`${p.alt}${suffix}`} loading="lazy" decoding="async" />
+            )}
+            <figcaption class="cap">{p.caption}</figcaption>
+          </figure>
+        );
+      })}
     </div>
 
     <div class="gallery-cta">

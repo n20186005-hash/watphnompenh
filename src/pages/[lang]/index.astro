@@ -2,12 +2,17 @@
 import { getI18n } from '../../i18n/ui';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Hero from '../../components/Hero.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import Intro from '../../components/Intro.astro';
 import History from '../../components/History.astro';
 import Architecture from '../../components/Architecture.astro';
 import Gallery from '../../components/Gallery.astro';
 import Experience from '../../components/Experience.astro';
+import Itineraries from '../../components/Itineraries.astro';
+import AudienceRoutes from '../../components/AudienceRoutes.astro';
 import BestTime from '../../components/BestTime.astro';
+import Weather from '../../components/Weather.astro';
+import SeasonStrategy from '../../components/SeasonStrategy.astro';
 import Transport from '../../components/Transport.astro';
 import Amenities from '../../components/Amenities.astro';
 import MapSection from '../../components/MapSection.astro';
@@ -15,7 +20,10 @@ import Nearby from '../../components/Nearby.astro';
 import Food from '../../components/Food.astro';
 import Practical from '../../components/Practical.astro';
 import Etiquette from '../../components/Etiquette.astro';
+import Responsibility from '../../components/Responsibility.astro';
 import FAQ from '../../components/FAQ.astro';
+import ReviewsSection from '../../components/ReviewsSection.astro';
+import SourcesSection from '../../components/SourcesSection.astro';
 
 export function getStaticPaths() {
   return [
@@ -31,12 +39,17 @@ const description = m.meta.description;
 ---
 <BaseLayout title={title} description={description}>
   <Hero lang={lang} messages={m} t={t} />
+  <Breadcrumbs lang={lang} messages={m} />
   <Intro lang={lang} messages={m} t={t} />
   <History lang={lang} messages={m} t={t} />
   <Architecture lang={lang} messages={m} t={t} />
   <Gallery lang={lang} messages={m} t={t} />
   <Experience lang={lang} messages={m} t={t} />
+  <Itineraries lang={lang} messages={m} />
+  <AudienceRoutes lang={lang} messages={m} />
   <BestTime lang={lang} messages={m} t={t} />
+  <Weather lang={lang} messages={m} />
+  <SeasonStrategy lang={lang} messages={m} />
   <Transport lang={lang} messages={m} t={t} />
   <Amenities lang={lang} messages={m} t={t} />
   <MapSection lang={lang} messages={m} t={t} />
@@ -44,5 +57,8 @@ const description = m.meta.description;
   <Food lang={lang} messages={m} t={t} />
   <Practical lang={lang} messages={m} t={t} />
   <Etiquette lang={lang} m={m} />
+  <Responsibility lang={lang} messages={m} />
+  <ReviewsSection lang={lang} messages={m} t={t} />
   <FAQ lang={lang} messages={m} t={t} />
+  <SourcesSection lang={lang} messages={m} t={t} />
 </BaseLayout>

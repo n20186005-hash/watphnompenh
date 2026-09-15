@@ -1,7 +1,7 @@
 {
   "meta": {
-    "title": "Wat Phnom Daun Penh — Phnom Penh Travel Guide",
-    "description": "Explore Wat Phnom Daun Penh, one of Phnom Penh's most iconic Buddhist landmarks. Discover its history, Khmer architecture, visitor tips and how to get there."
+    "title": "Wat Phnom Daun Penh, Phnom Penh | Tickets, Hours & Map",
+    "description": "Free-entry hilltop temple in Phnom Penh, 4.4★ (9,562+ reviews). Opening hours 07:00–19:00, entrance fee FAQ, map (Plus Code HWGF+F6) and a 1-minute pocket guide."
   },
   "header": {
     "siteName": "Wat Phnom",
@@ -9,16 +9,25 @@
     "navGuide": "Visit Guide",
     "navTransit": "Getting Around",
     "navExplore": "Explore Nearby",
+    "navReviews": "Reviews & Sources",
     "intro": "Intro",
     "history": "History",
     "architecture": "Architecture",
     "experience": "Experience",
     "bestTime": "Best Time",
+    "weather": "Weather now",
+    "season": "Seasonal Guide",
+    "routes": "Routes",
+    "audience": "By Traveller",
+    "amenities": "Facilities",
+    "responsibility": "Site & Respect",
     "transport": "Getting There",
     "map": "Map",
     "nearby": "Nearby",
     "food": "Food & Culture",
     "practical": "Practical Info",
+    "reviews": "Reviews",
+    "sources": "Sources",
     "faq": "FAQ"
   },
   "common": {
@@ -30,8 +39,11 @@
     "title": "Wat Phnom Daun Penh",
     "subtitle": "One of Phnom Penh's most iconic historic Buddhist landmarks, perched on a hill above the city center.",
     "rating": "4.4",
-    "reviews": "9,467",
+    "reviews": "9,562",
     "reviewsSuffix": "Google reviews",
+    "h1City": "(Phnom Penh)",
+    "reviewsSource": "Rating and review count synced from Google Maps user reviews · September 2026 · ",
+    "reviewsSourceLink": "See all reviews on Google Maps",
     "ctaMaps": "View on map",
     "ctaExplore": "Start exploring",
     "facts": [
@@ -42,7 +54,7 @@
     ],
     "legend": "A sacred tree, five statues, the birth of a city. In 1372 the wealthy widow Lady Penh (Daun Penh) found a drifting Koki tree on the Tonlé Sap riverbank; within it lay four bronze Buddhas and one stone Vishnu. She led her neighbors to mound the earth into a hill and enshrine the relics — and Phnom Penh ('the hill of Penh') was founded, with Wat Phnom as the spiritual heart of the millennium-old capital.",
     "legendAuthor": "The legend of Lady Penh",
-    "heroAlt": "Wat Phnom Daun Penh temple on a hill in central Phnom Penh, Cambodia"
+    "heroAlt": "Wat Phnom Daun Penh - main view in Phnom Penh, Cambodia"
   },
   "liveStatus": {
     "label": "Current status",
@@ -54,9 +66,252 @@
     "openHint": "Visitors welcome — last entry before close",
     "closedHint": "Opens daily; plan your visit for 07:00–19:00"
   },
+  "weather": {
+    "eyebrow": "Live conditions",
+    "title": "Weather at Wat Phnom & 7-day outlook",
+    "subtitle": "Current conditions on the hill and what to expect over the coming week — check before you set out.",
+    "nowLabel": "Now",
+    "feelsLike": "Feels like",
+    "humidity": "Humidity",
+    "wind": "Wind",
+    "windLevelFmt": "Force {level}",
+    "gusts": "Gusts",
+    "uv": "UV index",
+    "visibility": "Visibility",
+    "rainChance": "Rain chance",
+    "sunrise": "Sunrise",
+    "sunset": "Sunset",
+    "updatedLabel": "Updated",
+    "freshness": "refreshed automatically about every 30 minutes",
+    "today": "Today",
+    "dailyTitle": "Next 7 days",
+    "weekdays": ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+    "cond": {
+      "clear": "Clear sky",
+      "partly": "Partly cloudy",
+      "cloudy": "Overcast",
+      "fog": "Mist & haze",
+      "drizzle": "Light drizzle",
+      "rain": "Rain",
+      "showers": "Rain showers",
+      "snow": "Snow",
+      "thunder": "Thunderstorms"
+    },
+    "groups": {
+      "alert": "Weather alerts",
+      "clothing": "What to wear",
+      "plan": "What to do",
+      "carry": "What to pack"
+    },
+    "noAlert": "No weather alerts today — plan your visit as usual.",
+    "alertNote": "If the local authorities issue an official warning, follow their guidance and adjust your plans.",
+    "clothing": {
+      "rain": "Rain is around — a water-resistant jacket and quick-drying clothes are the practical choice, with non-slip shoes for the stone steps.",
+      "wind": "Breezy to windy — hold on to hats and skip loose long skirts.",
+      "hot": "Hot today — light, breathable clothing works best, and the day-to-night difference is small.",
+      "cold": "Unusually cool — bring warm layers, especially for the early morning.",
+      "swing": "Day and night temperatures differ noticeably — carry a light outer layer you can add or remove.",
+      "muggy": "Hot and humid — moisture-wicking fabrics feel much better on the stairway.",
+      "mild": "Mild overall — regular summer clothing plus a light layer for the morning is enough."
+    },
+    "plan": {
+      "thunder": "Thunderstorms expected — avoid the hilltop and the riverside while they pass, do not shelter under trees, and expect water-based or open-air activities to close.",
+      "storm": "Heavy rain is likely — long outdoor stretches are not advisable. Prefer museums, markets and other indoor stops, and keep away from low-lying riverside paths.",
+      "rain": "Steady rain today — outdoor stops will be less comfortable; fit the climb into the driest window and keep the rest of the plan indoors.",
+      "shower": "Passing showers — outdoor stops may be interrupted; keep the plan flexible and go up the hill between showers.",
+      "slippery": "Stone steps and paths stay slippery after rain — take the stairway slowly and use the handrail.",
+      "hot": "High temperatures — avoid the midday peak, shorten time on the open hilltop and take shaded or indoor breaks.",
+      "uv": "UV is strong — plan the climb before 10:00 or after 16:00 and rest in the shade at midday.",
+      "fog": "Visibility is reduced — hilltop panoramas and long-distance photography will be limited.",
+      "windy": "Wind is noticeable — the hilltop and riverside will feel breezier, and riverside boat trips may be suspended.",
+      "clear": "Clear weather — ideal for the hilltop viewpoint and a riverside walk; the light is best around sunrise and sunset.",
+      "cloudy": "Soft, even light — comfortable for longer outdoor strolling and flattering for photos, with no harsh sun.",
+      "mild": "Conditions are steady — outdoor visiting can go ahead as planned."
+    },
+    "carry": {
+      "umbrella": "An umbrella or a compact rain jacket",
+      "raincoat": "A rain jacket is better than a long umbrella — it gets windy",
+      "sunscreen": "Sunscreen, sunglasses and a sun hat",
+      "water": "Plenty of drinking water",
+      "jacket": "A light outer layer for the evening",
+      "warm": "A warm jacket and scarf",
+      "mask": "A mask — visibility is poor",
+      "tissues": "Tissues or wet wipes",
+      "repellent": "Insect repellent — mosquitoes are active in the greenery after rain"
+    },
+    "risk": {
+      "thunder": "Lightning risk: do not climb to the hilltop, do not shelter under trees, and stay away from open ground and the riverside.",
+      "storm": "Intense rainfall: expect surface water on low-lying roads and riverside paths; avoid drains, underpasses and embankment edges.",
+      "wind": "Strong wind: keep clear of trees, signage and the river edge, and expect boat services to be suspended.",
+      "heat": "Extreme heat: watch for heat exhaustion, drink water often and avoid prolonged exposure between 11:00 and 15:00.",
+      "fog": "Poor visibility: allow extra time for travel and take care on the roads."
+    }
+  },
+  "season": {
+    "eyebrow": "Seasonal strategy",
+    "title": "When to visit: seasonal strategy table",
+    "subtitle": "Weather, water and wildlife combined across Cambodia's three seasons.",
+    "intro": "Wat Phnom sits on a low hill in central Phnom Penh, where the year divides into a cool dry season, a hot dry season and a monsoon season. The table below brings three dimensions together — climate, water conditions and wildlife activity — so you can match your visit to the conditions you actually care about.",
+    "columns": {
+      "season": "Season",
+      "weather": "Weather & climate",
+      "water": "Water & site conditions",
+      "wildlife": "Wildlife & vegetation",
+      "strategy": "Visiting strategy"
+    },
+    "rows": [
+      {
+        "name": "Cool dry season",
+        "period": "November – February",
+        "tag": "Best overall",
+        "weather": "The most comfortable window of the year: daytime highs around 30–32 °C, nights near 21–23 °C, low humidity and the least rainfall. Early mornings can bring light mist over the hill.",
+        "water": "Water levels sit at their annual low, so the pond and riverside channels are calmer and clearer and the panorama from the hilltop is at its most open.",
+        "wildlife": "Egrets, mynas and the temple squirrels are active in the canopy, and the bodhi and banyan trees stay green — the most reliable window for birdwatching and photography.",
+        "strategy": "First choice for a first visit. Both the half-day and full-day routes work well; go early morning or late afternoon, and expect the busiest crowds between 09:00 and 11:00."
+      },
+      {
+        "name": "Hot dry season",
+        "period": "March – May",
+        "tag": "Go early",
+        "weather": "The hottest stretch of the year: afternoon highs of 35–38 °C, strong UV, and occasional convective showers or thunderstorms late in the day.",
+        "water": "Levels are low, the surface drops and the chance of algae growth and turbidity rises. Treat water features as scenery only and avoid contact.",
+        "wildlife": "Activity shifts to dawn and dusk, with very little movement at midday. Flowering trees attract more insects and bees during this period.",
+        "strategy": "Ascend only between 07:00–09:30 or after 16:30. Carry sunscreen and water, keep hilltop time short, and stay clear of trees and lamp posts when a storm rolls in."
+      },
+      {
+        "name": "Monsoon season",
+        "period": "June – October",
+        "tag": "Lush & quiet",
+        "weather": "The southwest monsoon brings heavy rain, peaking between July and September, usually as intense afternoon downpours. Paths turn slippery and humidity often stays above 85%.",
+        "water": "The Mekong and Tonlé Sap rise markedly and water features refill, turbidity increases, and short-term surface ponding is possible during the heaviest rain.",
+        "wildlife": "After rain, frogs and insects are active in the temple grounds and birds gather in the understorey. Vegetation is at its greenest — the best stretch for rich, saturated imagery.",
+        "strategy": "Bring rain gear and non-slip footwear and plan around the afternoon storms. Stone steps are most slippery 30–60 minutes after rain, so hold the handrail; mist and wet stone make this a strong period for photography."
+      }
+    ],
+    "note": "This combined assessment covers three dimensions — climate, hydrology and ecology. Climate context follows the 30-year climate normals (1991–2020) published by NOAA and the Ministry of Water Resources and Meteorology of Cambodia (MOWRAM); water and ecological observations reference public material from the Ministry of Environment of Cambodia. Conditions vary from year to year — treat this as planning guidance, not a forecast."
+  },
+  "itineraries": {
+    "eyebrow": "Suggested routes",
+    "title": "Recommended routes: half day & full day",
+    "subtitle": "Two ready-made routes matched to the time you have.",
+    "half": {
+      "badge": "Half day",
+      "title": "Half-day route (3 hours)",
+      "duration": "About 3 hours",
+      "intensity": "Low intensity",
+      "summary": "A compact route for travellers with limited time: straight up to the temple, around the hilltop, then back down past the landmarks that gave the city its name.",
+      "steps": [
+        { "time": "07:00", "title": "Arrive at the foot of the hill", "text": "Enter from the main stairway on Wat Phnom Road. If you would like to make an offering, incense and flower garlands are sold at the entrance." },
+        { "time": "07:20", "title": "Climb the main stairway", "text": "The wide eastern stairway is the classic approach — the naga balustrade and the avenue seen from above are the signature view." },
+        { "time": "07:40", "title": "Hilltop temple and stupa", "text": "Walk clockwise around the central sanctuary, then visit the small shrine of Lady Penh, the figure behind the city's name." },
+        { "time": "08:30", "title": "Pond and memorial terrace", "text": "Descend slowly, then circle the pond at the base and the memorial on the eastern side for a calmer view of the hill." },
+        { "time": "09:30", "title": "Coffee or breakfast nearby", "text": "Continue on foot towards the riverside or the central market district, where many cafés and local eateries open early." }
+      ],
+      "tip": "Best for a first visit, a layover or a travel day with a fixed departure — you can be back in the city centre within three hours."
+    },
+    "full": {
+      "badge": "Full day",
+      "title": "Full-day route (7 hours)",
+      "duration": "About 7 hours",
+      "intensity": "Moderate intensity",
+      "summary": "A route that puts the temple back into the context of the old city: hill, old market, royal palace, national museum, and a riverside finish.",
+      "steps": [
+        { "time": "07:00", "title": "Sunrise and the hilltop", "text": "Start with the coolest hour: temple, stupa and the hilltop panorama before the coach groups arrive." },
+        { "time": "08:30", "title": "Breakfast stop", "text": "Local breakfast shops and cafés sit within a short walk of the hill — noodle soups, coffee and fresh fruit." },
+        { "time": "09:30", "title": "Old market and heritage streets", "text": "Explore the surrounding streets: colonial-era shophouses, art-deco market buildings and the city's historic trading quarter." },
+        { "time": "11:30", "title": "Royal Palace & Silver Pagoda", "text": "A 15–20 minute walk or a short ride south reaches the palace complex, the most important royal site in the country." },
+        { "time": "13:00", "title": "Lunch and rest", "text": "Take a long, air-conditioned lunch break during the hottest part of the day." },
+        { "time": "15:00", "title": "National Museum", "text": "Khmer art and sculpture, a few minutes from the palace and a useful complement to the iconography of the temple." },
+        { "time": "16:30", "title": "Riverside and sunset", "text": "Finish along the Tonlé Sap and Mekong promenade as the light softens over the water." }
+      ],
+      "tip": "Best if you want to see the temple in the context of the historic city centre — visit the hill first, then let the day flow south and east towards the river."
+    },
+    "note": "Walking times assume a relaxed pace with photo stops. Tuk-tuks and ride-hailing apps are widely available if you prefer to shorten any leg."
+  },
+  "audience": {
+    "eyebrow": "Tailored plans",
+    "title": "Three routes tailored to how you travel",
+    "subtitle": "Pick the plan that matches your group and your pace.",
+    "items": [
+      {
+        "id": "family",
+        "title": "Families with children",
+        "meta": "1.5–2 hours · gentle",
+        "summary": "A short, low-pressure visit built around the stairway, the open hilltop and the pond, with plenty of shade and seating.",
+        "points": [
+          "Climb the main stairway in short stages — there is room to stop on every landing.",
+          "Hold children's hands on the stone steps, which are worn smooth in places and slippery after rain.",
+          "Keep to the hilltop and the pond terrace; skipping the western side keeps walking distances short.",
+          "Carry water and a hat, and use the shaded benches at the base for breaks."
+        ],
+        "tip": "Best before 09:30 or after 16:30 — cooler, quieter and easier on young children."
+      },
+      {
+        "id": "photo",
+        "title": "Photographers & nature lovers",
+        "meta": "2.5–3.5 hours · flexible",
+        "summary": "A light-driven plan that follows the best angles on the hill and through the surrounding greenery.",
+        "points": [
+          "Early morning gives soft side light on the eastern stairway and mist among the trees.",
+          "Late afternoon brings warm light onto the temple façade and the city skyline beyond the hill.",
+          "The tree canopy around the base is the most productive area for birds and squirrels.",
+          "Compose the naga balustrade, the stupa spire and the avenue below as your three signature frames."
+        ],
+        "tip": "Rainy-season afternoons add saturated greens and reflective stone — worth the trip if you can dodge the heaviest downpours."
+      },
+      {
+        "id": "accessible",
+        "title": "Low-mobility & step-free visiting",
+        "meta": "1–1.5 hours · minimal walking",
+        "summary": "A plan for visitors who prefer to avoid long stairways, using the gentler approach and the manageable parts of the site.",
+        "points": [
+          "A paved access road winds up the eastern side of the hill with a much gentler gradient than the stairs.",
+          "The plateau at the top is level and can be explored without climbing further steps.",
+          "Seating and shade are available at the base of the hill and around the plateau.",
+          "If you use a wheelchair or have limited stamina, ask staff or your driver to approach from the upper road."
+        ],
+        "tip": "Arriving by vehicle close to the plateau removes almost all of the climb; mornings are the quietest and coolest window."
+      }
+    ]
+  },
+  "responsibility": {
+    "eyebrow": "Understanding & respect",
+    "title": "Site science and visitor responsibilities",
+    "subtitle": "What makes this hill a landmark — and how to leave it as you found it.",
+    "knowTitle": "Understanding the site",
+    "knowItems": [
+      { "t": "A hill built on a legend", "d": "The city takes its name from Lady Penh (Daun Penh), who is said to have found four bronze Buddha statues on a floating tree on the river and raised a hill to enshrine them — giving Phnom Penh its name, 'the hill of Lady Penh'." },
+      { "t": "A living Buddhist temple", "d": "The sanctuary is an active place of worship rather than a museum. Monks reside here and daily prayers continue, so visitors share the space with worshippers." },
+      { "t": "A monument built in layers", "d": "The main stupa was enlarged several times between the 15th and 19th centuries and rebuilt in the 1920s, so what you see today combines Khmer religious architecture with later repair work." },
+      { "t": "A low hill in a low-lying city", "d": "At roughly 27 metres, the hill is the only significant elevation in the city centre — which is why it works as a viewpoint, an orientation landmark and the focal point of the area's greenery." }
+    ],
+    "dutyTitle": "Visitor responsibilities",
+    "dutyItems": [
+      { "t": "Dress and behave respectfully", "d": "Cover shoulders and knees, remove hats inside the sanctuary, speak quietly, and avoid pointing your feet towards Buddha images." },
+      { "t": "Do not feed or disturb wildlife", "d": "Feeding birds, squirrels or monkeys changes their behaviour and diet and can create dependency; observe and photograph from a distance instead." },
+      { "t": "Take everything away with you", "d": "Packaging and plastic bottles should leave the hill with you — waste infrastructure on site is still limited." },
+      { "t": "Treat water features as scenery", "d": "Do not enter or handle the pond or the river edge; water quality is affected by seasonal runoff and urban drainage." },
+      { "t": "Keep drones, flash and tripods discreet", "d": "Drones are not appropriate over a working religious site; ask before using a tripod or flash around worshippers." },
+      { "t": "Support the site quietly", "d": "Donations, offerings or purchases from the small stalls help maintain the temple — and are always optional." }
+    ],
+    "note": "This page is an independent, non-commercial educational guide. Nothing here recommends a specific business, product or service."
+  },
   "pocketGuide": {
     "button": "📥 Download 1-min offline pocket guide (PDF)",
-    "note": "A print-ready one-page summary — save as PDF or print and carry it with you."
+    "note": "A print-ready one-page summary — save as PDF or print and carry it with you.",
+    "metaTitle": "Wat Phnom Pocket Guide (PDF) | Entrance Fee, Hours & Etiquette",
+    "metaDescription": "One-minute printable pocket guide to Wat Phnom Daun Penh: entrance fee, opening hours 07:00–19:00, dress code, how to get there, Plus Code HWGF+F6 and 4.4★ reviews — save as PDF.",
+    "qaTitle": "Quick answers",
+    "qaHint": "The questions most visitors search for before arriving.",
+    "qa": [
+      { "q": "How much is the entrance fee to Wat Phnom?", "a": "Entering the temple grounds is free of charge; donations for incense, flowers or oil lamps are welcome but voluntary. A small upkeep fee (around 500–1,000 riel) may be asked at some public toilets, so keep a little cash." },
+      { "q": "What are the opening hours?", "a": "The site is generally open daily from about 07:00 to 19:00. Arrive before 09:00 or after 16:00 for softer light and fewer crowds; during Khmer New Year and Pchum Ben it is far busier." },
+      { "q": "How high is the hill and how many steps are there?", "a": "The hill rises roughly 27 m above the surrounding streets — the main stairway on the east side is the traditional way up. A paved service road on the east offers a much gentler climb if you prefer fewer steps." },
+      { "q": "How do I get there from the Royal Palace or the riverside?", "a": "It is about 1.5–2 km north of the Royal Palace and the riverside promenade: roughly 20–25 minutes on foot, or 5–10 minutes by tuk-tuk. The temple sits at the Norodom Boulevard and Street 96 roundabout." },
+      { "q": "Where does the name Daun Penh come from?", "a": "According to local tradition, in 1372 a wealthy widow named Penh found four Buddha statues inside a koki tree floating on the Mekong. A hill was raised to enshrine them, giving the temple — and the district — the name Daun Penh, 'Hill of Lady Penh'." },
+      { "q": "What should I wear, and can I take photos?", "a": "Cover shoulders and knees and remove shoes and hats before entering the vihear. Photography of the buildings and statues is fine, but ask before photographing people praying, and never point your feet towards a Buddha image." }
+    ],
+    "seeAlsoTitle": "Continue on the full guide"
   },
   "audioGuide": {
     "badge": "Audio guide",
@@ -69,12 +324,13 @@
   },
   "intro": {
     "eyebrow": "About",
-    "title": "About Wat Phnom",
+    "title": "About Wat Phnom Daun Penh",
     "description": "Wat Phnom Daun Penh is one of Phnom Penh's most famous historic temples, sitting atop a small hill in the city center. It is both an active Buddhist site and a cultural landmark tied to the very origin of the city's name.",
+    "entityLead": "Welcome to <strong>Wat Phnom Daun Penh</strong>, widely recognized as the central <strong>Wat Phnom</strong>. Located in the heart of <strong>Phnom Penh</strong>, <strong>Cambodia</strong>, this destination serves as a primary hub for travelers visiting the region.",
     "facts": [
       { "k": "Type", "v": "Buddhist temple", "icon": "temple" },
       { "k": "Location", "v": "Phnom Penh, Cambodia", "icon": "pin" },
-      { "k": "Rating", "v": "4.4 (9,467)", "icon": "star" },
+      { "k": "Rating", "v": "4.4 (9,562)", "icon": "star" },
       { "k": "Hours", "v": "07:00 – 19:00", "icon": "clock" }
     ],
     "highlights": {
@@ -100,7 +356,7 @@
   },
   "history": {
     "eyebrow": "History & Culture",
-    "title": "The history of Wat Phnom",
+    "title": "History & Significance of Wat Phnom Daun Penh",
     "subtitle": "From a 14th-century legend to the spiritual heart of Phnom Penh.",
     "sections": [
       {
@@ -207,7 +463,7 @@
   },
   "transport": {
     "eyebrow": "Getting there",
-    "title": "How to reach Wat Phnom",
+    "title": "How to reach Wat Phnom in Phnom Penh",
     "subtitle": "Wat Phnom sits in central Phnom Penh, easy to reach from most parts of the city.",
     "overview": "The hill is near the junction of Norodom Boulevard and Street 96, a short ride from the riverfront and the Royal Palace.",
     "modes": [
@@ -219,18 +475,21 @@
   },
   "map": {
     "eyebrow": "Map",
-    "title": "Find Wat Phnom on the map",
+    "title": "Location & How to Visit Wat Phnom in Phnom Penh",
     "subtitle": "Central Phnom Penh, on the hill at the end of Wat Phnom Street.",
     "addressLabel": "Address",
     "addressValue": "Wat Phnom Road, Phnom Penh, Cambodia",
     "hoursLabel": "Opening hours",
     "hoursValue": "Daily 07:00 – 19:00",
-    "openLabel": "Open in Google Maps"
+    "openLabel": "Open in Google Maps",
+    "officialText": "For official updates and regional tourism information, visit ",
+    "officialLink": "Cambodia / Phnom Penh Official Tourism Portal"
   },
   "nearby": {
     "eyebrow": "Nearby",
-    "title": "Explore around Wat Phnom",
+    "title": "Landmarks & Attractions Around Wat Phnom",
     "subtitle": "Easy regional highlights near the hill.",
+    "cluster": "When visiting <strong>Wat Phnom Daun Penh</strong>, visitors can easily explore surrounding historical landmarks and points of interest, including <strong>the Royal Palace &amp; Silver Pagoda</strong> and <strong>the Riverside (Tonlé Sap &amp; Mekong)</strong>.",
     "places": [
       { "name": "Royal Palace area", "distance": "~1.5 km", "text": "Home to the Royal Palace and Silver Pagoda — Phnom Penh's most important royal and cultural district." },
       { "name": "Riverfront (Tonlé Sap & Mekong)", "distance": "~1 km", "text": "A breezy promenade at the confluence of two rivers, great for walking and city views." },
@@ -276,11 +535,17 @@
     "title": "Frequently asked questions",
     "subtitle": "Quick answers to plan your Wat Phnom visit.",
     "items": [
+      { "q": "Where is Wat Phnom Daun Penh located?", "a": "Wat Phnom Daun Penh is located in Phnom Penh, Cambodia, on the hill at the end of Wat Phnom Road in the Daun Penh district." },
+      { "q": "Is Wat Phnom free to visit?", "a": "Wat Phnom Daun Penh is a public temple space and is free to enter year-round; donations to support the temple are welcome." },
+      { "q": "What are the opening hours of Wat Phnom?", "a": "The hilltop temple is generally open daily from 07:00 to 19:00. Please confirm on-site information before travelling." },
       { "q": "Is Wat Phnom worth visiting?", "a": "Yes — it is one of Phnom Penh's most important cultural landmarks and the namesake hill of the city." },
       { "q": "How long should I spend at Wat Phnom?", "a": "Most visitors spend 30 minutes to 1 hour on the hilltop, temple and views." },
       { "q": "What should I wear?", "a": "Dress modestly covering shoulders and knees when visiting the temple." },
-      { "q": "Where is Wat Phnom?", "a": "In central Phnom Penh, Cambodia, on the hill at the end of Wat Phnom Street." },
-      { "q": "When is the best time to visit?", "a": "Early morning is cool and less crowded; evening light is warm with a strong city atmosphere." }
+      { "q": "How do I get to Wat Phnom?", "a": "Wat Phnom sits in central Phnom Penh near the Norodom Boulevard and Street 96 roundabout, roughly 15–20 minutes on foot from the riverside." },
+      { "q": "When is the best time to visit?", "a": "Early morning is cool and less crowded; evening light is warm with a strong city atmosphere." },
+      { "q": "How high is Wat Phnom hill, and how many steps are there?", "a": "The hill rises about 27 m above the surrounding streets. The main stairway on the east side is the traditional route up; a paved service road offers a much gentler climb if you prefer fewer steps." },
+      { "q": "What is there to see near Wat Phnom?", "a": "The Royal Palace and Silver Pagoda and the riverside promenade are about 1.5–2 km south, and the Central Market (Phsar Thmei) is around 1.2 km west — all reachable on foot or by a short tuk-tuk ride." },
+      { "q": "Can I take photos at Wat Phnom?", "a": "Photographing the buildings and Buddha images is generally fine, but ask before photographing people praying, and avoid pointing your feet towards Buddha images." }
     ]
   },
   "footer": {
@@ -300,12 +565,52 @@
     "addressValue": "Wat Phnom Road, Phnom Penh, Cambodia",
     "hoursValue": "Daily 07:00 – 19:00",
     "mapsLabel": "Open in Google Maps",
-    "disclaimer": "Attraction information is cross-checked against public sources from the Phnom Penh Municipal Administration, the Phnom Penh Tourism Office and the Cambodia Ministry of Tourism. All photos on this site are genuine images taken by visitors on location at Wat Phnom; copyright belongs to the respective photographers (original authors). Before travelling, please rely on the latest on-site information and confirm opening hours and admission."
+    "disclaimer": "Attraction information is cross-checked against public sources from the Phnom Penh Municipal Administration, the Phnom Penh Tourism Office and the Cambodia Ministry of Tourism. All photos on this site are genuine images taken by visitors on location at Wat Phnom; copyright belongs to the respective photographers (original authors). Before travelling, please rely on the latest on-site information and confirm opening hours and admission.",
+    "imageRights": "Image rights: all images displayed on this website and their copyright belong to the original photographers.",
+    "reviewsSource": "Rating and reviews are displayed for information only and are synced from Google Maps user reviews (last synced September 2026). Copyright of the reviews belongs to the original authors and Google Maps."
+  },
+  "breadcrumb": {
+    "ariaLabel": "Breadcrumb",
+    "home": "Guide"
+  },
+  "geo": {
+    "attraction": "Wat Phnom Daun Penh",
+    "city": "Phnom Penh",
+    "region": "Phnom Penh",
+    "country": "Cambodia"
+  },
+  "reviews": {
+    "eyebrow": "Google reviews",
+    "title": "What visitors say about Wat Phnom",
+    "subtitle": "A Google Maps rating summary for Wat Phnom Daun Penh in Phnom Penh, Cambodia.",
+    "summaryLabel": "Google Maps rating",
+    "countLabel": "Google Maps user reviews",
+    "sourceNote": "Synced from Google Maps user reviews; last synced September 2026. Copyright belongs to the original authors and Google Maps.",
+    "sourceName": "Source: Google Maps user reviews",
+    "button": "View all reviews on Google Maps",
+    "updatedLabel": "Last synced"
+  },
+  "sources": {
+    "eyebrow": "Sources",
+    "title": "Sources & citations",
+    "subtitle": "Where the facts, ratings and imagery on this page come from.",
+    "reviewsTitle": "Reviews",
+    "reviewsUpdatedLabel": "Last synced",
+    "reviewsUpdated": "September 2026",
+    "reviewsSourceNote": "Synced from Google Maps user reviews; last synced September 2026. Copyright belongs to the original authors and Google Maps.",
+    "reviewsLink": "View all reviews on Google Maps",
+    "imagesTitle": "Image rights",
+    "imagesNote": "Image rights: all images displayed on this website and their copyright belong to the original photographers.",
+    "officialTitle": "Official & authoritative sources",
+    "googleMaps": "Google Maps — Wat Phnom Daun Penh",
+    "tourism": "Cambodia Ministry of Tourism (official tourism portal)",
+    "municipality": "Phnom Penh Municipality",
+    "note": "This is an independent, non-commercial information guide. Ratings and reviews remain the property of their original authors and Google Maps."
   },
   "amenities": {
     "eyebrow": "Practical info",
-    "title": "Facilities & Nearby Services",
-    "subtitle": "Neutral, non-commercial reference for planning your visit — no specific businesses recommended.",
+    "title": "Visitor Services & Nearby Facilities",
+    "subtitle": "A neutral, type-only reference for planning your visit — facilities are described by category, never by business name.",
     "overviewTitle": "1-minute quick overview",
     "cards": [
       { "icon": "wc", "title": "Restrooms", "text": "Public toilets at the southeast base of the hill and near the main stairway entrance. A small upkeep fee (≈500–1,000 riel) may apply — bring small change and tissues." },
@@ -313,13 +618,27 @@
       { "icon": "coffee", "title": "Dining & Refreshments", "text": "Street vendors by the park path sell fresh coconut water, chilled bottled water and Khmer snacks. Cafés and air-conditioned restaurants line Norodom Blvd within 3–8 min walk." },
       { "icon": "bed", "title": "Accommodation Areas", "text": "Grouped only by district for neutrality: Riverside (~800m–1.5km), Norodom Blvd / Central (~500m–2km), and Central Market area (~1–1.5km). No specific hotels named." },
       { "icon": "store", "title": "Convenience & Supplies", "text": "24-hour convenience stores within 500m for sunscreen, tissues, mosquito repellent and water. Phsar Thmei (Central Market) is ~1.2km away for fruit and daily goods." },
-      { "icon": "fuel", "title": "Fuel & EV Charging", "text": "Standard fuel stations line Monivong/Norodom Blvds. EV charging is concentrated in shopping-mall basements and some modern stations; nearest hub is a commercial plaza ~5–10 min by car." }
+      { "icon": "fuel", "title": "Fuel & EV Charging", "text": "Standard fuel stations line Monivong/Norodom Blvds. EV charging is concentrated in shopping-mall basements and some modern stations; nearest hub is a commercial plaza ~5–10 min by car." },
+      { "icon": "water", "title": "Drinking Water", "text": "Sealed bottled water is sold by vendors and shops along the approach path, and a few cafés will refill your bottle if you ask. Municipal tap water is not recommended for drinking — buy sealed or filtered water." },
+      { "icon": "accessible", "title": "Step-free Access", "text": "The stairways are the classic approach, but a paved service lane on the eastern side has a much gentler gradient. For the shortest walk, ask staff or your driver to come in from the upper road side; the hilltop plateau itself is level." },
+      { "icon": "medical", "title": "Pharmacy & Medical", "text": "Pharmacies carrying everyday medicine and basic first-aid supplies sit along the surrounding boulevards, roughly 5–10 minutes away on foot. Private clinics and the city's larger hospitals are a 10–20 minute drive." },
+      { "icon": "atm", "title": "Cash, Cards & ATMs", "text": "ATMs and bank branches are within a few minutes' walk on the surrounding boulevards. Cards are widely accepted in shops and cafés, but small riel notes remain handy for offerings, drinks and restroom upkeep fees." },
+      { "icon": "wifi", "title": "Connectivity & Charging", "text": "Free Wi-Fi is common in nearby cafés and shopping centres, and a local SIM or eSIM gives fast, inexpensive mobile data. Public charging points on the hill are rare, so pack a power bank." },
+      { "icon": "locker", "title": "Luggage & Baby Facilities", "text": "There is no official cloakroom on the hill; nearby cafés, hotels and shopping centres are the usual places to leave bags. Baby-changing facilities exist in modern shopping centres rather than at the temple." },
+      { "icon": "info", "title": "Information & Assistance", "text": "There is no separate visitor centre — the entrance and the temple office are the usual points of contact for directions, offerings and basic guidance." },
+      { "icon": "umbrella", "title": "Rain & Sun Gear", "text": "Compact umbrellas, ponchos and sun hats are sold by vendors close to the entrance and are genuinely useful during the monsoon months. Sunscreen is available from convenience stores nearby." },
+      { "icon": "shield", "title": "Safety & Emergencies", "text": "The area is busy and generally safe during opening hours. Keep bags in front of you in crowds, take worn stone steps slowly, and use the national emergency lines if needed — police 117, ambulance 119." }
     ],
     "tips": [
       { "label": "Restrooms", "value": "Southeast base of the hill" },
       { "label": "Parking", "value": "Marked bays by the roundabout" },
-      { "label": "Supplies", "value": "Convenience store within 300m" }
-    ]
+      { "label": "Supplies", "value": "Convenience store within 300m" },
+      { "label": "Shorter walk", "value": "Gentler paved lane on the east side" },
+      { "label": "Drinking water", "value": "Sealed or filtered water only" },
+      { "label": "Payment", "value": "Cards accepted; keep small riel notes" },
+      { "label": "Rain & sun", "value": "Umbrellas sold near the entrance" }
+    ],
+    "note": "This section describes facilities by type only. No specific business, brand or operator is recommended, and being mentioned here is not an endorsement."
   },
   "legal": {
     "privacyTitle": "Privacy Policy",

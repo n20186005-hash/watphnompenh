@@ -9,6 +9,8 @@ const s = m.nearby;
     <h2 class="section-title">{s.title}</h2>
     <p class="section-lead">{s.subtitle}</p>
 
+    {s.cluster && <p class="nearby-cluster" set:html={s.cluster} />}
+
     <div class="nearby-grid">
       {s.places.map((p: any) => (
         <div class="card card-pad nearby-card">
@@ -25,6 +27,8 @@ const s = m.nearby;
 
 <style>
   .nearby-grid { margin-top: 30px; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+  .nearby-cluster { margin: 20px 0 0; padding: 16px 20px; background: var(--surface-accent); border-radius: var(--radius-sm); color: var(--text); line-height: 1.8; }
+  .nearby-cluster :global(strong) { color: var(--accent-strong); }
   .nearby-card { border-left: 4px solid var(--accent); }
   .nearby-head { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; margin-bottom: 8px; }
   .nearby-card h3 { margin: 0; font-size: 1.25rem; }
