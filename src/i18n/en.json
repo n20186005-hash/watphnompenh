@@ -1,7 +1,7 @@
 {
   "meta": {
-    "title": "Wat Phnom Daun Penh, Phnom Penh | Tickets, Hours & Map",
-    "description": "Free-entry hilltop temple in Phnom Penh, 4.4★ (9,562+ reviews). Opening hours 07:00–19:00, entrance fee FAQ, map (Plus Code HWGF+F6) and a 1-minute pocket guide."
+    "title": "Wat Phnom (Daun Penh) – Entrance Fee, Hours & Visitor Guide",
+    "description": "Visit Wat Phnom in Phnom Penh, Cambodia. Find entrance fee information, opening hours, directions, temple history, photos and practical travel tips."
   },
   "header": {
     "siteName": "Wat Phnom",
@@ -304,7 +304,7 @@
     "qaTitle": "Quick answers",
     "qaHint": "The questions most visitors search for before arriving.",
     "qa": [
-      { "q": "How much is the entrance fee to Wat Phnom?", "a": "Entering the temple grounds is free of charge; donations for incense, flowers or oil lamps are welcome but voluntary. A small upkeep fee (around 500–1,000 riel) may be asked at some public toilets, so keep a little cash." },
+      { "q": "How much is the entrance fee to Wat Phnom?", "a": "Grounds entry is free for Cambodian residents; foreign visitors are usually asked a small entrance fee (around US$1, cash). Rates can change, so confirm the current amount on-site. Donations for incense, flowers or oil lamps are welcome but voluntary, and a small upkeep fee (around 500–1,000 riel) may apply at some public toilets." },
       { "q": "What are the opening hours?", "a": "The site is generally open daily from about 07:00 to 19:00. Arrive before 09:00 or after 16:00 for softer light and fewer crowds; during Khmer New Year and Pchum Ben it is far busier." },
       { "q": "How high is the hill and how many steps are there?", "a": "The hill rises roughly 27 m above the surrounding streets — the main stairway on the east side is the traditional way up. A paved service road on the east offers a much gentler climb if you prefer fewer steps." },
       { "q": "How do I get there from the Royal Palace or the riverside?", "a": "It is about 1.5–2 km north of the Royal Palace and the riverside promenade: roughly 20–25 minutes on foot, or 5–10 minutes by tuk-tuk. The temple sits at the Norodom Boulevard and Street 96 roundabout." },
@@ -470,7 +470,7 @@
       { "icon": "tuktuk", "title": "Tuk Tuk", "description": "The most common way to get around Phnom Penh.", "details": ["Flexible for short trips", "Fares vary by distance and time", "Agree on the price first"] },
       { "icon": "taxi", "title": "Taxi / Ride app", "description": "Good for families and hot weather.", "details": ["Metered taxis and ride apps available", "Good for groups with luggage", "Drop-off near the hill entrance"] },
       { "icon": "walk", "title": "On foot", "description": "Walkable from the central riverfront area.", "details": ["About 15–20 min from the riverfront", "Flat, mostly shaded streets", "Combine with a riverside stroll"] },
-      { "icon": "plane", "title": "From the airport", "description": "Phnom Penh International Airport (PNH) to Wat Phnom.", "details": ["About 10 km / 25–40 min by taxi or ride app", "Fixed-price airport taxi at the rank", "Tuk tuk also possible in good weather"] }
+      { "icon": "plane", "title": "From the airport", "description": "Techo International Airport (KTI) to Wat Phnom.", "details": ["About 25 km south of the city / 35–55 min by taxi or ride app", "Fixed-price airport taxi or ride app from the terminal", "Allow extra time in peak traffic; tuk tuk is impractical for this distance"] }
     ]
   },
   "map": {
@@ -536,7 +536,7 @@
     "subtitle": "Quick answers to plan your Wat Phnom visit.",
     "items": [
       { "q": "Where is Wat Phnom Daun Penh located?", "a": "Wat Phnom Daun Penh is located in Phnom Penh, Cambodia, on the hill at the end of Wat Phnom Road in the Daun Penh district." },
-      { "q": "Is Wat Phnom free to visit?", "a": "Wat Phnom Daun Penh is a public temple space and is free to enter year-round; donations to support the temple are welcome." },
+      { "q": "Is Wat Phnom free to visit?", "a": "The temple grounds are free for Cambodian residents. Foreign visitors are typically asked a small entrance fee (around US$1, cash), so bring a little cash and confirm the current rate on-site. Donations to support the temple are always welcome." },
       { "q": "What are the opening hours of Wat Phnom?", "a": "The hilltop temple is generally open daily from 07:00 to 19:00. Please confirm on-site information before travelling." },
       { "q": "Is Wat Phnom worth visiting?", "a": "Yes — it is one of Phnom Penh's most important cultural landmarks and the namesake hill of the city." },
       { "q": "How long should I spend at Wat Phnom?", "a": "Most visitors spend 30 minutes to 1 hour on the hilltop, temple and views." },

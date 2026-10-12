@@ -19,7 +19,7 @@ const PAGES: { path: string; priority: string; changefreq: string }[] = [
 ];
 
 /** 内容最近一次实质性更新的日期（改动文案时手动更新，避免每天刷新误导爬虫） */
-const LASTMOD = '2026-09-15';
+const LASTMOD = '2026-10-12';
 
 function url(lang: string, path: string): string {
   return `${siteConfig.baseUrl}/${lang}/${path ? `${path}/` : ''}`;
