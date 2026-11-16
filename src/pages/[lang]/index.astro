@@ -24,6 +24,8 @@ import Responsibility from '../../components/Responsibility.astro';
 import FAQ from '../../components/FAQ.astro';
 import ReviewsSection from '../../components/ReviewsSection.astro';
 import SourcesSection from '../../components/SourcesSection.astro';
+import SeoGuideLinks from '../../components/SeoGuideLinks.astro';
+import NearbyExplore from '../../components/NearbyExplore.astro';
 
 export function getStaticPaths() {
   return [
@@ -41,6 +43,7 @@ const description = m.meta.description;
   <Hero lang={lang} messages={m} t={t} />
   <Breadcrumbs lang={lang} messages={m} />
   <Intro lang={lang} messages={m} t={t} />
+  <SeoGuideLinks lang={lang} />
   <History lang={lang} messages={m} t={t} />
   <Architecture lang={lang} messages={m} t={t} />
   <Gallery lang={lang} messages={m} t={t} />
@@ -54,6 +57,7 @@ const description = m.meta.description;
   <Amenities lang={lang} messages={m} t={t} />
   <MapSection lang={lang} messages={m} t={t} />
   <Nearby lang={lang} messages={m} t={t} />
+  <NearbyExplore lang={lang as 'en' | 'zh' | 'km'} />
   <Food lang={lang} messages={m} t={t} />
   <Practical lang={lang} messages={m} t={t} />
   <Etiquette lang={lang} m={m} />

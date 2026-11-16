@@ -1,0 +1,18 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { topics, topicGroups } from '../../../data/topic-guides';
+export function getStaticPaths() { return ['en','zh','km'].map(lang => ({params:{lang}})); }
+const lang = Astro.params.lang as 'en'|'zh'|'km';
+const copy = {
+  en:{title:'Wat Phnom Specialist Guides: History, Visitor Tips and Routes',description:'Explore individual Wat Phnom cultural topics, practical advice and nearby walking itineraries.',heading:'Explore Wat Phnom in depth',intro:'Choose a specific subject: each guide has distinct research, practical detail and a route back to the main temple.',groups:{heritage:'History and architecture',onsite:'On-site experience',planning:'Visit planning',routes:'Neighbourhood routes'},home:'Back to Wat Phnom'},
+  zh:{title:'塔山寺专题指南：历史、参观技巧与周边路线',description:'逐篇阅读塔山寺建筑文化、实地游览建议和金边周边步行路线。',heading:'深入探索塔山寺',intro:'根据兴趣选择独立专题，每篇都提供对应的背景说明和实际参观建议。',groups:{heritage:'历史与建筑',onsite:'寺院参观细节',planning:'行前规划',routes:'周边街区路线'},home:'返回塔山寺首页'},
+  km:{title:'មគ្គុទ្ទេសក៍វត្តភ្នំ៖ ប្រវត្តិ ការទស្សនា និងផ្លូវក្បែរៗ',description:'អានប្រធានបទវប្បធម៌ វិធីទស្សនា និងផ្លូវដើរក្នុងរាជធានីភ្នំពេញ។',heading:'ស្វែងយល់វត្តភ្នំឱ្យកាន់តែច្បាស់',intro:'ជ្រើសប្រធានបទជាក់លាក់នីមួយៗ ដែលមានព័ត៌មាននិងការណែនាំសម្រាប់ដំណើរពិត។',groups:{heritage:'ប្រវត្តិ និងស្ថាបត្យកម្ម',onsite:'ការទស្សនានៅទីតាំង',planning:'រៀបចំដំណើរ',routes:'ផ្លូវជុំវិញ'},home:'ត្រឡប់ទៅវត្តភ្នំ'},
+}[lang];
+---
+<BaseLayout title={copy.title} description={copy.description} path="guides" pageType="legal">
+  <main class="container topic-index"><a href={`/${lang}/`}>{copy.home} →</a><header><p class="eyebrow">Wat Phnom</p><h1>{copy.heading}</h1><p>{copy.intro}</p></header>
+    {topicGroups.map(group=><section><h2>{copy.groups[group]}</h2><div class="cards">{topics.filter(t=>t.group===group).map(t=><a class="card card-pad" href={`/${lang}/guides/${t.slug}/`}><img src={`/gallery/${typeof t.photo === 'number' ? `wat-phnom-daun-penh-${t.photo}.jpg` : t.photo}`} alt={t[lang].title} loading="lazy" width="440" height="280"/><h3>{t[lang].title}</h3><p>{t[lang].intro}</p><span>→</span></a>)}</div></section>)}
+  </main>
+</BaseLayout>
+<style>.topic-index{padding:3rem 0 5rem}.topic-index header{max-width:850px;margin:2.5rem 0 3.5rem}.topic-index h1{font-size:clamp(2rem,4vw,3.2rem)}.topic-index p{line-height:1.85}.topic-index section{margin-bottom:3.5rem}.topic-index h2{margin-bottom:1.5rem;font-size:1.8rem}.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.25rem}.cards a{color:var(--text);text-decoration:none}.cards img{width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:10px}.cards h3{margin:1rem 0;font-size:1.15rem}.cards p{color:var(--text-muted);display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}.cards span{color:var(--accent-strong)}@media(max-width:850px){.cards{grid-template-columns:repeat(2,1fr)}}@media(max-width:560px){.cards{grid-template-columns:1fr}}
+</style>

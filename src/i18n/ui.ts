@@ -5,6 +5,7 @@ import { siteConfig } from '../config';
 
 export const defaultLang = 'km';
 export const languagesList = ['km', 'en', 'zh'] as const;
+export type UILanguage = typeof languagesList[number];
 
 export const languages: Record<string, string> = {
   km: 'ខ្មែរ',

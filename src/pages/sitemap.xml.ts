@@ -1,5 +1,6 @@
 import type { APIRoute } from 'astro';
 import siteConfig from '../config';
+import { topicSlugs } from '../data/topic-guides';
 
 /**
  * 动态生成 sitemap.xml（构建时静态输出，零依赖）。
@@ -13,13 +14,22 @@ const X_DEFAULT = 'km';
 const PAGES: { path: string; priority: string; changefreq: string }[] = [
   { path: '', priority: '1.0', changefreq: 'weekly' },
   { path: 'pocket-guide', priority: '0.9', changefreq: 'monthly' },
+  { path: 'history', priority: '0.8', changefreq: 'monthly' },
+  { path: 'how-to-get-there', priority: '0.8', changefreq: 'monthly' },
+  { path: 'what-to-see', priority: '0.8', changefreq: 'monthly' },
+  { path: 'nearby', priority: '0.8', changefreq: 'monthly' },
+  { path: 'nearby/central-market', priority: '0.7', changefreq: 'monthly' },
+  { path: 'nearby/central-post-office', priority: '0.7', changefreq: 'monthly' },
+  { path: 'nearby/national-museum', priority: '0.7', changefreq: 'monthly' },
+  { path: 'guides', priority: '0.9', changefreq: 'monthly' },
+  ...topicSlugs.map(slug => ({ path: `guides/${slug}`, priority: '0.7', changefreq: 'monthly' })),
   { path: 'privacy-policy', priority: '0.3', changefreq: 'yearly' },
   { path: 'terms-of-service', priority: '0.3', changefreq: 'yearly' },
   { path: 'cookie-settings', priority: '0.3', changefreq: 'yearly' },
 ];
 
 /** 内容最近一次实质性更新的日期（改动文案时手动更新，避免每天刷新误导爬虫） */
-const LASTMOD = '2026-10-12';
+const LASTMOD = '2026-11-16';
 
 function url(lang: string, path: string): string {
   return `${siteConfig.baseUrl}/${lang}/${path ? `${path}/` : ''}`;

@@ -1,0 +1,10 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import NearbyExplore from '../../../components/NearbyExplore.astro';
+export function getStaticPaths() { return ['en', 'zh', 'km'].map(lang => ({ params: { lang } })); }
+const lang = Astro.params.lang as 'en' | 'zh' | 'km';
+const titles = { en: 'Nearby attractions around Wat Phnom', zh: '塔山寺周边景点指南', km: 'កន្លែងទស្សនាជិតវត្តភ្នំ' };
+---
+<BaseLayout title={titles[lang]} description={titles[lang]} path="nearby" pageType="legal">
+  <NearbyExplore lang={lang} />
+</BaseLayout>

@@ -1,0 +1,21 @@
+---
+import { guides } from '../data/seo-guides';
+const { lang } = Astro.props as { lang: 'km' | 'en' | 'zh' };
+const copy = {
+  en: { eyebrow: 'Explore more', title: 'Plan your Wat Phnom visit', note: 'Explore dedicated history, arrival and attraction guides, plus detailed cultural and route topics.', all: 'Browse all specialist guides' },
+  zh: { eyebrow: '延伸阅读', title: '规划塔山寺参观', note: '从历史、建筑到机场交通和街区路线，进一步探索专题内容。', all: '浏览全部深度专题' },
+  km: { eyebrow: 'ស្វែងយល់បន្ថែម', title: 'រៀបចំដំណើរទៅវត្តភ្នំ', note: 'មគ្គុទ្ទេសក៍ប្រវត្តិ ការធ្វើដំណើរ វប្បធម៌ និងផ្លូវក្បែរៗ។', all: 'មើលប្រធានបទទាំងអស់' },
+}[lang];
+---
+<section class="section-padding guide-links" aria-labelledby="guide-links-title">
+  <div class="container">
+    <p class="eyebrow">{copy.eyebrow}</p><h2 class="section-title" id="guide-links-title">{copy.title}</h2><p class="section-lead">{copy.note}</p>
+    <div class="links-grid">
+      <a class="card card-pad" href={`/${lang}/history/`}><h3>{guides[lang].history.title}</h3><p>{guides[lang].history.description}</p><span>→</span></a>
+      <a class="card card-pad" href={`/${lang}/how-to-get-there/`}><h3>{guides[lang]['how-to-get-there'].title}</h3><p>{guides[lang]['how-to-get-there'].description}</p><span>→</span></a>
+      <a class="card card-pad" href={`/${lang}/what-to-see/`}><h3>{guides[lang]['what-to-see'].title}</h3><p>{guides[lang]['what-to-see'].description}</p><span>→</span></a>
+      <a class="card card-pad" href={`/${lang}/guides/`}><h3>{copy.all}</h3><p>{copy.note}</p><span>→</span></a>
+    </div>
+  </div>
+</section>
+<style>.links-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.5rem;margin-top:2rem}.links-grid a{text-decoration:none;color:var(--text)}.links-grid h3{font-size:1.3rem;margin-bottom:1rem}.links-grid p{line-height:1.8;color:var(--text-muted)}.links-grid span{color:var(--accent-strong);font-size:1.5rem}@media(max-width:700px){.links-grid{grid-template-columns:1fr}}</style>

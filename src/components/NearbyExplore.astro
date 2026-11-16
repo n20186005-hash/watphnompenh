@@ -1,0 +1,16 @@
+---
+import { nearbyPlaces, nearbySlugs } from '../data/nearby-places';
+const { lang } = Astro.props as { lang: 'en' | 'zh' | 'km' };
+const wording = {
+  en: { eyebrow: 'Explore nearby', title: 'Historic places around Wat Phnom', subtitle: 'Three distinct places to add to a city walk, each with its own history, visitor details and map.', more: 'View all nearby attractions', view: 'Read the visitor guide' },
+  zh: { eyebrow: '周边游览', title: '塔山寺周边历史景点', subtitle: '延伸探索三处不同的城市地标，每处都有独立介绍、参观建议和地图。', more: '查看全部周边景点', view: '查看游览指南' },
+  km: { eyebrow: 'ទស្សនាជិតខាង', title: 'ទីតាំងប្រវត្តិសាស្ត្រជុំវិញវត្តភ្នំ', subtitle: 'កន្លែងបីដែលមានប្រវត្តិ ព័ត៌មានទស្សនា និងផែនទីផ្ទាល់ខ្លួន។', more: 'មើលទីតាំងទាំងអស់', view: 'អានមគ្គុទ្ទេសក៍' },
+}[lang];
+---
+<section id="nearby-guides" class="section-padding explore-nearby">
+  <div class="container"><p class="eyebrow">{wording.eyebrow}</p><h2 class="section-title">{wording.title}</h2><p class="section-lead">{wording.subtitle}</p>
+    <div class="explore-grid">{nearbySlugs.map(slug => { const place = nearbyPlaces[slug], c = place.content[lang]; return <a class="card explore-card" href={`/${lang}/nearby/${slug}/`}><img src={place.image} alt={c.name} width="600" height="400" loading="lazy"/><div class="explore-copy"><h3>{c.name}</h3><p>{c.tagline}</p><span>{wording.view} →</span></div></a>; })}</div>
+    <p class="explore-more"><a href={`/${lang}/nearby/`}>{wording.more} →</a></p>
+  </div>
+</section>
+<style>.explore-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.5rem;margin-top:2rem}.explore-card{overflow:hidden;text-decoration:none;color:var(--text)}.explore-card img{width:100%;aspect-ratio:3/2;object-fit:cover}.explore-copy{padding:1.3rem}.explore-copy h3{font-size:1.2rem}.explore-copy p{line-height:1.6;color:var(--text-muted)}.explore-copy span,.explore-more a{color:var(--accent-strong);font-weight:700}.explore-more{margin-top:1.6rem}@media(max-width:800px){.explore-grid{grid-template-columns:1fr}}</style>

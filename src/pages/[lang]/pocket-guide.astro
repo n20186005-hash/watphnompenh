@@ -53,6 +53,12 @@ const seeAlso = [
   { id: 'nearby', label: m.header.nearby },
   { id: 'faq', label: m.header.faq },
 ];
+const articleLinks = {
+  en: ['Wat Phnom history and Lady Penh', 'How to reach Wat Phnom from KTI airport'],
+  zh: ['塔山寺历史与奔夫人传说', '从KTI机场和市中心前往塔山寺'],
+  km: ['ប្រវត្តិវត្តភ្នំ និងរឿងដូនពេញ', 'របៀបទៅវត្តភ្នំពីព្រលាន KTI'],
+}[lang] ?? ['Wat Phnom history', 'How to get to Wat Phnom'];
+const highlightsLink = ({ en: 'What to see at Wat Phnom', zh: '塔山寺必看景点', km: 'អ្វីគួរមើលនៅវត្តភ្នំ' } as Record<string, string>)[lang];
 
 /* ── 结构化数据：与首页共用同一 @id，把两个 URL 归并到同一个景点实体 ── */
 const attractionLd = {
@@ -226,6 +232,9 @@ const breadcrumbLd = {
           {seeAlso.map((s: any) => (
             <li><a href={`/${lang}/#${s.id}`}>{s.label}</a></li>
           ))}
+          <li><a href={`/${lang}/history/`}>{articleLinks[0]}</a></li>
+          <li><a href={`/${lang}/how-to-get-there/`}>{articleLinks[1]}</a></li>
+          <li><a href={`/${lang}/what-to-see/`}>{highlightsLink}</a></li>
         </ul>
       </nav>
 

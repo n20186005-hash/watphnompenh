@@ -2,7 +2,6 @@
 // 回退到本景点正式域名 watphnompenh.com，避免硬编码导致 Canonical/hreflang/OG 指向错误地址。
 function resolveBaseUrl(): string {
   const raw =
-    (typeof process !== 'undefined' ? process.env.CURRENT_SITE_DOMAIN : undefined) ||
     (import.meta.env.CURRENT_SITE_DOMAIN as string | undefined) ||
     'watphnompenh.com';
   const host = String(raw).replace(/^https?:\/\//, '').replace(/\/+$/, '');

@@ -1,0 +1,65 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { guides, guideSlugs, type GuideSlug } from '../../data/seo-guides';
+import { mapsUrl } from '../../config';
+
+export function getStaticPaths() {
+  return ['km', 'en', 'zh'].flatMap(lang => guideSlugs.map(guide => ({ params: { lang, guide } })));
+}
+
+const lang = Astro.params.lang ?? 'km';
+const slug = Astro.params.guide as GuideSlug;
+const item = guides[lang][slug];
+const labels = {
+  en: { home: 'Wat Phnom guide', other: 'Related visitor guides', map: 'Open Wat Phnom on Google Maps', sources: 'Sources and fact check', date: 'Reviewed 16 November 2026', fee: 'Hours and admission pocket guide', airport: 'Official airport transport', tourism: 'Cambodia tourism reference', photo: 'Wat Phnom temple and hill', about: 'About the temple and its care', aboutText: 'Wat Phnom is an active Buddhist temple and a public cultural landmark in Phnom Penh. Temple worship areas and the surrounding public landscape have different functions. Visitors should follow on-site guidance and respect worshippers; this independent guide does not represent its managing authorities.', facts: 'Essential visitor information', address: 'Wat Phnom Road, Daun Penh, Phnom Penh 12000, Cambodia', hours: 'Published guide hours: 07:00–19:00; verify on arrival', ticket: 'Admission may vary by visitor category; verify the current price at the entrance', stay: 'Suggested visit: 45–60 minutes', nearby: 'Continue your visit', reviews: 'Visitor reviews', reviewText: 'For current ratings and the original visitor comments, use the dedicated Google Maps listing. Review counts change and are not independently reproduced here.' },
+  zh: { home: '塔山寺首页', other: '相关参观指南', map: '打开塔山寺谷歌地图', sources: '资料与核实记录', date: '资料查阅：2026年11月16日', fee: '开放与门票随身指南', airport: '机场官方交通资料', tourism: '柬埔寨旅游参考资料', photo: '金边塔山寺山丘与寺庙', about: '关于塔山寺及维护', aboutText: '塔山寺是金边仍在使用的佛教寺院，也是城市公共文化地标。宗教礼拜区域和周围公共园林用途不同，请遵循现场管理指引并尊重信众。本独立指南不代表管理机构。', facts: '参观基本资料', address: 'Wat Phnom Road, Daun Penh, Phnom Penh 12000, Cambodia', hours: '本指南所载开放时间 07:00—19:00，现场核实', ticket: '不同游客类别的门票政策可能不同，请在入口现场核实', stay: '建议停留 45—60 分钟', nearby: '附近延伸参观', reviews: '游客评价', reviewText: '最新评分、评价数量和原始评论请以该景点谷歌地图页面为准，评价数量会持续变化。' },
+  km: { home: 'មគ្គុទ្ទេសក៍វត្តភ្នំ', other: 'មគ្គុទ្ទេសក៍ពាក់ព័ន្ធ', map: 'បើកទីតាំងវត្តភ្នំនៅ Google Maps', sources: 'ប្រភព និងការផ្ទៀងផ្ទាត់', date: 'បានពិនិត្យប្រភពថ្ងៃទី ១៦ វិច្ឆិកា ២០២៦', fee: 'មគ្គុទ្ទេសក៍ម៉ោង និងតម្លៃចូល', airport: 'ព័ត៌មានដឹកជញ្ជូនផ្លូវការរបស់ព្រលាន', tourism: 'ប្រភពទេសចរណ៍កម្ពុជា', photo: 'វត្តភ្នំ និងភ្នំដូនពេញ', about: 'អំពីវត្ត និងការថែទាំ', aboutText: 'វត្តភ្នំជាវត្តព្រះពុទ្ធសាសនាដែលនៅមានការបូជា និងជាទីសម្គាល់វប្បធម៌សាធារណៈក្នុងរាជធានីភ្នំពេញ។ តំបន់សក្ការៈ និងសួនជុំវិញមានមុខងារផ្សេងគ្នា។ សូមគោរពអ្នកបូជា និងការណែនាំនៅទីតាំង។ មគ្គុទ្ទេសក៍ឯករាជ្យនេះមិនតំណាងឱ្យអ្នកគ្រប់គ្រងទេ។', facts: 'ព័ត៌មានមូលដ្ឋានសម្រាប់ទស្សនា', address: 'Wat Phnom Road, Daun Penh, Phnom Penh 12000, Cambodia', hours: 'ម៉ោងក្នុងមគ្គុទ្ទេសក៍ 07:00–19:00; សូមពិនិត្យនៅទីតាំង', ticket: 'តម្លៃចូលអាចខុសគ្នាតាមប្រភេទអ្នកទស្សនា សូមពិនិត្យនៅច្រកចូល', stay: 'ពេលណែនាំ ៤៥–៦០ នាទី', nearby: 'ទស្សនាបន្តជុំវិញ', reviews: 'មតិអ្នកទស្សនា', reviewText: 'សូមមើលពិន្ទុ ចំនួនមតិ និងមតិដើមថ្មីៗនៅ Google Maps។ ចំនួនមតិអាចផ្លាស់ប្តូរ។' },
+}[lang] ?? null;
+const l = labels!;
+const references = slug === 'history' || slug === 'what-to-see'
+  ? [{ text: l.tourism, url: 'https://tourismcambodia.org/provinces/search/detail/126/wat-phnom-phnom-penh' }, { text: l.tourism, url: 'https://www.tourismcambodia.com/travelguides/provinces/phnom-penh/introduction.htm' }]
+  : [{ text: l.airport, url: 'https://www.techoairport.com.kh/transportation/public' }, { text: l.tourism, url: 'https://tourismcambodia.org/provinces/search/detail/126/wat-phnom-phnom-penh' }];
+const faqLd = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: item.questions.map(x => ({ '@type': 'Question', name: x.q, acceptedAnswer: { '@type': 'Answer', text: x.a } })) };
+const breadcrumbLd = { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: l.home, item: `https://watphnompenh.com/${lang}/` }, { '@type': 'ListItem', position: 2, name: item.title, item: `https://watphnompenh.com/${lang}/${slug}/` }] };
+const guidePhoto = slug === 'history' ? 6 : slug === 'how-to-get-there' ? 3 : 1;
+---
+<BaseLayout title={item.title} description={item.description} path={slug} pageType="legal">
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(faqLd)} />
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbLd)} />
+  <article class="seo-guide container">
+    <nav class="crumb" aria-label="Breadcrumb"><a href={`/${lang}/`}>{l.home}</a> / {item.eyebrow}</nav>
+    <header class="seo-hero">
+      <div><p class="eyebrow">{item.eyebrow}</p><h1>{item.title}</h1><p class="lead">{item.intro}</p><a class="map-action" href={mapsUrl} target="_blank" rel="noopener noreferrer">{l.map} ↗</a></div>
+      <img src={`/gallery/wat-phnom-daun-penh-${guidePhoto}.jpg`} width="840" height="560" loading="eager" alt={l.photo}/>
+    </header>
+    <section class="guide-section guide-about"><h2>{l.about}</h2><p>{l.aboutText}</p></section>
+    <section class="guide-section"><h2>{l.facts}</h2><dl class="fact-list"><div><dt>Wat Phnom Daun Penh</dt><dd>{l.address}</dd></div><div><dt>Plus Code</dt><dd>HWGF+F6</dd></div><div><dt>{l.stay}</dt><dd>{l.hours}</dd></div><div><dt>{l.fee}</dt><dd>{l.ticket}</dd></div></dl></section>
+    <div class="seo-columns"><div>
+      {item.sections.map(section => <section class="guide-section"><h2>{section.heading}</h2>{section.paragraphs.map(p => <p>{p}</p>)}</section>)}
+      <section class="guide-section"><h2>{item.routeTitle}</h2><ol>{item.route.map(step => <li>{step}</li>)}</ol></section>
+      <section class="guide-section"><h2>{item.practicalTitle}</h2><ul>{item.practical.map(note => <li>{note}</li>)}</ul></section>
+      <section class="guide-section"><h2>FAQ</h2>{item.questions.map(q => <div><h3>{q.q}</h3><p>{q.a}</p></div>)}</section>
+      <section class="guide-section"><h2>{l.nearby}</h2><p><a href={`/${lang}/#nearby`}>{l.home} →</a></p><p><a href={`/${lang}/how-to-get-there/`}>{guides[lang]['how-to-get-there'].title} →</a></p></section>
+      <section class="guide-section"><h2>{l.nearby}</h2><p><a href={`/${lang}/nearby/`}>{l.nearby} →</a></p></section>
+      <section class="guide-section"><h2>{l.reviews}</h2><p>{l.reviewText}</p><a href={mapsUrl} target="_blank" rel="noopener noreferrer">Google Maps ↗</a></section>
+    </div><aside class="guide-aside">
+      <h2>{l.other}</h2>
+      <a href={`/${lang}/pocket-guide/`}>{l.fee} →</a>
+      <a href={`/${lang}/history/`}>{guides[lang].history.title} →</a>
+      <a href={`/${lang}/what-to-see/`}>{guides[lang]['what-to-see'].title} →</a>
+      <a href={`/${lang}/how-to-get-there/`}>{guides[lang]['how-to-get-there'].title} →</a>
+      <a href={`/${lang}/#nearby`}>{l.home} →</a>
+      <a href={`/${lang}/nearby/`}>{l.nearby} →</a>
+      <h2>{l.sources}</h2><p>{l.date}</p>
+      {references.map(ref => <a href={ref.url} target="_blank" rel="noopener noreferrer">{ref.text} ↗</a>)}
+      <a href={mapsUrl} target="_blank" rel="noopener noreferrer">Google Maps ↗</a>
+    </aside></div>
+  </article>
+</BaseLayout>
+<style>
+  .seo-guide{padding-top:3rem;padding-bottom:5rem}.crumb{font-size:.9rem;color:var(--text-muted);margin-bottom:2rem}.crumb a{color:var(--accent-strong)}
+  .seo-hero{display:grid;grid-template-columns:1.1fr .9fr;gap:2.5rem;align-items:center;margin-bottom:3rem}.seo-hero h1{font-size:clamp(2rem,4vw,3.5rem);line-height:1.18;margin:.5rem 0 1.5rem}.lead{font-size:1.13rem;line-height:1.85}.seo-hero img{width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;border-radius:var(--radius)}
+  .map-action{display:inline-block;background:var(--accent);color:#17130b;padding:.8rem 1rem;border-radius:9px;margin-top:.8rem;font-weight:700}.seo-columns{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:3rem}.guide-section{margin-bottom:2.5rem}.guide-section h2{font-size:1.6rem;margin-bottom:1rem}.guide-section h3{font-size:1.1rem;margin:1.4rem 0 .5rem}.guide-section p,.guide-section li{line-height:1.9;margin-bottom:.8rem}.guide-section li{padding-left:.25rem}.guide-section ol,.guide-section ul{padding-left:1.7rem}.guide-aside{align-self:start;background:var(--surface-accent);border-radius:var(--radius);padding:1.5rem;display:grid;gap:.85rem}.guide-aside h2{font-size:1.15rem;margin:1rem 0 0}.guide-aside a{overflow-wrap:anywhere;color:var(--accent-strong);line-height:1.5}.guide-aside p{font-size:.88rem;color:var(--text-muted)}
+  .guide-about{padding:1.5rem 2rem;background:var(--surface-accent);border-radius:var(--radius)}.fact-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}.fact-list div{border:1px solid var(--border);border-radius:10px;padding:1rem}.fact-list dt{font-weight:700;margin-bottom:.4rem}.fact-list dd{margin:0;line-height:1.7}
+  @media(max-width:800px){.seo-hero,.seo-columns,.fact-list{grid-template-columns:1fr}.seo-guide{padding-top:1.5rem}.seo-hero{gap:1.5rem}.guide-aside{order:-1}}
+</style>

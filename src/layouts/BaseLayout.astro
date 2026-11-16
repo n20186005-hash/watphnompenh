@@ -38,7 +38,7 @@ const SITE = siteConfig.baseUrl;
 // 规范 URL：一律以尾斜杠结尾（如 https://watphnompenh.com/en/），与实际部署路径及 hreflang 完全一致
 const rawPath = props.path ?? '';
 const normPath = rawPath === '' || rawPath.endsWith('/') ? rawPath : `${rawPath}/`;
-const pageUrl = props.canonical ?? `${SITE}/${activeLang}${normPath || '/'}`;
+const pageUrl = props.canonical ?? `${SITE}/${activeLang}/${normPath}`;
 const title = props.title ?? messages.meta.title;
 const description = props.description ?? messages.meta.description;
 const image = props.image ?? `${SITE}/gallery/wat-phnom-daun-penh-1.jpg`;
