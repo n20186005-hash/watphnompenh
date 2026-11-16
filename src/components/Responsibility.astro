@@ -13,6 +13,13 @@ const s = m.responsibility;
     <h2 class="section-title">{s.title}</h2>
     <p class="section-lead">{s.subtitle}</p>
 
+    <div class="mission-card card card-pad">
+      <h3>{m.footer.missionTitle}</h3>
+      <p>{m.footer.tagline}</p>
+      <p>{m.footer.missionText}</p>
+      <p>{m.footer.rights}</p>
+    </div>
+
     <div class="rp-grid">
       <div class="rp-col card card-pad">
         <h3 class="rp-head"><span class="rp-mark science" aria-hidden="true"></span>{s.knowTitle}</h3>
@@ -44,6 +51,9 @@ const s = m.responsibility;
 </section>
 
 <style>
+  .mission-card { margin-top: 24px; }
+  .mission-card h3 { margin: 0 0 10px; }
+  .mission-card p { color: var(--text-muted); line-height: 1.75; margin: 8px 0 0; }
   .rp-grid { margin-top: 30px; display: grid; gap: 22px; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
   .rp-head { display: flex; align-items: center; gap: 10px; margin: 0 0 18px; font-size: 1.12rem; }
   .rp-mark { width: 26px; height: 26px; border-radius: 9px; flex: none; display: inline-block; }

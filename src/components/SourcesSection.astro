@@ -16,6 +16,7 @@ const s = m.sources;
         <h3>{s.reviewsTitle}</h3>
         <p class="src-meta">{s.reviewsUpdatedLabel}: <strong>{s.reviewsUpdated}</strong></p>
         <p class="src-note">{s.reviewsSourceNote}</p>
+        <p class="src-note">{m.footer.reviewsSource}</p>
         <a class="link-accent" href={mapsUrl} target="_blank" rel="noopener noreferrer">
           {s.reviewsLink} ↗
         </a>
@@ -29,6 +30,7 @@ const s = m.sources;
 
       <div class="src-card card card-pad">
         <h3>{s.officialTitle}</h3>
+        <p class="src-note">{m.footer.disclaimer}</p>
         <ul class="src-links">
           <li><a href={mapsUrl} target="_blank" rel="noopener noreferrer">{s.googleMaps} ↗</a></li>
           <li><a href={entity.tourismUrl} target="_blank" rel="noopener noreferrer">{s.tourism} ↗</a></li>
@@ -38,6 +40,11 @@ const s = m.sources;
     </div>
 
     <p class="sources-foot">{s.note}</p>
+    <nav class="source-legal" aria-label="Legal information">
+      <a href={`/${Astro.props.lang}/privacy-policy/`}>{m.legal.privacyTitle}</a>
+      <a href={`/${Astro.props.lang}/terms-of-service/`}>{m.legal.termsTitle}</a>
+      <a href={`/${Astro.props.lang}/cookie-settings/`}>{m.legal.cookieTitle}</a>
+    </nav>
   </div>
 </section>
 
@@ -59,4 +66,6 @@ const s = m.sources;
   .src-links a { color: var(--accent-strong); font-weight: 600; font-size: 0.94rem; }
   .src-links a:hover { text-decoration: underline; }
   .sources-foot { margin: 22px 0 0; color: var(--text-muted); font-size: 0.86rem; }
+  .source-legal { display: flex; flex-wrap: wrap; gap: 12px 22px; margin-top: 16px; }
+  .source-legal a { color: var(--accent-strong); font-size: 0.9rem; }
 </style>
